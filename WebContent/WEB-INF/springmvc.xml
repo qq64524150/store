@@ -18,6 +18,11 @@
 	<!-- 配置springmvc 静态文件过滤 -->
 	<mvc:resources location="/js/" mapping="/js/**"></mvc:resources>
 	<mvc:resources location="/css/" mapping="/css/**"></mvc:resources>
+	<mvc:resources location="/bootstrap/" mapping="/bootstrap/**"></mvc:resources>
+	<mvc:resources location="/bootstrapcss/" mapping="/bootstrapcss/**"></mvc:resources>
+	<mvc:resources location="/fonts/" mapping="/fonts/**"></mvc:resources>
+	<mvc:resources location="/jquery/" mapping="/jquery/**"></mvc:resources>
+	<mvc:resources location="/themes/" mapping="/themes/**"></mvc:resources>
 	
 	<!-- 视图解析器 -->
  	 <bean
