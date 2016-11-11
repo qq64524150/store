@@ -17,16 +17,21 @@
 <body>
 	<h3>用户登录</h3>
 	<div style="width: 300px;">
-		<form role="form">
+		<form role="form" >
 			<div class="form-group">
 				<label for="exampleInputEmail1">请输入用户名/手机号:</label> 
 				<input type="email" class="form-control" id="exampleInputEmail1"
 					placeholder="请输入用户名/手机号" name="">
 			</div>
-			<div class="form-group">
+		<!-- 	<div class="form-group">
 				<label for="exampleInputPassword1">请输入密码:</label> 
 				<input type="password" class="form-control" id="exampleInputPassword1"
 					placeholder="请输入密码" name="">
+			</div> -->
+			<div class="form-group">
+				<label for="exampleInputPassword1">请输入验证码:</label> 
+				<input type="password" class="form-control" id="exampleInputPassword1"
+					placeholder="请输入验证码" name="">
 			</div>
 			<button type="button" class="btn btn-default" id="go">登录</button>
 			<button type="button" class="btn btn-default" id="enroll">注册</button>
@@ -42,7 +47,11 @@
 </body>
 </html>
 <script type="text/javascript">	
-	
+	$("#go").click(function(){
+		$.post("test/go","",function(data){
+			alert(data)
+		});
+	});
 	
 	
 </script>
