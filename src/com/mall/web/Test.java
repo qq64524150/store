@@ -21,7 +21,8 @@ public class Test {
 	@RequestMapping("/go")
 	@ResponseBody
 	public String sendMessage2(String mobile,HttpServletRequest request) throws ApiException { 
-		
+		System.out.println(mobile);
+	
 		//官网的URL---必须是这个 
 		String url="http://gw.api.taobao.com/router/rest";   
 		//成为开发者，创建应用后系统会自动生成--前面图片中有说明 
@@ -29,18 +30,17 @@ public class Test {
 		//创建应用后系统会自动生成--前面图片中有说明 
 		String secret="9d36c75cef950a93151fdc4a26788c93"; 
 		//随机生成 num 位验证码 
-		String code="";
+		int code = (int)(1+Math.random()*(10000-1+1)) ;
 		Random r = new Random(new Date().getTime()); 
-		
 		
 		TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
 		AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
 		req.setExtend( "" );
 		req.setSmsType( "normal" );
-		req.setSmsFreeSignName( "个人测试" );
-		req.setSmsParamString( "{number:'2121'}" );
-		req.setRecNum( "13217595955" );
-		req.setSmsTemplateCode( "SMS_25735707" );
+		req.setSmsFreeSignName( "波多尔名酒网" );
+		req.setSmsParamString( "{number:'"+code+"'}" );
+		req.setRecNum( mobile );
+		req.setSmsTemplateCode( "SMS_25665742" );
 		AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);
 		System.out.println(rsp.getBody());
 		return "ok" ;
