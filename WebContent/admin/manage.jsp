@@ -39,19 +39,41 @@
 			<!-- 左 -->
 			<div data-options="region:'west'" style="width:190px;">
 				<!-- Accordion分类 -->
-				
-				
+				<div id="aa" class="easyui-accordion" style="width:187px;height:200px">   
+   				
+   					 <div title="Title1" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">   
+   					 </div>   
+    				<div title="Title2" data-options="iconCls:'icon-reload',selected:true" style="padding:10px;">   
+        				content2    
+    				</div>   
+    				<div title="Title3">   
+       					 content3    
+   			 		</div>   
+				</div> 
+		
 			</div>   
 
 			<!-- 中 -->
 			<div data-options="region:'center'" style="padding:5px;background:#fff;">
 				<!-- Tabs选项卡 -->
-				<div 
-					id="tabsID" 
+				<div id="tabsID" 
 					class="easyui-tabs" 
 					style="width:500px;height:250px;"
 					data-options="plain:true,border:false,selected:-1,fit:true">   
-				</div>
+					<div  title="起始页" style="padding: 0 10px;display: block;">
+		    			你1
+    				</div>
+    				
+				</div> 
+				ni21
+    		
+    	</div>
+    	
+				
+				
+				
+				
+				
 			</div>   
 			
 		</div>

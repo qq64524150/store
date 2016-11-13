@@ -23,6 +23,7 @@
 	<mvc:resources location="/fonts/" mapping="/fonts/**"></mvc:resources>
 	<mvc:resources location="/jquery/" mapping="/jquery/**"></mvc:resources>
 	<mvc:resources location="/themes/" mapping="/themes/**"></mvc:resources>
+	<mvc:resources location="/easyui/" mapping="/easyui/**"></mvc:resources>
 	
 	<!-- 视图解析器 -->
  	 <bean
