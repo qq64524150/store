@@ -3,12 +3,14 @@ package com.mall.web;
 import java.util.Date;
 import java.util.Random;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mall.service.PermissionService;
 import com.taobao.api.ApiException;
 import com.taobao.api.DefaultTaobaoClient;
 import com.taobao.api.TaobaoClient;
@@ -18,6 +20,9 @@ import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 @Controller
 @RequestMapping("/test")
 public class Test {
+	@Resource
+	private PermissionService permissionService;
+	
 	@RequestMapping("/go")
 	@ResponseBody
 	public String sendMessage2(String mobile,HttpServletRequest request) throws ApiException { 
@@ -45,4 +50,22 @@ public class Test {
 		System.out.println(rsp.getBody());
 		return "ok" ;
 	}
+
+
+	//测试
+	@RequestMapping("/gotest")
+	public String test02(){
+		int i = permissionService.findFunction().size();
+		System.out.println(i);
+		return null ;
+	}
+	
+	
+	
+	public void setPermissionService(PermissionService permissionService) {
+		this.permissionService = permissionService;
+	}
+	
+	
+	
 }

@@ -17,6 +17,7 @@
 <title>用户登录</title>
 </head>
 <body>
+
 	<h3>用户登录</h3>
 	<div style="width: 300px;">
 		<form role="form" id="froms" class="form-inline">
@@ -42,6 +43,9 @@
 				<button type="button" class="btn btn-default" id="enroll">注册</button>
 			</div>
 		</form>
+		
+	<a href="test/gotest">测试</a>
+		
 	</div>
 	<!-- 加载另一 个页面 -->
 	<%-- <%@ include file="" %>
