@@ -5,6 +5,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -42,7 +43,10 @@
 			</div>
 		</form>
 	</div>
-
+	<!-- 加载另一 个页面 -->
+	<%-- <%@ include file="" %>
+	<c:import url=""></c:import> --%>
+	
 
 	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 	<script src="<%=basePath%>/jquery/jquery-2.2.3.min.js"></script>
