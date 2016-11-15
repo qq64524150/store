@@ -11,7 +11,7 @@ public class PermissionDaoImpl extends BaseDao implements PermissionDao {
 	//查询相对应的权限
 	@Override
 	public List findper(String parenid, String authids) {
-		String hql="from Permission p where p.persuperior='"+parenid+"' and p.perno in("+authids+")";
+		String hql="from Permission p where p.persuperior='"+parenid+"' and p.perno in("+authids+") and p.pisNavigation=1";
 		return getSession().createQuery(hql).list();
 	
 	}

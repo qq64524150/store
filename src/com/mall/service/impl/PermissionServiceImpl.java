@@ -16,7 +16,7 @@ public class PermissionServiceImpl implements PermissionService {
 	//查询出相应的权限
 	@Override
 	public List findper(String authids, String parenid) {
-		List list =  permissionDao.findper(authids, parenid);
+		List list =  permissionDao.findper(parenid,authids);
 		System.out.println(list.size());
 		for(int i=0;i<list.size();i++){
 			Permission a = (Permission) list.get(i);

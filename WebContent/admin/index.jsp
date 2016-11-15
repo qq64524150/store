@@ -1,182 +1,167 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+<head id="Head1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>后台管理</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="${pageContext.request.contextPath }/imgs/tit.png"
-	rel="shortout icon" />
-<meta name="viewport"
-	content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<!-- 增强IE浏览器的渲染格式 -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!-- 移动设备优先 -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Bootstrap -->
-<link
-	href="${pageContext.request.contextPath }/bootstrap/bootstrap.min.css"
-	rel="stylesheet">
+<link href="<%=basePath%>/css/default.css" rel="stylesheet"
+	type="text/css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=basePath%>/js/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=basePath%>/js/themes/icon.css" />
+<script type="text/javascript"
+	src="<%=basePath%>/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript"
+	src="<%=basePath%>/js/jquery.easyui.min.1.2.2.js"></script>
+<script type="text/javascript" src='<%=basePath%>/js/outlook2.js'>
 	
-<meta name="viewport"
-	content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/easyui/themes/icon.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/easyui/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/easyui/demo/demo.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/easyui/themes/material/easyui.css">
-
-
-<link rel="stylesheet" type="text/css"
-	href="../jquery/jquery-ui.min.css">
-<script type="text/javascript" src="../jquery/jquery-ui.min.js"></script>
-<script type="text/javascript" src="../jquery/jquery-1.12.3.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/jquery/jquery.form.js"></script>
-
-
-</head>
-<body class="easyui-layout">
-
-
-	<!-- 头开始 -->
-	<div data-options="region:'north',title:'header',split:false,noheader:true,"
-		style="height: 80px; overflow: hidden; margin: 0px" id="hesd">
-			后台管理系统
-			
-			
-	</div>
-	<!-- 头结束-->
-
-	<!-- 尾 -->
-	<div
-		data-options="region:'south',title:'footer',split:false,noheader:true"
-		style="color: #B4CDCD; height: 30px; line-height: 30px; text-align: center; margin: 0px; overflow: hidden;">
-		©2016 csgz.xicp.cn 使用xx 意见反馈 京ICP证66666号</div>
-	<!-- 功能导航开始 -->
-	<div data-options="region:'west',title:'功能导航',split:false,iconCls:'icon-09'"
-		style="width: 230px; padding: 10px; margin: 0px;" id="daoHan">
-		<div id="myAppbar" class="easyui-accordion"  style="width: 228px; height: auto; margin-left: -10px; margin-top: -11px; ">
-				
-				<%--  <div title="员工信息维护"  " style="overflow:auto;padding:10px;  class="as" id='shengq'>   
-		        	 <div>
-		        		<ul class="tt">
-		        			<li class ="zhenc" title="员工信息" value="${pageContext.request.contextPath }/message/allStaff.jsp" ><div class="imgeas"><img alt="" src="${pageContext.request.contextPath }/imgs/02_geRen.PNG"></div>&nbsp;员工信息<input type="hidden" value='icon-02'/></li>
-		        			<li class ="zhenc" title="部门信息" value="${pageContext.request.contextPath }/message/branchBumen.jsp"><div class="imgeas"> <img alt="" src="${pageContext.request.contextPath }/imgs/04_bumenglir.PNG"></div>&nbsp;部门信息<input type="hidden" value='icon-04'/></li>
-		        			<li class ="fzhenc" title="部门管理员信息" value="${pageContext.request.contextPath }/navigationDaoHan/exependitureJingFei.jsp"><div class="imgeas"><img alt="" src="${pageContext.request.contextPath }/imgs/03_bumen.PNG"></div> &nbsp;部门管理人信息<input type="hidden" value='icon-03'/></li>
-		        		</ul>
-		        	</div>    	
-		    	</div>    --%>
-				<%--  <div title="" style="width: -50px"></div> 
-			        	   	
-		    		
-				<c:forEach var="t" items="${t}" >
-					
-					 <div title="${t.pername }" name="${t.perno }"style="overflow:auto;padding:10px; ">   
-			        	   	
-		    		</div>   
-				</c:forEach> --%>
-				<ul class="easyui-tree" data-options="url:'../test/gotest'"></ul>  
-
-				
-
-		</div>
-	</div>
-
-
-	<!-- 功能导航结束 -->
-
-	<!-- 主体开始 -->
-	<div data-options="region:'center'" style="margin: 0px; padding: 0px;"
-		id="zhutiImg">
-		<div id="tabs" style="margin: 0px; padding: 0px">
-			<div data-options="iconCls:'icon-22'" title="起始页"
-				style="padding: 0 10px; display: block;" id="zhu">
-				<div id="formbackground">
-					欢迎来到后台管理
-					
-				</div>
-			</div>
-		</div>
-
-	</div>
-
-
-	<!-- 主体结束 -->
-
-
-
-</body>
-
-<script
-	src="${pageContext.request.contextPath }/jquery/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/jquery/jquery.form.js"></script>
-
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/easyui/jquery.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/easyui/jquery.easyui.min.js"></script>
-
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/adminUi.js"></script>
-
-
-
-</html>
-
-
+</script>
 <script type="text/javascript">
-		
-		
-
-		
-		
-		
-	/* $('#myAppbar').accordion({    
-   	 	animate:false ,
-   	 	onSelect:function(){
-   
-   	 	var p = $('#myAppbar').accordion('getSelected');
-	   	 if (p){
-	   	 	var index = $('#myAppbar').accordion('getPanelIndex',p);
-	   	 	//alert(index);
-	   	 	if(index!=0){
-	   	 		$.post("../test/fun?id="+index,"",function(data){
-	   	 			
-	   	 		});
-	   	 	}
-	   	 	
-	   	 }
-   	 		
-   	 	}
-	});  	 */
-	/* $("#test").click(function(){
-		alert("")
-	}); */
-	/*  $.get("../test/gotest","",function(data){
-		
-		 $.each(data,function(i,o){
-			
-			var divs = '<div title="Title1"  style="overflow:auto;padding:10px;"> </div>';
-			$("#myAppbar").append(divs);
-		 });
-		 
-		 
-	});  */
-
 	
 
- 
- 
+	var test = [ {
+		"perno" : "1",
+		"pername" : "用户管理",
+		"perurl" : "",
+		"perioce" : "",
+		"persuperior" : 0,
+		"pisNavigation" : 1,
+		"perdepict" : "这是用户管理",
+		"perstatus" : "open",
+		"aso" : [ {
+			"perno" : "9",
+			"pername" : "个人信息",
+			"perurl" : "",
+			"perioce" : "",
+			"persuperior" : 1,
+			"pisNavigation" : 1,
+			"perdepict" : "这是个人信息",
+			"perstatus" : "closed",
+			"aso" : []
+		}, {
+			"perno" : "10",
+			"pername" : "用户信息",
+			"perurl" : "",
+			"perioce" : "",
+			"persuperior" : 1,
+			"pisNavigation" : 1,
+			"perdepict" : "这是用户信息",
+			"perstatus" : "closed",
+			"aso" : []
+		} ]
+	}, {
+		"perno" : "2",
+		"pername" : "商品管理",
+		"perurl" : "",
+		"perioce" : "",
+		"persuperior" : 0,
+		"pisNavigation" : 1,
+		"perdepict" : "这是商品管理",
+		"perstatus" : "open",
+		"aso" : []
+	}, {
+		"perno" : "3",
+		"pername" : "评价/反馈",
+		"perurl" : "",
+		"perioce" : "",
+		"persuperior" : 0,
+		"pisNavigation" : 1,
+		"perdepict" : "这是评价/反馈",
+		"perstatus" : "open",
+		"aso" : []
+	}, {
+		"perno" : "4",
+		"pername" : "信息管理",
+		"perurl" : "",
+		"perioce" : "",
+		"persuperior" : 0,
+		"pisNavigation" : 1,
+		"perdepict" : "这是信息管理",
+		"perstatus" : "open",
+		"aso" : []
+	}, {
+		"perno" : "5",
+		"pername" : "物流信息",
+		"perurl" : "",
+		"perioce" : "",
+		"persuperior" : 0,
+		"pisNavigation" : 1,
+		"perdepict" : "这是物流信息",
+		"perstatus" : "open",
+		"aso" : []
+	}, {
+		"perno" : "6",
+		"pername" : "统计信息",
+		"perurl" : "",
+		"perioce" : "",
+		"persuperior" : 0,
+		"pisNavigation" : 1,
+		"perdepict" : "这是统计信息",
+		"perstatus" : "open",
+		"aso" : []
+	}, {
+		"perno" : "7",
+		"pername" : "权限管理",
+		"perurl" : "",
+		"perioce" : "",
+		"persuperior" : 0,
+		"pisNavigation" : 1,
+		"perdepict" : "这是权限管理",
+		"perstatus" : "open",
+		"aso" : []
+	}, {
+		"perno" : "8",
+		"pername" : "系统维护",
+		"perurl" : "",
+		"perioce" : "",
+		"persuperior" : 0,
+		"pisNavigation" : 1,
+		"perdepict" : "这是系统维护",
+		"perstatus" : "open",
+		"aso" : []
+	} ];
+	
 </script>
 
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+	
+	<div region="north" split="true" border="false"
+		style="overflow: hidden; height: 30px; background: url(../images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%; line-height: 20px; color: #fff; font-family: Verdana, 微软雅黑, 黑体">
+		
+	</div>
+	<div region="south" split="true"
+		style="height: 30px; background: #D2E0F2;">
+		
+	</div>
+	<div region="west" hide="true" split="true" title="导航菜单"
+		style="width: 180px;" id="west">
+		<div id="nav" class="easyui-accordion" fit="true" border="false">
+			<!--  导航内容 -->
+
+		</div>
+
+	</div>
+	<div id="mainPanle" region="center"
+		style="background: #eee; overflow-y: hidden">
+		<div id="tabs" class="easyui-tabs" fit="true" border="false">
+			<div title="主页" style="padding: 20px; overflow: hidden; color: red;">
+				欢迎来到后台管理
+				
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
 
 

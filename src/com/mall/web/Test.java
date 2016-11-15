@@ -1,16 +1,21 @@
 package com.mall.web;
 
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mall.entity.Role;
 import com.mall.service.PermissionService;
 import com.mall.service.RoleService;
@@ -72,12 +77,17 @@ public class Test {
 	}
 	
 	//测试
-	@RequestMapping("/funs")
+	@RequestMapping(value = "/funs")
 	@ResponseBody
-	public List findFunction(){
-		/*Role r = roleService.findRole("1");
-		System.out.println("-------------"+r.getRoname());*/
-		return permissionService.findper("0,1,2,3,4,5,6,7,8,8,9,10", "0");
+	public void findFunction(HttpServletResponse response,PrintWriter out) throws JsonProcessingException{
+		response.setHeader("Cache-Control", "no-cache");   
+        response.setContentType("text/text;charset=UTF-8");  
+        response.setCharacterEncoding("UTF-8");  
+		List lost =  permissionService.findper("0,1,2,3,4,5,6,7,8,8,9,10", "0");
+		ObjectMapper mapper = new ObjectMapper();
+		String s = mapper.writeValueAsString(lost);
+		out.print(s);
+		out.close();
 	}
 	
 	
