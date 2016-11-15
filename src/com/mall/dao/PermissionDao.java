@@ -7,6 +7,7 @@ public interface PermissionDao {
 	public List findper(String parenid,String authids) ;
 	//查询出功能菜单
 	public List findFunction();
-	
+	//查询出指定功能菜单
+	public List findFunctionById(int id );
 	
 }

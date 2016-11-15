@@ -83,8 +83,28 @@
 
 
 <script type="text/javascript">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	//定位4个按钮
-	$("a").click(function(){
+/* 	$("a").click(function(){
 		//获取你所单击的按钮的标题
 		var title = $(this).text();
 		//去空格
@@ -115,7 +135,7 @@
 				});
 			}
 		}
-	});
+	}); */
 </script>
 
 

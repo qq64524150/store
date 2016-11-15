@@ -19,8 +19,7 @@
 <link
 	href="${pageContext.request.contextPath }/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-
-
+	
 <meta name="viewport"
 	content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -51,7 +50,8 @@
 	<div data-options="region:'north',title:'header',split:false,noheader:true,"
 		style="height: 80px; overflow: hidden; margin: 0px" id="hesd">
 			后台管理系统
-	
+			
+			
 	</div>
 	<!-- 头结束-->
 
@@ -63,9 +63,29 @@
 	<!-- 功能导航开始 -->
 	<div data-options="region:'west',title:'功能导航',split:false,iconCls:'icon-09'"
 		style="width: 230px; padding: 10px; margin: 0px;" id="daoHan">
-		<div id="aa" class="easyui-accordion"  style="width: 228px; height: auto; margin-left: -10px; margin-top: -11px;">
+		<div id="myAppbar" class="easyui-accordion"  style="width: 228px; height: auto; margin-left: -10px; margin-top: -11px; ">
+				
+				<%--  <div title="员工信息维护"  " style="overflow:auto;padding:10px;  class="as" id='shengq'>   
+		        	 <div>
+		        		<ul class="tt">
+		        			<li class ="zhenc" title="员工信息" value="${pageContext.request.contextPath }/message/allStaff.jsp" ><div class="imgeas"><img alt="" src="${pageContext.request.contextPath }/imgs/02_geRen.PNG"></div>&nbsp;员工信息<input type="hidden" value='icon-02'/></li>
+		        			<li class ="zhenc" title="部门信息" value="${pageContext.request.contextPath }/message/branchBumen.jsp"><div class="imgeas"> <img alt="" src="${pageContext.request.contextPath }/imgs/04_bumenglir.PNG"></div>&nbsp;部门信息<input type="hidden" value='icon-04'/></li>
+		        			<li class ="fzhenc" title="部门管理员信息" value="${pageContext.request.contextPath }/navigationDaoHan/exependitureJingFei.jsp"><div class="imgeas"><img alt="" src="${pageContext.request.contextPath }/imgs/03_bumen.PNG"></div> &nbsp;部门管理人信息<input type="hidden" value='icon-03'/></li>
+		        		</ul>
+		        	</div>    	
+		    	</div>    --%>
+				<%--  <div title="" style="width: -50px"></div> 
+			        	   	
+		    		
+				<c:forEach var="t" items="${t}" >
+					
+					 <div title="${t.pername }" name="${t.perno }"style="overflow:auto;padding:10px; ">   
+			        	   	
+		    		</div>   
+				</c:forEach> --%>
+				<ul class="easyui-tree" data-options="url:'../test/gotest'"></ul>  
 
-
+				
 
 		</div>
 	</div>
@@ -81,6 +101,7 @@
 				style="padding: 0 10px; display: block;" id="zhu">
 				<div id="formbackground">
 					欢迎来到后台管理
+					
 				</div>
 			</div>
 		</div>
@@ -113,7 +134,48 @@
 
 
 <script type="text/javascript">
+		
+		
 
+		
+		
+		
+	/* $('#myAppbar').accordion({    
+   	 	animate:false ,
+   	 	onSelect:function(){
+   
+   	 	var p = $('#myAppbar').accordion('getSelected');
+	   	 if (p){
+	   	 	var index = $('#myAppbar').accordion('getPanelIndex',p);
+	   	 	//alert(index);
+	   	 	if(index!=0){
+	   	 		$.post("../test/fun?id="+index,"",function(data){
+	   	 			
+	   	 		});
+	   	 	}
+	   	 	
+	   	 }
+   	 		
+   	 	}
+	});  	 */
+	/* $("#test").click(function(){
+		alert("")
+	}); */
+	/*  $.get("../test/gotest","",function(data){
+		
+		 $.each(data,function(i,o){
+			
+			var divs = '<div title="Title1"  style="overflow:auto;padding:10px;"> </div>';
+			$("#myAppbar").append(divs);
+		 });
+		 
+		 
+	});  */
+
+	
+
+ 
+ 
 </script>
 
 

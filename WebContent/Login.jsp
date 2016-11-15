@@ -100,6 +100,11 @@
          }
      }
 	
+	$.get("test/gotest","",function(data){
+		
+	})
+	
+	
 </script>
 
 

@@ -7,4 +7,6 @@ public interface PermissionService {
 	public List findper(String authids,String  parenid) ;
 	//查询出功能菜单
 	public List findFunction();
+	//查询出指定功能菜单
+	public List findFunctionById(int id );
 }

@@ -1,6 +1,7 @@
 package com.mall.web;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Resource;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mall.entity.Role;
 import com.mall.service.PermissionService;
+import com.mall.service.RoleService;
 import com.taobao.api.ApiException;
 import com.taobao.api.DefaultTaobaoClient;
 import com.taobao.api.TaobaoClient;
@@ -22,7 +25,8 @@ import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 public class Test {
 	@Resource
 	private PermissionService permissionService;
-	
+	@Resource
+	private RoleService roleService ;
 	@RequestMapping("/go")
 	@ResponseBody
 	public String sendMessage2(String mobile,HttpServletRequest request) throws ApiException { 
@@ -54,16 +58,37 @@ public class Test {
 
 	//测试
 	@RequestMapping("/gotest")
-	public String test02(){
-		int i = permissionService.findFunction().size();
-		System.out.println(i);
-		return null ;
+	
+	public String test02(HttpServletRequest request){
+		request.setAttribute("t", permissionService.findFunction());
+		return "admin/index" ;
+	}
+	//查询出指定功能
+	@RequestMapping("/fun")
+	@ResponseBody
+	public List findFunctionById(int id ){
+		System.out.println("id---"+id);
+		return permissionService.findFunctionById(id);
+	}
+	
+	//测试
+	@RequestMapping("/funs")
+	@ResponseBody
+	public List findFunction(){
+		/*Role r = roleService.findRole("1");
+		System.out.println("-------------"+r.getRoname());*/
+		return permissionService.findper("0,1,2,3,4,5,6,7,8,8,9,10", "0");
 	}
 	
 	
 	
 	public void setPermissionService(PermissionService permissionService) {
 		this.permissionService = permissionService;
+	}
+
+
+	public void setRoleService(RoleService roleService) {
+		this.roleService = roleService;
 	}
 	
 	

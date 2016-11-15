@@ -15,14 +15,19 @@ public class PermissionDaoImpl extends BaseDao implements PermissionDao {
 		return getSession().createQuery(hql).list();
 	
 	}
+	
 	//查询出功能菜单
 	@Override
 	public List findFunction() {
-		String hql= "from Permission p where p.persuperior=0 and p.pisNavigation=1" ;
+		String hql= "from Permission p where p.persuperior='0' and p.pisNavigation=1" ;
 		return  getSession().createQuery(hql).list();
 	}
+	//查询出指定功能菜单
+	@Override
+	public List findFunctionById(int id) {
+		String hql = "from Permission p where p.persuperior='"+id+"' and p.pisNavigation=1" ;
+		return getSession().createQuery(hql).list();
+	}
 
-	
-	
 	
 }

@@ -1,9 +1,13 @@
 package com.mall.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -17,7 +21,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name="tb_permission")
 public class Permission {
 	
-	private int perno ; // 权限编号  
+	private String perno ; // 权限编号  
 	private String pername ; //权限名称	
 	private String perurl ; //权限路径
 	private String perioce ; //图标
@@ -26,11 +30,13 @@ public class Permission {
 	private String  perdepict ; //权限描述
 	private String perstatus ; //权限状态
 	
+	private List aso = new ArrayList();
+	
 	public Permission() {
 		super();
 	}
 	//构造方法
-	public Permission(int perno, String pername, String perurl, String perioce, int persuperior, int pisNavigation,
+	public Permission(String perno, String pername, String perurl, String perioce, int persuperior, int pisNavigation,
 			String perdepict, String perstatus) {
 		super();
 		this.perno = perno;
@@ -45,11 +51,11 @@ public class Permission {
 	@Id
 	@GeneratedValue(generator="pk")
 	@GenericGenerator(name="pk",strategy="increment")
-	public int getPerno() {
+	public String getPerno() {
 		return perno;
 	}
 	
-	public void setPerno(int perno) {
+	public void setPerno(String perno) {
 		this.perno = perno;
 	}
 	public String getPername() {
@@ -95,6 +101,13 @@ public class Permission {
 
 	public void setPerstatus(String perstatus) {
 		this.perstatus = perstatus;
+	}
+	@Transient
+	public List getAso() {
+		return aso;
+	}
+	public void setAso(List aso) {
+		this.aso = aso;
 	}
 	
 	
