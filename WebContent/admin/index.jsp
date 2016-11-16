@@ -19,133 +19,29 @@
 <link rel="stylesheet" type="text/css"
 	href="<%=basePath%>/js/themes/icon.css" />
 <script type="text/javascript"
-	src="<%=basePath%>/js/jquery-1.4.4.min.js"></script>
+	src="<%=basePath%>/js/jquery-1.7.2.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>/js/jquery.easyui.min.1.2.2.js"></script>
 <script type="text/javascript" src='<%=basePath%>/js/outlook2.js'>
-	
 </script>
 <script type="text/javascript">
-	
-
-	var test = [ {
-		"perno" : "1",
-		"pername" : "用户管理",
-		"perurl" : "",
-		"perioce" : "",
-		"persuperior" : 0,
-		"pisNavigation" : 1,
-		"perdepict" : "这是用户管理",
-		"perstatus" : "open",
-		"aso" : [ {
-			"perno" : "9",
-			"pername" : "个人信息",
-			"perurl" : "",
-			"perioce" : "",
-			"persuperior" : 1,
-			"pisNavigation" : 1,
-			"perdepict" : "这是个人信息",
-			"perstatus" : "closed",
-			"aso" : []
-		}, {
-			"perno" : "10",
-			"pername" : "用户信息",
-			"perurl" : "",
-			"perioce" : "",
-			"persuperior" : 1,
-			"pisNavigation" : 1,
-			"perdepict" : "这是用户信息",
-			"perstatus" : "closed",
-			"aso" : []
-		} ]
-	}, {
-		"perno" : "2",
-		"pername" : "商品管理",
-		"perurl" : "",
-		"perioce" : "",
-		"persuperior" : 0,
-		"pisNavigation" : 1,
-		"perdepict" : "这是商品管理",
-		"perstatus" : "open",
-		"aso" : []
-	}, {
-		"perno" : "3",
-		"pername" : "评价/反馈",
-		"perurl" : "",
-		"perioce" : "",
-		"persuperior" : 0,
-		"pisNavigation" : 1,
-		"perdepict" : "这是评价/反馈",
-		"perstatus" : "open",
-		"aso" : []
-	}, {
-		"perno" : "4",
-		"pername" : "信息管理",
-		"perurl" : "",
-		"perioce" : "",
-		"persuperior" : 0,
-		"pisNavigation" : 1,
-		"perdepict" : "这是信息管理",
-		"perstatus" : "open",
-		"aso" : []
-	}, {
-		"perno" : "5",
-		"pername" : "物流信息",
-		"perurl" : "",
-		"perioce" : "",
-		"persuperior" : 0,
-		"pisNavigation" : 1,
-		"perdepict" : "这是物流信息",
-		"perstatus" : "open",
-		"aso" : []
-	}, {
-		"perno" : "6",
-		"pername" : "统计信息",
-		"perurl" : "",
-		"perioce" : "",
-		"persuperior" : 0,
-		"pisNavigation" : 1,
-		"perdepict" : "这是统计信息",
-		"perstatus" : "open",
-		"aso" : []
-	}, {
-		"perno" : "7",
-		"pername" : "权限管理",
-		"perurl" : "",
-		"perioce" : "",
-		"persuperior" : 0,
-		"pisNavigation" : 1,
-		"perdepict" : "这是权限管理",
-		"perstatus" : "open",
-		"aso" : []
-	}, {
-		"perno" : "8",
-		"pername" : "系统维护",
-		"perurl" : "",
-		"perioce" : "",
-		"persuperior" : 0,
-		"pisNavigation" : 1,
-		"perdepict" : "这是系统维护",
-		"perstatus" : "open",
-		"aso" : []
-	} ];
 	
 </script>
 
 </head>
 <body class="easyui-layout" style="overflow-y: hidden" scroll="no">
-	
+
 	<div region="north" split="true" border="false"
-		style="overflow: hidden; height: 30px; background: url(../images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%; line-height: 20px; color: #fff; font-family: Verdana, 微软雅黑, 黑体">
-		
+		style="overflow: hidden; height: 80px; background: url(../images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%; line-height: 20px; color: #fff; font-family: Verdana, 微软雅黑, 黑体">
+
 	</div>
 	<div region="south" split="true"
-		style="height: 30px; background: #D2E0F2;">
-		
-	</div>
+		style="height: 30px; background: #D2E0F2;"></div>
+	
 	<div region="west" hide="true" split="true" title="导航菜单"
-		style="width: 180px;" id="west">
-		<div id="nav" class="easyui-accordion" fit="true" border="false">
+		style="width: 180px;" id="west" >
+		<div id="nav" class="easyui-accordion" fit="true" border="false"
+			id="s">
 			<!--  导航内容 -->
 
 		</div>
@@ -154,14 +50,45 @@
 	<div id="mainPanle" region="center"
 		style="background: #eee; overflow-y: hidden">
 		<div id="tabs" class="easyui-tabs" fit="true" border="false">
-			<div title="主页" style="padding: 20px; overflow: hidden; color: red;">
+			<div title="主页" style="padding: 20px; overflow: hidden; color: red;"
+				id="show">
 				欢迎来到后台管理
-				
+				<div id="test">--</div>
 			</div>
 		</div>
 	</div>
-
+	<div id="mm" class="easyui-menu" style="width: 150px;">
+		<div id="mm-tabupdate">刷新</div>
+		<div class="menu-sep"></div>
+		<div id="mm-tabclose">关闭</div>
+		<div id="mm-tabcloseall">全部关闭</div>
+		<div id="mm-tabcloseother">除此之外全部关闭</div>
+		<div class="menu-sep"></div>
+		<div id="mm-tabcloseright">当前页右侧全部关闭</div>
+		<div id="mm-tabcloseleft">当前页左侧全部关闭</div>
+		<div class="menu-sep"></div>
+		<div id="mm-exit">退出</div>
+	</div>
 </body>
 </html>
+<script type="text/javascript">
+	
 
+	
+	/* alert("---")
+		var tabTitle = $(this).children('.nav').text();
+
+		var url = $(this).attr("rel");
+		var menuid = $(this).attr("ref");
+		var icon = getIcon(menuid, icon);
+
+		addTab(tabTitle, url, icon);
+		$('.accordion-body li div').removeClass("selected");
+		$(this).parent().addClass("selected");
+	}).hover(function() {
+		$(this).parent().addClass("hover");
+	}, function() {
+		$(this).parent().removeClass("hover");
+	}); */
+</script>
 

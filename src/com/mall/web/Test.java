@@ -80,14 +80,20 @@ public class Test {
 	@RequestMapping(value = "/funs")
 	@ResponseBody
 	public void findFunction(HttpServletResponse response,PrintWriter out) throws JsonProcessingException{
+		
+		Role r = roleService.findRole("1");
+		System.out.println("角色"+r.getRoauthids());
+		
+		
 		response.setHeader("Cache-Control", "no-cache");   
         response.setContentType("text/text;charset=UTF-8");  
         response.setCharacterEncoding("UTF-8");  
-		List lost =  permissionService.findper("0,1,2,3,4,5,6,7,8,8,9,10", "0");
+		List lost =  permissionService.findper(r.getRoauthids(), "0");
 		ObjectMapper mapper = new ObjectMapper();
 		String s = mapper.writeValueAsString(lost);
 		out.print(s);
 		out.close();
+		
 	}
 	
 	

@@ -1,50 +1,48 @@
-﻿/***********************************************************************
-
-* 作者：疯狂秀才 QQ：1055818239
-* 讨论群：112044258、32994605、36534121、56271061
-* 创建日期：2011/1/17
-
-* 广告：本人承接各类大中小型管理系统的软件的设计与开发，有需要的朋友联系我啦~~~~
-
-**********************************************************/
-
-
+﻿
 
 $(function(){
+	
 	InitLeftMenu();
 	tabClose();
 	tabCloseEven();
+	
 
 
 
+	/*$('#tabs').tabs('add',{
+		title:'主页',
+		content:createFrame('http://hxling.cnblogs.com')
+	}).tabs({
+        onSelect: function (title) {
+            var currTab = $('#tabs').tabs('getTab', title);
+            var iframe = $(currTab.panel('options').content);
 
-//	$('#tabs').tabs('add',{
-//		title:'主页',
-//		content:createFrame('http://hxling.cnblogs.com')
-//	}).tabs({
-//        onSelect: function (title) {
-//            var currTab = $('#tabs').tabs('getTab', title);
-//            var iframe = $(currTab.panel('options').content);
-//
-//			var src = iframe.attr('src');
-//			if(src)
-//				$('#tabs').tabs('update', { tab: currTab, options: { content: createFrame(src)} });
-//
-//        }
-//    });
+			var src = iframe.attr('src');
+			if(src)
+				$('#tabs').tabs('update', { tab: currTab, options: { content: createFrame(src)} });
+
+        }
+    });*/
 
 })
 
 //初始化左侧
+
 function InitLeftMenu() {
 	
+	var data = ManageCommentText();
+	
 	$("#nav").accordion({animate:false});
-	$.each(test, function(i, n) {
+	$.post("../test/funs","",function(data){
+			
+	
+	
+	$.each(data, function(i, n) {
+		
 		var menulist ='';
 		menulist +='<ul>';
         $.each(n.aso, function(j, o) {
-			menulist += '<li><div><a ref="'+o.perno+'" href="#" rel="' + o.perurl + '" ><span class="icon '+o.perioce+'" >&nbsp;</span><span class="nav">' + o.pername + '</span></a></div></li> ';
-			
+			menulist += '<li><div><a ref="'+o.perno+'" rel="' + o.perurl + '" ><span class="icon '+o.perioce+'" >&nbsp;</span><span class="nav">' + o.pername + '</span></a></div></li> ';
 		})
 		menulist += '</ul>';
 
@@ -54,42 +52,81 @@ function InitLeftMenu() {
             /*iconCls: 'icon ' + n.perioce*/
             iconCls: 'icon-save'
         });
-
     });
-
-	$('.easyui-accordion li a').click(function(){
+	//点击显示
+	$('body').on("click",".easyui-accordion li a",function(){
 		var tabTitle = $(this).children('.nav').text();
-
-		var url = $(this).attr("rel");
+		// $(this).attr("rel");
+		var url = "manage.jsp"; //显示的内容路径
 		var menuid = $(this).attr("ref");
 		var icon = getIcon(menuid,icon);
 
 		addTab(tabTitle,url,icon);
-		$('.easyui-accordion li div').removeClass("selected");
+		$('.accordion-body li div').removeClass("selected");
 		$(this).parent().addClass("selected");
-	}).hover(function(){
-		$(this).parent().addClass("hover");
-	},function(){
-		$(this).parent().removeClass("hover");
-	});
+		});/*.hover(function(){
+			alert("经过");
+			$(this).parent().addClass("hover");
+		},function(){
+			$(this).parent().removeClass("hover");
+			alert("离开");
+		});*/
 
-	//选中第一个
+	
+	
+	
+	//获取左侧导航的图标
+	function getIcon(menuid){
+		var icon = 'icon ';
+		$.each(data, function(i, n) {
+			 $.each(n.aso, function(j, o) {
+			 	if(o.perno==menuid){
+					icon += o.icon;
+				}
+			 })
+		})
+
+		return icon;
+	}
+	
+	},"json");
+	
+	
+	/*//选中第一个
 	var panels = $('#nav').accordion('panels');
 	var t = panels[0].panel('options').title;
-    $('#nav').accordion('select', t);
-}
-//获取左侧导航的图标
-function getIcon(menuid){
-	var icon = 'icon ';
-	$.each(_menus.menus, function(i, n) {
-		 $.each(n.menus, function(j, o) {
-		 	if(o.menuid==menuid){
-				icon += o.icon;
-			}
-		 })
-	})
+    $('#nav').accordion('select', t);*/
+	
+	//鼠标经过&离开
+	$('body').on("mouseout",".easyui-accordion li a",function(){
+		$('.accordion-body li div').removeClass("hover");
+		$(this).parent().addClass("hover");
+		//$(this).parent().parent().addClass("hover"); 
+		
+	});
 
-	return icon;
+	
+}
+
+
+
+
+
+
+//定义
+function ManageCommentText(text) {
+    var result = text;
+    $.ajax({
+        data: "get",
+        url: "../test/funs",
+        cache: false,
+        async: false,
+        type:"json",
+        success: function (data) {
+            result = data;
+        }
+    });
+    return result;
 }
 
 function addTab(subtitle,url,icon){
@@ -113,14 +150,14 @@ function createFrame(url)
 	return s;
 }
 
-/*function tabClose()
+function tabClose()
 {
-	双击关闭TAB选项卡
+	//双击关闭TAB选项卡
 	$(".tabs-inner").dblclick(function(){
 		var subtitle = $(this).children(".tabs-closable").text();
 		$('#tabs').tabs('close',subtitle);
 	})
-	为选项卡绑定右键
+	//为选项卡绑定右键
 	$(".tabs-inner").bind('contextmenu',function(e){
 		$('#mm').menu('show', {
 			left: e.pageX,
@@ -133,9 +170,9 @@ function createFrame(url)
 		$('#tabs').tabs('select',subtitle);
 		return false;
 	});
-}*/
+}
 //绑定右键菜单事件
-/*function tabCloseEven()
+function tabCloseEven()
 {
 	//刷新
 	$('#mm-tabupdate').click(function(){
@@ -202,4 +239,4 @@ function createFrame(url)
 //弹出信息窗口 title:标题 msgString:提示信息 msgType:信息类型 [error,info,question,warning]
 function msgShow(title, msgString, msgType) {
 	$.messager.alert(title, msgString, msgType);
-}*/
+}
