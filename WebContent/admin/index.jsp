@@ -24,9 +24,20 @@
 	src="<%=basePath%>/js/jquery.easyui.min.1.2.2.js"></script>
 <script type="text/javascript" src='<%=basePath%>/js/outlook2.js'>
 </script>
-<script type="text/javascript">
+
+<style>
+	.easyui-accordion li a{
+		text-decoration:none;
+		color: black;
+		font-size: 17px ;
+		font-weight: 700;
+	}
+	.easyui-accordion li:hover{
+		cursor:pointer;
+		background: #CCCCFF ;
+	}
+</style>
 	
-</script>
 
 </head>
 <body class="easyui-layout" style="overflow-y: hidden" scroll="no">

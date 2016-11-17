@@ -66,9 +66,11 @@ function InitLeftMenu() {
 		$(this).parent().addClass("selected");
 		});/*.hover(function(){
 			alert("经过");
-			$(this).parent().addClass("hover");
+			$('.accordion-body li div').removeClass("hover");
+			$(this).parent().addClass("selected");
 		},function(){
-			$(this).parent().removeClass("hover");
+			$('.accordion-body li div').removeClass("hover");
+			$(this).parent().addClass("selected");
 			alert("离开");
 		});*/
 
@@ -98,12 +100,12 @@ function InitLeftMenu() {
     $('#nav').accordion('select', t);*/
 	
 	//鼠标经过&离开
-	$('body').on("mouseout",".easyui-accordion li a",function(){
+	/*$('body').on("hover",".easyui-accordion li a",function(){
 		$('.accordion-body li div').removeClass("hover");
 		$(this).parent().addClass("hover");
 		//$(this).parent().parent().addClass("hover"); 
 		
-	});
+	});*/
 
 	
 }
