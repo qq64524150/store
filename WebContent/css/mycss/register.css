@@ -1,0 +1,128 @@
+.reg{
+	height: 35px;
+	
+	font-size: 14px;
+}
+.form-control{
+	width:251px;
+}
+.zi{
+	text-align: right;
+	font-size: 18px;
+	font-weight: 800 ;
+}
+
+/*
+	按钮开始 -- 发送验证码
+*/
+
+/* .go{
+	
+}
+.go:HOVER {
+	background: red;
+} */
+/*
+	按钮结束 -- 发送验证码
+*/
+
+/*
+	修饰开始
+*/
+/*
+	提示
+*/
+.glyphicon-exclamation-sign{
+	font-size: 14px;
+	color: #EEE0E5;
+	padding-left: 10px;
+	margin-left: 100px;
+}
+.texts{
+	color: #EEE0E5;
+	font-size: 15px;
+	
+}
+/*
+	错误
+*/
+.glyphicon-remove-circle{
+	font-size: 14px;
+	color: #EE0000;
+	padding-left: 10px;
+	margin-left: 100px;
+	
+}
+	
+.error{
+	color: #EE0000;
+	font-size: 15px;
+	
+}
+
+
+/*
+	正确
+*/
+.glyphicon-ok-circle{
+	font-size: 14px;
+	color: #00CC33;
+	padding-left: 10px;
+	margin-left: 100px;
+}
+.ok{
+	color: #00CC33;
+	font-size: 15px;
+	
+}
+
+/*
+	修饰结束
+*/
+
+/*
+	排版开始
+*/
+
+
+/*
+	排版结束
+*/
+
+/* 添加按钮开始 */
+#tijiao{
+	width: 300px ;
+	height:38px ;
+	border:0;
+	
+}
+
+/* 添加按钮结束 */
+
+
+/* 主体开始 */
+#zhuti{
+	width:351px ;
+	float: right;
+	margin-right: 150px;
+	margin-top: 120px;
+}
+
+/* 主体结束 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

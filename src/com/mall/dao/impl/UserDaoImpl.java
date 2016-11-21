@@ -17,22 +17,13 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	}
 	//查询用户
 	@Override
-	public User findUserById(User user) {
-		System.out.println(user.getUphone());
-		/*String hql = "from User u where u.uphone = '"+user.getUphone()+"'";
+	public List findUserById(User user) {
+	
+		String hql = "from User u where u.uphone = '"+user.getUphone()+"'";
 		List list = getSession().createQuery(hql).list();
-		if(obj!=null){
-			return (User) obj ;
-		}else{
-			return null ;
-		}
 		
 		
-		System.out.println(list.size());*/
-		
-		User u = (User) getObject(user.getClass(), user.getUphone());
-		System.out.println(u.getUphone());
-		return null ;
+		return list ;
 		
 		
 	}

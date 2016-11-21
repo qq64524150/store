@@ -24,7 +24,14 @@ public class UserServiceImpl implements UserService {
 	//查询用户
 	@Override
 	public User findUserById(User user) {
-		return UserDao.findUserById(user);
+		User u = null ;
+		List<User> list=  UserDao.findUserById(user);
+		if(list.size()>0){
+			u = list.get(0);
+		}
+		
+		return u ;
+		
 	}
 
 	@Override
