@@ -28,7 +28,7 @@ public class User implements Serializable{
 	private String uemail ;			//E-mail
 	private String uphone ; 		//电话
 	private String uuserID	;		//身份证
-	private String ustate ;			//状态（0/正常，1/禁止，2/已封，3/未激活,4/完善）					
+	private String ustate="3" ;			//状态（0/正常，1/禁止，2/已封，3/未完善,4/完善）					
 	private Date utime	;			//时间
 	private String usex	;			//性别
 	private String ubrith ;			//出生日期

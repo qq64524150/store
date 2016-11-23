@@ -13,40 +13,142 @@
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link rel="stylesheet"
 	href="<%=basePath%>/bootstrapcss/bootstrap.min.css">
-
+<link rel="stylesheet" href="<%=basePath%>/css/mycss/login.css">
 <title>用户登录</title>
 </head>
 <body>
+	<div id="go">
+		<h3>用户登录</h3>
+		
+		<div id="moreng">
+			<div id="daohan">
+				<div class="xuanz" id="one">手机登录</div>
+				<div id="two">用户名/邮箱登录</div>
+			</div>
+			
+		
+			<div id="zhuti" style="display: block;">
+				<form method="post" id="froms">
+					<table  width="350" id="tab">
+						<tr>
+							<td class="zi">
+									手机号码： 
+							</td>
+							<td>
+								<input
+									type="text" class="form-control" id="phone"
+									placeholder="请输入手机号" name="uphone">
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" id="phoneOne" class="reg"></td>
+						</tr>
+						<tr style="margin-top: 100px">
+							<td style="width: 100px" class="zi">
+									验证码：
+							</td>
+							<td>
+				     			<div>
+								  <div style="width: 251px">
+								    <div class="input-group">
+								      <input type="text" class="form-control" placeholder="验证码" name="phoneCode" id="code">
+								      <span class="input-group-btn">
+								        <button class="btn btn-default go" type="button"  id="btnSendCode">获取验证码</button>
+								      </span>
+								    </div>
+								  </div>
+								</div>
+										     			 
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" id="yan" class="reg"></td>
+						</tr>
+						
+						<tr>
+							<td colspan="2" style="text-align: center;">
+								<input type="button" value="登录" id="login" class="log"/>
+								<input type="button" value="注册" id="register" class="log"/>
+							</td>
+						</tr>
+					
+				
+					</table>
+					
+				</form>
+			</div>
+			
+		</div>	
+		<div id="zhuti2" style="display: none;">
+			<form method="post" id="froms">
+				<table  width="350" >
+					
+					<tr>
+						<td class="zi">
+								用户名/邮箱： 
+						</td>
+						<td>
+							<input
+								type="text" class="form-control" id="phone2"
+								placeholder="请输入用户名/邮箱" name="uphone">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" id="phoneOne2" class="reg"></td>
+					</tr>
+					
+					<tr>
+						<td class="zi">
+								密码：
+						</td>
+						<td>
+							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入密码">
+						</td>
+					</tr>
+					
+					<tr>
+						<td colspan="2" id="pwd" class="reg"></td>
+					</tr>
+					
+					<tr>
+						<td style="width: 100px" class="zi">
+								验证码：
+						</td>
+						<td>
+			     			<div>
+							  <div style="width: 251px">
+							    <div class="input-group">
+							      <input type="text" class="form-control" placeholder="验证码" name="phoneCode" id="code2">
+							      <span class="input-group-btn vodeImg">
+							      	 <img alt=""  name="image" src="tovcode/vocde" id="img" >
+							      </span>
+							    </div>
+							  </div>
+							</div>
+									     			 
+						</td>
+					</tr>
+					
+					
+					<tr>
+						<td colspan="2" id="yan2" class="reg"></td>
+					</tr>
 
-	<h3>用户登录</h3>
-	<div style="width: 300px;">
-		<form role="form" id="froms" class="form-inline">
-			<div class="form-group">
-				<label for="exampleInputEmail1">请输入用户名/手机号:</label> <input
-					type="text" class="form-control" id="exampleInputEmail1"
-					placeholder="请输入用户名/手机号" name="mobile">
-			</div>
-			<!-- 	<div class="form-group">
-				<label for="exampleInputPassword1">请输入密码:</label> 
-				<input type="password" class="form-control" id="exampleInputPassword1"
-					placeholder="请输入密码" name="">
-			</div> -->
-			<div class="form-group">
-				<label for="exampleInputPassword1">请输入验证码:</label> <br /> <input
-					type="text" class="form-control" id="exampleInputPassword1"
-					placeholder="验证码" name="auth" style="width: 80px"> <input
-					id="btnSendCode" type="button" value="发送验证码"
-					onclick="sendMessage()" />
-			</div>
-			<div>
-				<button type="button" class="btn btn-default" id="go">登录</button>
-				<button type="button" class="btn btn-default" id="enroll">注册</button>
-			</div>
-		</form>
-		
-	<a href="test/gotest">测试</a>
-		
-	</div>
+					<tr>
+						<td colspan="2" style="text-align: center;">
+							<input type="button" value="登录" id="login2" class="log"/>
+							<input type="button" value="注册" id="register" class="log"/>
+						</td>
+					</tr>
+				
+			
+				</table>
+				
+			</form>
+		</div>
+	</div>			
+	<!-- <img alt="" src="tovcode/vocde">
+	 -->
 	<!-- 加载另一 个页面 -->
 	<%-- <%@ include file="" %>
 	<c:import url=""></c:import> --%>
@@ -54,12 +156,15 @@
 
 	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 	<script src="<%=basePath%>/jquery/jquery-2.2.3.min.js"></script>
+	<script src="<%=basePath%>/js/myjs/login.js"></script>
 	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 	<script src="<%=basePath%>/bootstrap/bootstrap.min.js"></script>
 
 </body>
 </html>
 <script type="text/javascript">	
+
+
 	/* $("#go").click(function(){
 		var pamth = $("#froms").serialize();
 		alert(pamth)
@@ -69,7 +174,7 @@
 	}); */
 	
 	
-	var InterValObj; //timer变量，控制时间
+	/* var InterValObj; //timer变量，控制时间
 	var count = 60; //间隔函数，1秒执行
 	var curCount;//当前剩余秒数
 	function sendMessage() {
@@ -103,7 +208,7 @@
 	$.get("test/gotest","",function(data){
 		
 	})
-	
+	 */
 	
 </script>
 

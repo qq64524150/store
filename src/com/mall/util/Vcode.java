@@ -14,13 +14,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class Vcode {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+@Controller
+@RequestMapping("/tovcode")
+public class Vcode{
 	// 验证码图片的宽度。
 	private int width = 60;
 	// 验证码图片的高度。
 	private int height = 20;
-
-	public void vocde(HttpServletRequest req,HttpServletResponse resp) throws Exception{
+	//存放验证码
+	private String vode ; 
+	@RequestMapping("/vocde")
+	public void vocde(HttpServletResponse resp,HttpServletRequest req) throws Exception{
+		
 		
 		BufferedImage buffImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = buffImg.createGraphics();
@@ -87,10 +98,22 @@ public class Vcode {
 		resp.setContentType("image/jpeg");
 
 		// 将图像输出到Servlet输出流中。
+		
 		ServletOutputStream sos = resp.getOutputStream();
+		setVode(randomCode.toString());
 		ImageIO.write(buffImg, "jpeg", sos);
-		System.out.println(randomCode.toString());
- 		sos.close();
- 		
+		
+ 		//return randomCode.toString();
+		//System.out.println(randomCode.toString());
 	}
+	
+	public String getVode() {
+		return vode;
+	}
+	public void setVode(String vode) {
+		this.vode = vode;
+	}
+	
+	
+	
 }

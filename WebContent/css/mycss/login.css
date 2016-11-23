@@ -1,0 +1,97 @@
+/* 导航开始 */
+#moreng{
+	width: 355px ;
+	height: 200px ;
+	
+}
+#daohan{
+	width: 100%;
+	height: 33px;
+	
+}
+#daohan div{
+	float: left;
+	width: 50%;
+	height: 33px;
+	text-align: center;
+	line-height: 33px;
+	font-weight: 900 ;
+	font-size: 16px;
+	
+	cursor:pointer;  
+}
+/* #daohan div:HOVER{
+	background: #CC0000; 
+} */
+
+/****************************/
+.xuanz{
+	background: #990000;
+	color: #fff;
+}
+.jin{
+	background: #CC0000; 
+	color: #fff;
+}
+
+
+/* 导航结束 */
+
+
+/* 主体开始 */
+#go{
+	float: right;
+	margin-right: 200px ;
+	margin-top: 130px ;
+}
+/* 主体结束 */
+
+
+/* 表单开始 */
+
+#zhuti{
+	margin-top: 20px ;
+}
+.zi{
+	text-align: right;
+	
+}
+
+#zhuti2{
+	margin-top: -145px
+}
+
+.log{
+	width:100px;
+	height:38px ;
+	border: 0;
+	background: #990000;
+	color: #fff ;
+	font-size: 16px ;
+	font-weight: 700;
+	
+}
+.log:HOVER {
+	background: #CC0000;
+}
+.reg{
+	height: 34px;
+	
+}
+.formtips{
+	color: red;
+	font-size: 14px;
+}
+.glyphicon-exclamation-sign{
+	color: red;
+	font-size: 16px;
+	margin-left: 100px ;
+}
+#img{
+	height: 34px ;
+}
+.input-group-btn{
+	cursor:pointer;  
+}
+/* 表单结束 */
+

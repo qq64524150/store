@@ -5,7 +5,12 @@ $(function() {
 	$("#phone").blur(function() {
 		var $parent = $("#phoneOne");
 		$parent.find(".formtips").remove();
-				// 验证号码
+		
+		var phone = false ;
+		var pwd = false ;
+		var pwd2 = false ;
+		var yan = false ;
+		// 验证号码
 		if ($(this).is("#phone")) {
 			//禁止按钮
 			$("#btnSendCode").attr("disabled", "true");
@@ -24,11 +29,13 @@ $(function() {
 							if(data=="true"){
 								$("#btnSendCode").removeAttr("disabled");// 启用按钮
 								phones = "true";
+								phone = true ; 
 								var okMsg = "此号码可以注册"
 								$parent.append('<span class="formtips onSuccess glyphicon glyphicon-ok-circle"></span><span class="formtips onSuccess glyphicon ok">'
 												+ okMsg + '</span>');
 							}else{
 								var error = "此号码已注册"
+									$("#btnSendCode").removeAttr("disabled");// 启用按钮
 									$parent.append('<span class="formtips onSuccess glyphicon glyphicon-remove-circle"></span><span class="formtips onSuccess glyphicon error">'
 														+ error + '</span>');
 								
@@ -58,13 +65,14 @@ $(function() {
 						$parent.append('<span class="formtips onSuccess glyphicon glyphicon-exclamation-sign"></span><span class="formtips onSuccess glyphicon texts">'
 								+ hint + '</span>');
 					}else if ( !(this.value != "" && this.value
-									.match(/^[a-zA-Z_]{1,15}[0-9a-zA-Z_]{4,15}$/))) {
+									.match(/^[a-zA-Z_]{1,15}[0-9a-zA-Z_]{5,15}$/))) {
 						var error = "请输入至少6位的密码"
 						$parent.append('<span class="formtips onSuccess glyphicon glyphicon-remove-circle"></span><span class="formtips onSuccess glyphicon error">'
 								+ error + '</span>');
 					} else {
 						
-						var okMsg = "正确"
+						var okMsg = "正确";
+						pwd = true ;
 						$parent.append('<span class="formtips onSuccess glyphicon glyphicon-ok-circle"></span><span class="formtips onSuccess glyphicon ok">'
 								+ okMsg + '</span>');
 					}
@@ -94,9 +102,19 @@ $(function() {
 								+ error + '</span>');
 					} else {
 
-						var okMsg = "正确"
+						var okMsg = "正确";
+						pwd2 = true ;
 						$parent.append('<span class="formtips onSuccess glyphicon glyphicon-ok-circle"></span><span class="formtips onSuccess glyphicon ok">'
 								+ okMsg + '</span>');
+						
+						
+						//进行验证的判断
+						
+						yan = true ;
+						if(phone && pwd && pwd2 && yan){
+							$("#tijiao").removeAttr("disabled");// 启用按钮
+						}
+						
 					}
 
 				}
@@ -105,6 +123,8 @@ $(function() {
 	}).focus(function() {
 		$(this).triggerHandler("blur");
 	});
+	
+	
 	
 	//验证码发送
 	
@@ -127,7 +147,7 @@ $(function() {
 		
 		// 向后台发送表单输入的信息
 		$.post("userAction/sendCode?uphone="+phone, "", function(data) {
-			alert(data)
+			//alert(data)
 		});
 		
 		
@@ -147,11 +167,40 @@ $(function() {
 	}
 	
 	//提交数据
+	//$("#tijiao").removeAttr("disabled");// 启用按钮
+	$("#tijiao").attr("disabled", "true");
 	$("#tijiao").click(function(){
-		var pamth = $("#froms").serialize();
-		$.post("userAction/addUser",pamth,function(data){
-			alert(data)
-		});
+		if($("#yan").html()==""){
+			var error = "请输入验证码"
+			$("#yan").html(""); //清空
+			$("#yan").append('<span class="formtips onSuccess glyphicon glyphicon-remove-circle"></span><span class="formtips onSuccess glyphicon error">'
+					+ error + '</span>');
+		}else if(!($("#yan").html().match(/^[0-9]{4}$/))){
+			var error = "验证码格式有误"
+			$("#yan").html(""); //清空
+			$("#yan").append('<span class="formtips onSuccess glyphicon glyphicon-remove-circle"></span><span class="formtips onSuccess glyphicon error">'
+					+ error + '</span>');
+		}else{
+			var pamth = $("#froms").serialize();
+			$.post("userAction/addUser",pamth,function(data){
+				alert(data)
+				if(data=="code"){
+					var error = "验证码错误"
+						$("#yan").html(""); //清空
+						$("#yan").append('<span class="formtips onSuccess glyphicon glyphicon-remove-circle"></span><span class="formtips onSuccess glyphicon error">'
+								+ error + '</span>');
+				}else if(data == "noTime"){
+					var error = "验证码已过期"
+						$("#yan").html(""); //清空
+						$("#yan").append('<span class="formtips onSuccess glyphicon glyphicon-remove-circle"></span><span class="formtips onSuccess glyphicon error">'
+								+ error + '</span>');
+				}
+				
+				
+			});
+		}
+		
+		
 	});
 	
 	

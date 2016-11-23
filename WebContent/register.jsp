@@ -83,7 +83,7 @@
 		     			 <div>
 							  <div style="width: 251px">
 							    <div class="input-group">
-							      <input type="text" class="form-control" placeholder="验证码">
+							      <input type="text" class="form-control" placeholder="验证码" name="phoneCode">
 							      <span class="input-group-btn">
 							        <button class="btn btn-default go" type="button"  id="btnSendCode">获取验证码</button>
 							      </span>
