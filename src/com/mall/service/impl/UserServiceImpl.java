@@ -29,9 +29,7 @@ public class UserServiceImpl implements UserService {
 		if(list.size()>0){
 			u = list.get(0);
 		}
-		
 		return u ;
-		
 	}
 
 	@Override
@@ -52,8 +50,46 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	//进行密码匹配
+	@Override
+	public User pwd(User user) {
+		User u  = null ; 
+		List<User> list = UserDao.findUserById(user);
+		
+		if(list.size()>0){
+			//进行密码的配对
+			for (User us : list) {
+				//正确
+				/*if(user.getUpwd()==null || user.getUpwd().equals("")){
+					if(us.getUpwd().equals(user.getUpwd())){
+						u = list.get(0);
+					}
+				}else{
+					u = list.get(0);
+				}*/
+				try {
+					if(user.getUpwd().length()>0){
+						if(us.getUpwd().equals(user.getUpwd())){
+							u = list.get(0);
+						}
+					}
+				} catch (Exception e) {
+					u = list.get(0);
+				}
+				
+			}
+		}
+	
+		return u;
+	}
+	
+	
+	
 	public void setUserDao(UserDao userDao) {
 		UserDao = userDao;
 	}
-
+	
+	
+	
+	
 }

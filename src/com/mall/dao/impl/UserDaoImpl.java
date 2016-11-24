@@ -19,10 +19,10 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	@Override
 	public List findUserById(User user) {
 	
-		String hql = "from User u where u.uphone = '"+user.getUphone()+"'";
+		String hql = "from User u where u.uphone = '"+user.getUphone()+"' "
+				+ "or u.uname = '"+user.getUname()+"' or u.uusername = '"+user.getUname()+"' "
+						+ "or u.uemail = '"+user.getUname()+"' or u.uphone = '"+user.getUname()+"' ";
 		List list = getSession().createQuery(hql).list();
-		
-		
 		return list ;
 		
 		

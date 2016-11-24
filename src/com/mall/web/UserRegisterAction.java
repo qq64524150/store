@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -95,7 +96,7 @@ public class UserRegisterAction {
 		// 进行判断是否已经注册
 		User u = userService.findUserById(user);
 		// 生成随机验证码
-		int code = (int) (1 + Math.random() * (10000 - 1 + 1));
+		int code = (int) (1 + Math.random() * (1000000 - 1 + 1));
 		// 进行手机号码的合法验证
 		String regExp = "^(((13[0-9]{1})|159|153)+\\d{8})$";
 		//进行验证码
@@ -137,9 +138,33 @@ public class UserRegisterAction {
 	//用户登录
 	@RequestMapping("/login")
 	@ResponseBody
-	public String login(){
-		String s = new Vcode().getVode();
-		return s ;
+	public String phoneLogin(HttpServletRequest req , User user,int code){
+		String msg = null ;
+		//进行验证码判断
+		if(getPhoneCode()==code){
+			//进行验证码的数据判断
+			//进行判断验证码是否过期  -- 10分钟
+			Date date1= getOldDate(); //获取旧的时间
+			Date date2 = new Date();  //获取新的时间	
+			//10分钟内
+			if(((date2.getTime()-date1.getTime())/60/1000)<=10){
+				//进行登录操作 -- 密码匹配
+				User u = userService.pwd(user);
+				//把查询出了的谢谢存放到会话中
+				if(u!=null){
+					req.getSession().setAttribute("userInfo", u);
+					msg = "true";
+				}else{
+					msg = "falseW";
+				}
+			}else{
+				msg = "falseY";
+			}
+			
+		}else{
+			msg = "false";
+		}
+		return msg ;
 		
 	}
 	

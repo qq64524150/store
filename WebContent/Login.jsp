@@ -37,7 +37,7 @@
 							<td>
 								<input
 									type="text" class="form-control" id="phone"
-									placeholder="请输入手机号" name="uphone">
+									placeholder="请输入手机号" name="uphone" value="13217595955">
 							</td>
 						</tr>
 						<tr>
@@ -51,7 +51,7 @@
 				     			<div>
 								  <div style="width: 251px">
 								    <div class="input-group">
-								      <input type="text" class="form-control" placeholder="验证码" name="phoneCode" id="code">
+								      <input type="text" class="form-control" placeholder="验证码" name="code" id="code">
 								      <span class="input-group-btn">
 								        <button class="btn btn-default go" type="button"  id="btnSendCode">获取验证码</button>
 								      </span>
@@ -68,7 +68,7 @@
 						<tr>
 							<td colspan="2" style="text-align: center;">
 								<input type="button" value="登录" id="login" class="log"/>
-								<input type="button" value="注册" id="register" class="log"/>
+								<!-- <input type="button" value="注册" id="register" class="log"/> -->
 							</td>
 						</tr>
 					
@@ -80,9 +80,10 @@
 			
 		</div>	
 		<div id="zhuti2" style="display: none;">
-			<form method="post" id="froms">
+			<div id="tis" style="font-size: 10px;display: none;">
+			</div>
+			<form method="post" id="froms2">
 				<table  width="350" >
-					
 					<tr>
 						<td class="zi">
 								用户名/邮箱： 
@@ -90,7 +91,7 @@
 						<td>
 							<input
 								type="text" class="form-control" id="phone2"
-								placeholder="请输入用户名/邮箱" name="uphone">
+								placeholder="请输入用户名/邮箱" name="uname" value="13217595955">
 						</td>
 					</tr>
 					<tr>
@@ -102,7 +103,7 @@
 								密码：
 						</td>
 						<td>
-							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入密码">
+							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入密码" name="upwd" value="admins" >
 						</td>
 					</tr>
 					
@@ -118,9 +119,9 @@
 			     			<div>
 							  <div style="width: 251px">
 							    <div class="input-group">
-							      <input type="text" class="form-control" placeholder="验证码" name="phoneCode" id="code2">
+							      <input type="text" class="form-control" placeholder="验证码" name="getImg" id="code2">
 							      <span class="input-group-btn vodeImg">
-							      	 <img alt=""  name="image" src="tovcode/vocde" id="img" >
+							      	 <img alt=""  src="tovcode/vocde?getImg=getImg" id="img" >
 							      </span>
 							    </div>
 							  </div>
@@ -137,14 +138,19 @@
 					<tr>
 						<td colspan="2" style="text-align: center;">
 							<input type="button" value="登录" id="login2" class="log"/>
-							<input type="button" value="注册" id="register" class="log"/>
+							<!-- <input type="button" value="注册" id="register" class="log"/> -->
 						</td>
 					</tr>
-				
+					<tr>
+						<td colspan="2" id="trues" class="reg"></td>
+					</tr>
 			
 				</table>
 				
 			</form>
+			
+			<div id="botton">
+			</div>
 		</div>
 	</div>			
 	<!-- <img alt="" src="tovcode/vocde">
@@ -152,7 +158,6 @@
 	<!-- 加载另一 个页面 -->
 	<%-- <%@ include file="" %>
 	<c:import url=""></c:import> --%>
-	
 
 	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 	<script src="<%=basePath%>/jquery/jquery-2.2.3.min.js"></script>

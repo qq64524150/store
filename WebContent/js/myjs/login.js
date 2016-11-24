@@ -41,12 +41,12 @@ $(function(){
 		var $parent = $("#phoneOne");
 		$parent.find(".formtips").remove();
 		if(this.value==""){
-			var hint = "请输入手机号码";
-			$parent.append('<span class="formtips onSuccess glyphicon glyphicon-exclamation-sign"></span><span class="formtips onSuccess glyphicon texts">'
+			var hint = "<span class='formtips onSuccess glyphicon glyphicon-exclamation-sign'></span>请输入手机号码";
+			$parent.append('<span class="formtips onSuccess glyphicon texts">'
 					+ hint + '</span>');
 		}else if(!(this.value.match(/^(((13[0-9]{1})|159|153)+\d{8})$/))){
-			var hint = "手机号码有误！";
-			$parent.append('<span class="formtips onSuccess glyphicon glyphicon-exclamation-sign"></span><span class="formtips onSuccess glyphicon texts">'
+			var hint = "<span class='formtips onSuccess glyphicon glyphicon-exclamation-sign'></span>手机号码有误！";
+			$parent.append('<span class="formtips onSuccess glyphicon texts">'
 					+ hint + '</span>');
 		}else{
 			$("#btnSendCode").removeAttr("disabled");// 启用按钮
@@ -58,12 +58,12 @@ $(function(){
 		var $parent = $("#phoneOne2");
 		$parent.find(".formtips").remove();
 		if(this.value==""){
-			var hint = "请输入手机号码/邮箱/用户名";
-			$parent.append('<span class="formtips onSuccess glyphicon glyphicon-exclamation-sign"></span><span class="formtips onSuccess glyphicon texts">'
+			var hint = "<span class='formtips onSuccess glyphicon glyphicon-exclamation-sign'></span>请输入手机号码/邮箱/用户名";
+			$parent.append('<span class="formtips onSuccess glyphicon texts">'
 					+ hint + '</span>');
 		}else if(!(this.value.match(/^(((13[0-9]{1})|159|153)+\d{8})$/))){
-			var hint = "手机号码有误！";
-			$parent.append('<span class="formtips onSuccess glyphicon glyphicon-exclamation-sign"></span><span class="formtips onSuccess glyphicon texts">'
+			var hint = "<span class='formtips onSuccess glyphicon glyphicon-exclamation-sign'></span>手机号码有误！";
+			$parent.append('<span class="formtips onSuccess glyphicon texts">'
 					+ hint + '</span>');
 		}else{
 			$("#btnSendCode").removeAttr("disabled");// 启用按钮
@@ -84,20 +84,25 @@ $(function(){
 		$(".formtips").remove();
 		
 		if($pone.val()=="" || $pone.val()==null){
-			var hint = "请输入手机号码";
-			$("#phoneOne").append('<span class="formtips onSuccess glyphicon glyphicon-exclamation-sign"></span><span class="formtips onSuccess glyphicon texts">'
+			var hint = "<span class='formtips onSuccess glyphicon glyphicon-exclamation-sign'></span>请输入手机号码";
+			$("#phoneOne").append('<span class="formtips onSuccess glyphicon texts">'
 					+ hint + '</span>');
 		}else if(!($pone.val().match(/^(((13[0-9]{1})|159|153)+\d{8})$/))){
-			var hint = "手机号码有误！";
-			$("#phoneOne").append('<span class="formtips onSuccess glyphicon glyphicon-exclamation-sign"></span><span class="formtips onSuccess glyphicon texts">'
+			var hint = "<span class='formtips onSuccess glyphicon glyphicon-exclamation-sign'></span>手机号码有误！";
+			$("#phoneOne").append('<span class="formtips onSuccess glyphicon texts">'
 					+ hint + '</span>');
 		}else if($code.val()==""){
-			var hint = "请输入验证码";
-			$("#yan").append('<span class="formtips onSuccess glyphicon glyphicon-exclamation-sign"></span><span class="formtips onSuccess glyphicon texts">'
+			var hint = "<span class='formtips onSuccess glyphicon glyphicon-exclamation-sign'></span>请输入验证码";
+			$("#yan").append('<span class="formtips onSuccess glyphicon texts">'
 					+ hint + '</span>');
 		}else{
+			$("#login").val("正在登录..");
 			//提交
-			$.post("","",function(data){
+			var pamar = $("#froms").serialize();
+			alert(pamar)
+			$.post("userAction/login",pamar,function(data){
+				$("#login").val("登录");
+				alert(data)
 				
 			});
 		}
@@ -110,34 +115,58 @@ $(function(){
 		$(".formtips").remove();
 		
 		if($pone.val()=="" || $pone.val()==null){
-			var hint = "请输入手机号码/邮箱/用户名";
-			$("#phoneOne2").append('<span class="formtips onSuccess glyphicon glyphicon-exclamation-sign"></span><span class="formtips onSuccess glyphicon texts">'
+			var hint = "<span class='formtips onSuccess glyphicon glyphicon-exclamation-sign'></span>请输入手机号码/邮箱/用户名";
+			$("#phoneOne2").append('<span class="formtips onSuccess glyphicon texts">'
 					+ hint + '</span>');
 		}else if(!($pone.val().match(/^(((13[0-9]{1})|159|153)+\d{8})$/))){
-			var hint = "手机号码有误！";
-			$("#phoneOne2").append('<span class="formtips onSuccess glyphicon glyphicon-exclamation-sign"></span><span class="formtips onSuccess glyphicon texts">'
+			var hint = "<span class='formtips onSuccess glyphicon glyphicon-exclamation-sign'></span>手机号码有误！";
+			$("#phoneOne2").append('<span class="formtips onSuccess glyphicon texts">'
 					+ hint + '</span>');
 		}else if($exampleInputPassword1.val()==""){
-			var hint = "请输入密码";
-			$("#pwd").append('<span class="formtips onSuccess glyphicon glyphicon-exclamation-sign"></span><span class="formtips onSuccess glyphicon texts">'
+			var hint = "<span class='formtips onSuccess glyphicon glyphicon-exclamation-sign'></span>请输入密码";
+			$("#pwd").append('<span class="formtips onSuccess glyphicon texts">'
 					+ hint + '</span>');
 		}else if($code.val()==""){
-			var hint = "请输入验证码";
-			$("#yan2").append('<span class="formtips onSuccess glyphicon glyphicon-exclamation-sign"></span><span class="formtips onSuccess glyphicon texts">'
+			var hint = "<span class='formtips onSuccess glyphicon glyphicon-exclamation-sign'></span>请输入验证码";
+			$("#yan2").append('<span class="formtips onSuccess glyphicon texts">'
 					+ hint + '</span>');
 		}else{
-			//提交
-			
+			//提交 -- 进行登陆
+			//序列化
+			var pamar = $("#froms2").serialize();
+			//设置登录显示
+			$("#login2").val("正在登录..");
+			//请求后台
+			$.get("tovcode/vocde",pamar,function(data){
+				
+				var s = $.trim(data) ;
+				if(s=="false"){
+					$(".formtips").remove();
+					var hint = "<span class='formtips onSuccess glyphicon glyphicon-exclamation-sign'></span>验证码有误";
+					$("#yan2").append('<span class="formtips onSuccess glyphicon texts">'
+							+ hint + '</span>');
+				}else if(s=="falseW"){
+					$("#formtips").remove();
+					$("#tis").css("display","block");
+					var hint = "<span class='formtips onSuccess glyphicon glyphicon glyphicon-minus-sign'></span>你输入的密码和账户名不匹配，是否<a href='#'><忘记密码?></a>";
+					$("#tis").append('<span class="formtips onSuccess glyphicon texts">'
+							+ hint + '</span>');
+				}else if(s=="true"){
+					$("#tis").css("display","none");
+					$("#login2").val("登录");
+					
+					//跳转
+				}
+			});
 		}
 	});
 	
 	
 	//验证码
 	$("body").on("click","#img",function(){
-		$.post("tovcode/vocde","",function(data){
-			alert(data)
+		$.post("tovcode/vocde?getImg=getImg","",function(data){
 			$(".vodeImg").empty();
-			var s = ' <img alt=""  name="image" src="tovcode/vocde" id="img" >';
+			var s = ' <img alt=""  name="image" src="tovcode/vocde?getImg=getImg" id="img" >';
 			$(".vodeImg").append(s);
 		});
 	});
@@ -193,6 +222,12 @@ $(function(){
 			$("#btnSendCode").html(curCount + " 秒后重新获取");
 		}
 	}
+	
+	//登录
+	/*$("#login2").click(function(){
+		
+	});*/
+	
 	
 	
 });

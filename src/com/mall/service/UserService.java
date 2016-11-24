@@ -20,5 +20,7 @@ public interface UserService {
 
 	// 查询出全部用户（分页）
 	public List findAllUser(PageBean pageBean,User user);
+	//进行密码匹配
+	public User pwd(User user);
 
 }
