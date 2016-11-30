@@ -1,7 +1,19 @@
+body{
+	font-size: 13px;
+	width: 1349px;
+	font-family:"微软雅黑体";
+	color: #330000;
+}
+a{
+	text-decoration:none;
+	color: #330000;
+	
+}
 /* 导航开始 */
 #moreng{
-	width: 355px ;
+	width: 300px ;
 	height: 200px ;
+	margin: 0px auto;
 	
 }
 #daohan{
@@ -15,7 +27,7 @@
 	height: 33px;
 	text-align: center;
 	line-height: 33px;
-	font-weight: 900 ;
+	font-weight: 800 ;
 	font-size: 16px;
 	
 	cursor:pointer;  
@@ -39,16 +51,49 @@
 
 
 /* 主体开始 */
+
+#login_img{
+	margin-top:20px;
+	margin-left:230px ;
+	width: 510px ;
+	height: 100% ;
+	float: left;
+	
+}
+#login_bg{
+	margin: 0px auto;
+	margin-top: 20px;
+}
 #go{
-	float: right;
-	margin-right: 200px ;
-	margin-top: 130px ;
+	float: left;
+	margin-top: 20px ;
+	width: 350px;
+	height: 460px;
+	margin-left:120px;
+	background: #fff;
+	border: 1px solid #EEE9E9;
+	
+}
+
+#login_go{
+	font-size: 23px ;
+	font-weight: 900 ;
+	color: #990000;
+	margin-left:22px ;
+	margin-top: 10px ;
+	margin-bottom: 10px ;
 }
 /* 主体结束 */
 
 
-/* 表单开始 */
 
+
+/* 表单开始 */
+#login_zhong{
+	width: 1349px;
+	height: 485px ;
+	
+}
 #zhuti{
 	margin-top: 20px ;
 }
@@ -58,11 +103,15 @@
 }
 
 #zhuti2{
-	margin-top: -145px
+	
+	width: 300px ;
+	height: 330px;
+	margin: 0px auto;
+	margin-top: -145px ;
 }
 
 .log{
-	width:90%;
+	width:100%;
 	height:38px ;
 	border: 0;
 	background: #990000;
@@ -78,23 +127,26 @@
 	height: 34px;
 	
 }
+
 .formtips{
 	color: red;
-	font-size: 12px;
+	font-size: 13px;
 }
 .glyphicon-exclamation-sign{
 	color: red;
-	font-size: 12px;
-	margin-left: 100px ;
+	font-size: 14px;
+	margin: 5px ;
+	
 }
 #img{
+	
 	height: 34px ;
 }
 .input-group-btn{
 	cursor:pointer;  
 }
 #tis{
-	width: 301px;
+	width: 300px;
 	height:20px;
 	margin:0px auto;
 	margin-bottom: 10px;
@@ -106,10 +158,84 @@
 	margin-right: 5px;
 	font-size: 10px;
 }
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 15px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #400505;
+    background-color: #FFF;
+    background-image: none;
+    border: 1px solid #4E0605;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.input-group-addon {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: #4E0404;
+    text-align: center;
+    background-color: #FDFDFD;
+    border: 1px solid #650606;
+    border-radius: 4px;
+}
+
+input-group-btn{
+	 border: 1px solid #650606;
+}
+.form-control:focus {
+    /*这里改成了红色*/
+    border-color: #dd0000;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(240,155,73,0.4);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(240,155,73,0.4);
+}
+
+.btn-default.disabled, .btn-default[disabled], fieldset[disabled] .btn-default, .btn-default.disabled:hover, .btn-default[disabled]:hover, fieldset[disabled] .btn-default:hover, .btn-default.disabled:focus, .btn-default[disabled]:focus, fieldset[disabled] .btn-default:focus, .btn-default.disabled.focus, .btn-default[disabled].focus, fieldset[disabled] .btn-default.focus, .btn-default.disabled:active, .btn-default[disabled]:active, fieldset[disabled] .btn-default:active, .btn-default.disabled.active, .btn-default[disabled].active, fieldset[disabled] .btn-default.active {
+    background-color: #fff;
+    border-color: #650606;
+}
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #650606;
+}
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open>.dropdown-toggle.btn-default {
+    color: #fff;
+    background-color: #bf0e04;
+    border-color: #8C3737;
+}
+
+.input-group-btn {
+    position: relative;
+    font-size: 0;
+    white-space: nowrap;
+    border-color: #8C3737;
+}
 /* 表单结束 */
 /* 尾巴 */
-#botton{
+.botton{
 	width: 100%;
-	height: 50px ;
-	background: #666 ;
+	height: 35px ;
+	text-align: right;
+	line-height: 35px;
+	font-size: 13px;
+	margin-bottom: 20px ;
+	
+}
+.botton span{
+	margin-left: 16px;
+}
+.spa{
+	margin-left: 10px;
 }

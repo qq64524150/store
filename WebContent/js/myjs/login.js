@@ -34,25 +34,24 @@ $(function(){
 		
 	});
 	
+	var anNu = true ; 
 	
-	
-	//验证手机号1
+	/*//验证手机号1
 	$("#phone").blur(function() {
 		var $parent = $("#phoneOne");
 		$parent.find(".formtips").remove();
 		if(this.value==""){
-			var hint = "<span class='formtips onSuccess glyphicon glyphicon-exclamation-sign'></span>请输入手机号码";
+			var hint = "<span class='formtips onSuccess'><span class=' glyphicon glyphicon-exclamation-sign'><span></span>请输入手机号码";
 			$parent.append('<span class="formtips onSuccess glyphicon texts">'
 					+ hint + '</span>');
 		}else if(!(this.value.match(/^(((13[0-9]{1})|159|153)+\d{8})$/))){
-			var hint = "<span class='formtips onSuccess glyphicon glyphicon-exclamation-sign'></span>手机号码有误！";
+			var hint = "<span class='formtips onSuccess'><span class='glyphicon glyphicon-exclamation-sign'></span></span>手机号码有误！";
 			$parent.append('<span class="formtips onSuccess glyphicon texts">'
 					+ hint + '</span>');
-		}else{
-			$("#btnSendCode").removeAttr("disabled");// 启用按钮
 		}	
 		
-	});
+	});*/
+	
 	//验证手机号2
 	$("#phone2").blur(function() {
 		var $parent = $("#phoneOne2");
@@ -66,7 +65,11 @@ $(function(){
 			$parent.append('<span class="formtips onSuccess glyphicon texts">'
 					+ hint + '</span>');
 		}else{
-			$("#btnSendCode").removeAttr("disabled");// 启用按钮
+			/*if(anNu){
+				
+				$("#btnSendCode").removeAttr("disabled");// 启用按钮
+			}*/
+			
 		}	
 		
 	});
@@ -84,7 +87,7 @@ $(function(){
 		$(".formtips").remove();
 		
 		if($pone.val()=="" || $pone.val()==null){
-			var hint = "<span class='formtips onSuccess glyphicon glyphicon-exclamation-sign'></span>请输入手机号码";
+			var hint = "<span class='formtips onSuccess'><span class='glyphicon glyphicon-exclamation-sign'></span></span>请输入手机号码";
 			$("#phoneOne").append('<span class="formtips onSuccess glyphicon texts">'
 					+ hint + '</span>');
 		}else if(!($pone.val().match(/^(((13[0-9]{1})|159|153)+\d{8})$/))){
@@ -99,10 +102,10 @@ $(function(){
 			$("#login").val("正在登录..");
 			//提交
 			var pamar = $("#froms").serialize();
-			alert(pamar)
 			$.post("userAction/login",pamar,function(data){
 				$("#login").val("登录");
 				alert(data)
+				location.href=data;
 				
 			});
 		}
@@ -151,11 +154,13 @@ $(function(){
 					var hint = "<span class='formtips onSuccess glyphicon glyphicon glyphicon-minus-sign'></span>你输入的密码和账户名不匹配，是否<a href='#'><忘记密码?></a>";
 					$("#tis").append('<span class="formtips onSuccess glyphicon texts">'
 							+ hint + '</span>');
-				}else if(s=="true"){
+				}else{
 					$("#tis").css("display","none");
 					$("#login2").val("登录");
-					
 					//跳转
+					alert(data)
+					location.href=data;
+					
 				}
 			});
 		}
@@ -172,18 +177,6 @@ $(function(){
 	});
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//默认按钮为禁止
 	$("#btnSendCode").attr("disabled", "true");
 	//验证码发送
@@ -191,21 +184,38 @@ $(function(){
 	// timer变量，控制时间
 	var count = 60; // 间隔函数，1秒执行 
 	var curCount;
+	$("#btnSendCode").removeAttr("disabled");// 启用按钮
 	// 当前剩余秒数
 	$("#btnSendCode").click(function(){
+		var s = $("#phone");
+		var $parent = $("#phoneOne");
+		$parent.find(".formtips").remove();
+		if(s.val()==""){
+			var hint = "<span class='formtips onSuccess'><span class=' glyphicon glyphicon-exclamation-sign'><span></span>请输入手机号码";
+			$parent.append('<span class="formtips onSuccess glyphicon texts">'
+					+ hint + '</span>');
+		}else if(!(s.val().match(/^(((13[0-9]{1})|159|153)+\d{8})$/))){
+			var hint = "<span class='formtips onSuccess'><span class='glyphicon glyphicon-exclamation-sign'></span></span>手机号码有误！";
+			$parent.append('<span class="formtips onSuccess glyphicon texts">'
+					+ hint + '</span>');
+		}else{
+			curCount = count;
+			// 设置button效果，开始计时
+			$("#btnSendCode").attr("disabled", "true"); // 关闭按钮
+			$("#btnSendCode").html(curCount + " 秒后重新获取"); // 启动计时器，1秒执行一次
+			InterValObj = window.setInterval(SetRemainTime, 1000); // 获取表单输入的信息
+			//var pamth = $("#froms").serialize();
+			var phone = $("#phone").val(); //获取手机号码
+			
+			// 向后台发送表单输入的信息
+			$.post("userAction/sendCode?uphone="+phone, "", function(data) {
+				//alert(data)
+			});
+			
+		}	
 		
-		curCount = count;
-		// 设置button效果，开始计时
-		$("#btnSendCode").attr("disabled", "true");
-		$("#btnSendCode").html(curCount + " 秒后重新获取"); // 启动计时器，1秒执行一次
-		InterValObj = window.setInterval(SetRemainTime, 1000); // 获取表单输入的信息
-		//var pamth = $("#froms").serialize();
-		var phone = $("#phone").val(); //获取手机号码
 		
-		// 向后台发送表单输入的信息
-		$.post("userAction/sendCode?uphone="+phone, "", function(data) {
-			//alert(data)
-		});
+		
 		
 		
 	});
@@ -215,6 +225,7 @@ $(function(){
 	function SetRemainTime() {
 		if (curCount == 0) {
 			window.clearInterval(InterValObj);// 停止计时器
+			anNu = true ; //设置true
 			$("#btnSendCode").removeAttr("disabled");// 启用按钮
 			$("#btnSendCode").html("重新获取");
 		} else {

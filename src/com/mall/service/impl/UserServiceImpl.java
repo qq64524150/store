@@ -1,11 +1,8 @@
 package com.mall.service.impl;
 
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
-
 import com.mall.dao.UserDao;
 import com.mall.entity.User;
 import com.mall.service.UserService;
@@ -34,19 +31,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean updateUser(User user) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean deleteUser(User user) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public List findAllUser(PageBean pageBean, User user) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -83,13 +77,7 @@ public class UserServiceImpl implements UserService {
 		return u;
 	}
 	
-	
-	
 	public void setUserDao(UserDao userDao) {
 		UserDao = userDao;
 	}
-	
-	
-	
-	
 }

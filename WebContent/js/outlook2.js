@@ -57,7 +57,7 @@ function InitLeftMenu() {
 	$('body').on("click",".easyui-accordion li a",function(){
 		var tabTitle = $(this).children('.nav').text();
 		// $(this).attr("rel");
-		var url = "manage.jsp"; //显示的内容路径
+		var url = $(this).attr("rel"); //显示的内容路径
 		var menuid = $(this).attr("ref");
 		var icon = getIcon(menuid,icon);
 
@@ -111,16 +111,12 @@ function InitLeftMenu() {
 }
 
 
-
-
-
-
 //定义
 function ManageCommentText(text) {
     var result = text;
     $.ajax({
         data: "get",
-        url: "../test/funs",
+        url: "../userAction/funs",
         cache: false,
         async: false,
         type:"json",

@@ -1,3 +1,14 @@
+body{
+	font-size:13px ;
+	width: 1349px;
+	font-family:"微软雅黑体";
+	color: #330000;
+}
+a{
+	text-decoration:none ;
+	color: #330000;
+}
+
 .reg{
 	height: 35px;
 	
@@ -11,7 +22,27 @@
 	font-size: 18px;
 	font-weight: 800 ;
 }
+#tiankuang{
+	margin-bottom: 15px;
+	margin-left: 13px;
+}
+#tou_left{
 
+	font-size: 23px ;
+	font-weight: 900 ;
+	color: #990000;
+	
+}
+#tou_left_1{
+	width:200px;
+	margin-top: 15px ;
+}
+#tou_right{
+	float:right;
+	margin-left:10px;
+	font-size: 12px;
+	
+}
 /*
 	按钮开始 -- 发送验证码
 */
@@ -36,11 +67,11 @@
 	font-size: 14px;
 	color: #EEE0E5;
 	padding-left: 10px;
-	margin-left: 100px;
+	margin:5px;
 }
 .texts{
-	color: #EEE0E5;
-	font-size: 15px;
+	color: #c0c0c0;
+	font-size: 14px;
 	
 }
 /*
@@ -50,13 +81,13 @@
 	font-size: 14px;
 	color: #EE0000;
 	padding-left: 10px;
-	margin-left: 100px;
+	margin:5px;
 	
 }
 	
 .error{
-	color: #EE0000;
-	font-size: 15px;
+	color: #ea1700;
+	font-size: 14px;
 	
 }
 
@@ -68,11 +99,11 @@
 	font-size: 14px;
 	color: #00CC33;
 	padding-left: 10px;
-	margin-left: 100px;
+	margin: 5px;
 }
 .ok{
 	color: #00CC33;
-	font-size: 15px;
+	font-size: 14px;
 	
 }
 
@@ -101,13 +132,32 @@
 
 
 /* 主体开始 */
-#zhuti{
-	width:351px ;
+#zhuti_bao{
+	width:300px ;
+	margin: 0px auto;
+}
+#zc{
+	width:350px ;
+	height: 450px ;
+	margin-top:30px ;
+	background: #fff ;
 	float: right;
-	margin-right: 150px;
-	margin-top: 120px;
+	margin-right: 130px ;
+	border: 1px solid #EEE9E9; 
 }
 
+#zhongjian{
+	width: 1349px;
+	height: 485px ;
+	
+}
+#zhong_one{
+	width: 700px ;
+	height: 100% ;
+	margin-left:50px ;
+	margin-top:10px ;
+	float: left;
+}
 /* 主体结束 */
 
 
@@ -115,10 +165,10 @@
 
 /* 提交按钮开始 */
 #tijiao:HOVER{
-	background-color: #990000;
+	background-color: #CC0000;
 }
 #tijiao{
-	background-color: #CC0000;
+	background-color: #990000;
 	font-size: 20px ;
 	font-weight: 700;
 	color:#fff;
@@ -129,7 +179,69 @@
 /* 提交按钮结束 */
 
 
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 15px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #400505;
+    background-color: #FFF;
+    background-image: none;
+    border: 1px solid #4E0605;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
 
+.input-group-addon {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: #4E0404;
+    text-align: center;
+    background-color: #FDFDFD;
+    border: 1px solid #650606;
+    border-radius: 4px;
+}
+
+input-group-btn{
+	 border: 1px solid #650606;
+}
+.form-control:focus {
+    /*这里改成了红色*/
+    border-color: #dd0000;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(240,155,73,0.4);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(240,155,73,0.4);
+}
+
+.btn-default.disabled, .btn-default[disabled], fieldset[disabled] .btn-default, .btn-default.disabled:hover, .btn-default[disabled]:hover, fieldset[disabled] .btn-default:hover, .btn-default.disabled:focus, .btn-default[disabled]:focus, fieldset[disabled] .btn-default:focus, .btn-default.disabled.focus, .btn-default[disabled].focus, fieldset[disabled] .btn-default.focus, .btn-default.disabled:active, .btn-default[disabled]:active, fieldset[disabled] .btn-default:active, .btn-default.disabled.active, .btn-default[disabled].active, fieldset[disabled] .btn-default.active {
+    background-color: #fff;
+    border-color: #650606;
+}
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #650606;
+}
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open>.dropdown-toggle.btn-default {
+    color: #fff;
+    background-color: #bf0e04;
+    border-color: #8C3737;
+}
+
+.input-group-btn {
+    position: relative;
+    font-size: 0;
+    white-space: nowrap;
+    border-color: #8C3737;
+}
 
 
 

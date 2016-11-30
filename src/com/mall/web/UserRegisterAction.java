@@ -1,22 +1,30 @@
 package com.mall.web;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mall.entity.Role;
 import com.mall.entity.User;
+import com.mall.service.PermissionService;
+import com.mall.service.RoleService;
 import com.mall.service.UserService;
 import com.mall.util.PhoneCode;
 import com.mall.util.PhoneInform;
-import com.mall.util.Vcode;
 import com.taobao.api.ApiException;
 
 @Controller
@@ -24,6 +32,10 @@ import com.taobao.api.ApiException;
 public class UserRegisterAction {
 	@Resource
 	private UserService userService;
+	@Resource
+	private RoleService roleService;
+	@Resource
+	private PermissionService permissionService;
 	//存放验证码
 	private int phoneCode;
 	//存放时间
@@ -36,6 +48,7 @@ public class UserRegisterAction {
 	 * @param phoneCode 验证码
 	 * @return 返回相应结果
 	 */
+	
 	@RequestMapping("/addUser")
 	@ResponseBody
 	public String addUser(User user, int phoneCode) {
@@ -64,9 +77,7 @@ public class UserRegisterAction {
 							System.out.println("发送出错");
 							e.printStackTrace();
 						}
-						
 					}
-
 				}
 			}else{
 				msg = "noTime"; //验证码过期
@@ -79,7 +90,7 @@ public class UserRegisterAction {
 		return msg;
 
 	}
-
+	
 	/**
 	 * 发送验证码
 	 * 
@@ -111,7 +122,7 @@ public class UserRegisterAction {
 		// 返回
 		return s;
 	}
-
+	
 	/**
 	 * 进行查询号码是否存在
 	 * 
@@ -138,7 +149,7 @@ public class UserRegisterAction {
 	//用户登录
 	@RequestMapping("/login")
 	@ResponseBody
-	public String phoneLogin(HttpServletRequest req , User user,int code){
+	public String phoneLogin(HttpServletRequest req , HttpServletResponse response,User user,int code) throws JsonProcessingException{
 		String msg = null ;
 		//进行验证码判断
 		if(getPhoneCode()==code){
@@ -152,8 +163,23 @@ public class UserRegisterAction {
 				User u = userService.pwd(user);
 				//把查询出了的谢谢存放到会话中
 				if(u!=null){
+					//设置在会话中
 					req.getSession().setAttribute("userInfo", u);
-					msg = "true";
+					
+					//进行登录
+					//进行查询该用户的权限是什么
+					Role r = roleService.findRole(u.getUrole());
+					req.getSession().setAttribute("userRole", r);
+					
+					if(r.getRono().equals("1")){
+						System.out.println("有身份");
+						//跳转
+						msg = "admin/index.jsp";
+					}else{
+						msg = "index.jsp";
+					}
+					
+					
 				}else{
 					msg = "falseW";
 				}
@@ -165,10 +191,41 @@ public class UserRegisterAction {
 			msg = "false";
 		}
 		return msg ;
+	}
+	
+	@RequestMapping("/funs")
+	@ResponseBody
+	//获取菜单
+	public void getRole(HttpServletRequest req ,HttpServletResponse response, PrintWriter out){
+		
+		//获取会话中的信息
+		User user = (User) req.getSession().getAttribute("userInfo");
+		System.out.println("菜单:手机号"+user.getUphone());
+		
+		if(user!=null && !(user.equals(""))){
+			Role r = roleService.findRole(user.getUrole());
+			System.out.println("角色" + r.getRoauthids());
+
+			response.setHeader("Cache-Control", "no-cache");
+			response.setContentType("text/text;charset=UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			List lost = permissionService.findper(r.getRoauthids(), "0");
+			ObjectMapper mapper = new ObjectMapper();
+			try {
+				String s = mapper.writeValueAsString(lost);
+			} catch (JsonProcessingException e) {
+				System.out.println("转换有误！");
+				e.printStackTrace();
+			}
+		}else{
+			System.out.println("会话为空！");
+		}
+		
+		
 		
 	}
 	
-
+	
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
@@ -187,6 +244,14 @@ public class UserRegisterAction {
 
 	public void setOldDate(Date oldDate) {
 		this.oldDate = oldDate;
+	}
+
+	public void setRoleService(RoleService roleService) {
+		this.roleService = roleService;
+	}
+
+	public void setPermissionService(PermissionService permissionService) {
+		this.permissionService = permissionService;
 	}
 	
 	

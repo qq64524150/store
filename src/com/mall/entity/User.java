@@ -15,6 +15,7 @@ import org.hibernate.annotations.GenericGenerator;
  * @author Administrator
  *
  */
+
 @Entity
 @Table(name="tb_user")
 public class User implements Serializable{
@@ -28,7 +29,7 @@ public class User implements Serializable{
 	private String uemail ;			//E-mail
 	private String uphone ; 		//电话
 	private String uuserID	;		//身份证
-	private String ustate="3" ;			//状态（0/正常，1/禁止，2/已封，3/未完善,4/完善）					
+	private String ustate="3" ;		//状态（0/正常，1/禁止，2/已封，3/未完善,4/完善）					
 	private Date utime	;			//时间
 	private String usex	;			//性别
 	private String ubrith ;			//出生日期
@@ -36,12 +37,10 @@ public class User implements Serializable{
 	private String unick ;			//昵称
 	private String urole ;			//角色
 	
-	
-	
-	
 	public User() {
 		super();
 	}
+	
 	public User(String uid, String uname, String upwd, String uusername, int upoint, String uimages, String uemail,
 			String uphone, String uuserID, String ustate, Date utime, String usex, String ubrith, int uage,
 			String unick, String urole) {
@@ -63,12 +62,14 @@ public class User implements Serializable{
 		this.unick = unick;
 		this.urole = urole;
 	}
+	
 	@Id
 	@GeneratedValue(generator="pk")
 	@GenericGenerator(name="pk",strategy="uuid.hex")
 	public String getUid() {
 		return uid;
 	}
+	
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
@@ -163,13 +164,4 @@ public class User implements Serializable{
 		this.urole = urole;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

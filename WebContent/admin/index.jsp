@@ -12,6 +12,7 @@
 <head id="Head1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>后台管理</title>
+<!--  Bootstrap -->
 <link href="<%=basePath%>/css/default.css" rel="stylesheet"
 	type="text/css" />
 <link rel="stylesheet" type="text/css"
@@ -24,6 +25,7 @@
 	src="<%=basePath%>/js/jquery.easyui.min.1.2.2.js"></script>
 <script type="text/javascript" src='<%=basePath%>/js/outlook2.js'>
 </script>
+
 
 <style>
 	.easyui-accordion li a{
@@ -63,8 +65,8 @@
 		<div id="tabs" class="easyui-tabs" fit="true" border="false">
 			<div title="主页" style="padding: 20px; overflow: hidden; color: red;"
 				id="show">
-				欢迎来到后台管理
-				<div id="test">--</div>
+				${userInfo.uphone }欢迎来到后台管理
+				<div id="test"></div>
 			</div>
 		</div>
 	</div>

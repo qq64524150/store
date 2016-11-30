@@ -12,8 +12,7 @@ $(function() {
 		var yan = false ;
 		// 验证号码
 		if ($(this).is("#phone")) {
-			//禁止按钮
-			$("#btnSendCode").attr("disabled", "true");
+			
 				if(this.value == ""){
 					var hint = "请输入手机号码";
 					$parent.append('<span class="formtips onSuccess glyphicon glyphicon-exclamation-sign"></span><span class="formtips onSuccess glyphicon texts">'
@@ -35,11 +34,12 @@ $(function() {
 												+ okMsg + '</span>');
 							}else{
 								var error = "此号码已注册"
-									$("#btnSendCode").removeAttr("disabled");// 启用按钮
-									$parent.append('<span class="formtips onSuccess glyphicon glyphicon-remove-circle"></span><span class="formtips onSuccess glyphicon error">'
-														+ error + '</span>');
-								
-								
+								$("#btnSendCode").removeAttr("disabled");// 启用按钮
+								$parent.append('<span class="formtips onSuccess glyphicon glyphicon-remove-circle"></span><span class="formtips onSuccess glyphicon error">'
+													+ error + '</span>');
+							
+								//禁止按钮
+								$("#btnSendCode").attr("disabled", "true");
 							}
 						});
 						
@@ -56,9 +56,8 @@ $(function() {
 	$("#exampleInputPassword1").blur(function() {
 				var $parent = $("#pwd");
 				$parent.find(".formtips").remove();
-
-				// 验证密码
 				
+				// 验证密码
 				if ($(this).is("#exampleInputPassword1")) {
 					if(this.value == ""){
 						var hint = "请输入字母数字组合的密码";
@@ -101,15 +100,12 @@ $(function() {
 						$parent.append('<span class="formtips onSuccess glyphicon glyphicon-remove-circle"></span><span class="formtips onSuccess glyphicon error">'
 								+ error + '</span>');
 					} else {
-
 						var okMsg = "正确";
 						pwd2 = true ;
 						$parent.append('<span class="formtips onSuccess glyphicon glyphicon-ok-circle"></span><span class="formtips onSuccess glyphicon ok">'
 								+ okMsg + '</span>');
 						
-						
 						//进行验证的判断
-						
 						yan = true ;
 						if(phone && pwd && pwd2 && yan){
 							$("#tijiao").removeAttr("disabled");// 启用按钮
@@ -124,8 +120,9 @@ $(function() {
 		$(this).triggerHandler("blur");
 	});
 	
+
 	
-	
+
 	//验证码发送
 	
 	var InterValObj;
@@ -134,22 +131,36 @@ $(function() {
 	var curCount;
 	// 当前剩余秒数
 	
-	//默认按钮为禁止
-	$("#btnSendCode").attr("disabled", "true");
+	//默认
+	$("#btnSendCode").removeAttr("disabled");// 启用按钮
 	$("#btnSendCode").click(function(){
-		curCount = count;
-		// 设置button效果，开始计时
-		$("#btnSendCode").attr("disabled", "true");
-		$("#btnSendCode").html(curCount + " 秒后重新获取"); // 启动计时器，1秒执行一次
-		InterValObj = window.setInterval(SetRemainTime, 1000); // 获取表单输入的信息
-		//var pamth = $("#froms").serialize();
-		var phone = $("#phone").val(); //获取手机号码
 		
-		// 向后台发送表单输入的信息
-		$.post("userAction/sendCode?uphone="+phone, "", function(data) {
-			//alert(data)
-		});
-		
+		var s = $("#phone");
+		var $parent = $("#phoneOne");
+		$parent.find(".formtips").remove();
+		if(s.val()==""){
+			var hint = "<span class='formtips onSuccess'><span class=' glyphicon glyphicon-exclamation-sign'><span></span>请输入手机号码";
+			$parent.append('<span class="formtips onSuccess glyphicon texts">'
+					+ hint + '</span>');
+		}else if(!(s.val().match(/^(((13[0-9]{1})|159|153)+\d{8})$/))){
+			var hint = "<span class='formtips onSuccess'><span class='glyphicon glyphicon-exclamation-sign'></span></span>手机号码有误！";
+			$parent.append('<span class="formtips onSuccess glyphicon texts">'
+					+ hint + '</span>');
+		}else{
+			curCount = count;
+			// 设置button效果，开始计时
+			$("#btnSendCode").attr("disabled", "true"); // 关闭按钮
+			$("#btnSendCode").html(curCount + " 秒后重新获取"); // 启动计时器，1秒执行一次
+			InterValObj = window.setInterval(SetRemainTime, 1000); // 获取表单输入的信息
+			//var pamth = $("#froms").serialize();
+			var phone = $("#phone").val(); //获取手机号码
+			
+			// 向后台发送表单输入的信息
+			$.post("userAction/sendCode?uphone="+phone, "", function(data) {
+				//alert(data)
+			});
+			
+		}	
 		
 	});
 	
@@ -165,6 +176,11 @@ $(function() {
 			$("#btnSendCode").html(curCount + " 秒后重新获取");
 		}
 	}
+	/*
+	 * 条款是否选中
+	 * */
+	var c =  $("#tiao").is(":checked");
+	
 	
 	//提交数据
 	//$("#tijiao").removeAttr("disabled");// 启用按钮
@@ -180,7 +196,19 @@ $(function() {
 			$("#yan").html(""); //清空
 			$("#yan").append('<span class="formtips onSuccess glyphicon glyphicon-remove-circle"></span><span class="formtips onSuccess glyphicon error">'
 					+ error + '</span>');
+		}else if(!c){
+			//显示
+			$("#tiaoKunag").css("display","block");
+			var error = "请接受波多尔服务条款"
+				$("#tiaoKunag").html(""); //清空
+			$("#tiaoKunag").append('<span class="formtips onSuccess glyphicon glyphicon-remove-circle"></span><span class="formtips onSuccess glyphicon error">'
+						+ error + '</span>');
 		}else{
+			//改变注册
+			$("#tijiao").attr("disabled", "true"); //禁用按钮
+			$("#tijiao").val("正在提交注册信息...");
+			//隐藏
+			$("#tiaoKunag").css("display","none");
 			var pamth = $("#froms").serialize();
 			$.post("userAction/addUser",pamth,function(data){
 				alert(data)
@@ -189,11 +217,15 @@ $(function() {
 						$("#yan").html(""); //清空
 						$("#yan").append('<span class="formtips onSuccess glyphicon glyphicon-remove-circle"></span><span class="formtips onSuccess glyphicon error">'
 								+ error + '</span>');
+						$("#tijiao").removeAttr("disabled");// 启用按钮
+						$("#tijiao").val("立即注册");
 				}else if(data == "noTime"){
 					var error = "验证码已过期"
 						$("#yan").html(""); //清空
 						$("#yan").append('<span class="formtips onSuccess glyphicon glyphicon-remove-circle"></span><span class="formtips onSuccess glyphicon error">'
 								+ error + '</span>');
+						$("#tijiao").removeAttr("disabled");// 启用按钮
+						$("#tijiao").val("立即注册");
 				}
 				
 				
@@ -204,15 +236,7 @@ $(function() {
 	});
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 

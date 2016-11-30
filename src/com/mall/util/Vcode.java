@@ -9,18 +9,18 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.PrintWriter;
 import java.util.Random;
-
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mall.entity.Role;
 import com.mall.entity.User;
+import com.mall.service.RoleService;
 import com.mall.service.UserService;
 
 @Controller
@@ -28,7 +28,8 @@ import com.mall.service.UserService;
 public class Vcode {
 	@Resource
 	private UserService userService;
-	
+	@Resource
+	private RoleService roleService;
 	// 验证码图片的宽度。
 	private int width = 60;
 	// 验证码图片的高度。
@@ -123,7 +124,14 @@ public class Vcode {
 				//把查询出了的谢谢存放到会话中
 				if(u!=null){
 					req.getSession().setAttribute("userInfo", u);
-					msg = "true";
+					Role r = roleService.findRole(u.getUrole());
+					req.getSession().setAttribute("userRole", r);
+					if(r.getRono().equals("1")){
+						System.out.println("有身份");
+						msg = "admin/index.jsp";
+					}else{
+						msg = "index.jsp";
+					}
 				}else{
 					msg = "falseW";
 				}
@@ -144,6 +152,10 @@ public class Vcode {
 
 	public void setVode(String vode) {
 		this.vode = vode;
+	}
+
+	public void setRoleService(RoleService roleService) {
+		this.roleService = roleService;
 	}
 
 }
