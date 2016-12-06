@@ -11,6 +11,7 @@
 <html>
 <head id="Head1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="<%=basePath %>/images/title.png" rel="shortout icon"/>
 <title>后台管理</title>
 <!--  Bootstrap -->
 <link href="<%=basePath%>/css/default.css" rel="stylesheet"
@@ -23,8 +24,8 @@
 	src="<%=basePath%>/js/jquery-1.7.2.js"></script>
 <script type="text/javascript"
 	src="<%=basePath%>/js/jquery.easyui.min.1.2.2.js"></script>
-<script type="text/javascript" src='<%=basePath%>/js/outlook2.js'>
-</script>
+<script type="text/javascript" src='<%=basePath%>/js/outlook2.js'></script>
+
 
 
 <style>

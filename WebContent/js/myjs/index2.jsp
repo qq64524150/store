@@ -1,30 +1,32 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="gbk"%>
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-<head>
-<title>test</title>
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">    
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
-<script type="text/javascript" src="<%=basePath%>/js/myjs/zDrag.js"></script>
-<script type="text/javascript" src="<%=basePath%>/js/myjs/zDialog.js"></script>
-<script type="text/javascript" src="<%=basePath%>/js/myjs/prototype.js"  charset="utf-8"></script>
-<script type="text/javascript" src="<%=basePath%>/js/myjs/AjaxWrapper.js" charset="utf-8"></script>
-<link href="<%=basePath%>/css/mycss/fileUpload.css" type="text/css" rel="stylesheet"/>
-ã€€<style type="text/css">
-ã€€ã€€ã€€ã€€ã€€ã€€div#readme{
-ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€width:100%;padding:3px 0;background: #BAFB80;
-               background-image: url("../../images/info_32.png");
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'index.jsp' starting page</title>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<script type="text/javascript" src="zDrag.js"></script>
+<script type="text/javascript" src="zDialog.js"></script>
+	¡¡<script type="text/javascript" src="./javascript/prototype.js"  charset="utf-8"></script>
+¡¡¡¡¡¡<script type="text/javascript" src="./javascript/AjaxWrapper.js" charset="utf-8"></script>
+¡¡¡¡¡¡<link href="./css/fileUpload.css" type="text/css" rel="stylesheet"/>
+¡¡¡¡¡¡¡¡<style type="text/css">
+¡¡¡¡¡¡¡¡¡¡¡¡div#readme{
+¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡width:100%;padding:3px 0;background: #BAFB80;
+               background-image: url("images/info_32.png");
                background-repeat: no-repeat;
                text-align: center;
     font:85%/1.45 "Lucida Sans Unicode","Lucida Grande",Arial,sans-serif;
@@ -33,12 +35,14 @@
     line-height: 25px;
     height: 25px;
     color:gray;
-    ã€€ã€€ã€€ã€€ã€€
+    ¡¡¡¡¡¡¡¡¡¡
             }
             
-ã€€ã€€ã€€ã€€</style>ã€€
+¡¡¡¡¡¡¡¡</style>
+<style>
 
 
+</style>
 <script type="text/javascript">
   var flag=1;
   function getFileSize(fileSize)
@@ -70,7 +74,7 @@
   
      if(flag>4)
      {
-       Dialog.alert('<font size=2><b>ä¸€æ¬¡æœ€å¤šä¸Šä¼ ï¼•ä¸ªæ–‡ä»¶!</b></font>');
+       Dialog.alert('<font size=2><b>Ò»´Î×î¶àÉÏ´«£µ¸öÎÄ¼ş!</b></font>');
        
        return;
      }
@@ -88,7 +92,7 @@
      btn1.name='uploadfile'+flag+1;
      btn1.id='uploadfile'+flag+1;
      btn1.size=40;
-     btn1.value='æµè§ˆ...';
+     btn1.value='ä¯ÀÀ...';
      btn1.className="uploadfile2";
      btn1.hidefocus='';
      
@@ -115,12 +119,12 @@
 	 
 	 
 	 var img=document.createElement("img");
-	 img.src='<%=basePath%>/images/delete.png';
+	 img.src='images/delete.png';
 	 img.width=28;
 	 img.height=28;
 	 img.border='0';
 	 img.className='imgstyle';
-	 img.alt='åˆ é™¤ä¸€è¡Œ';
+	 img.alt='É¾³ıÒ»ĞĞ';
 	 inputNode3.appendChild(img);
 	 
 	 if(inputNode3.addEventListener)
@@ -154,7 +158,7 @@
   {
      var btn1=document.getElementById('uploadfile2');
      btn1.size=40;
-     btn1.value='æµè§ˆ...';
+     btn1.value='ä¯ÀÀ...';
      btn1.className="uploadfile2";
      
   }
@@ -176,16 +180,16 @@
   </head>
   <body onload="init();">
   <div id="controlPanel">
-	<div id="readme">è¯´æ˜:&nbsp;&nbsp;æœ€å¤§ä¸Šä¼ é‡:1000Mï¼Œå•ä¸ªæ–‡ä»¶æœ€å¤§å®¹é‡:100M</div>
+	<div id="readme">ËµÃ÷:&nbsp;&nbsp;×î´óÉÏ´«Á¿:1000M£¬µ¥¸öÎÄ¼ş×î´óÈİÁ¿:100M</div>
 	<div id="uploadFileUrl"></div>
 	<form id="fileUploadForm" name="fileUploadForm" action="./BackGroundService.action" 
 		enctype="multipart/form-data" method="post">
-	<input class="input_text" type="text" id="txt1" name="txt1" size="60"/><input type="button" name="uploadfile2"  id="uploadfile2" style="padding-left: 26px;"/><input class="input_file" size="30" type="file" name="file1" id="file1" hidefocus onchange="txt1.value=this.value"/><a href="javascript:void(0);"  onclick="addRow();"><img src="<%=basePath%>/images/add.png" width="28" height="28" border="0" alt="æ·»åŠ ä¸€è¡Œ" class="imgstyle"/></a><br>
+	<input class="input_text" type="text" id="txt1" name="txt1" size="60"/><input type="button" name="uploadfile2"  id="uploadfile2" style="padding-left: 26px;"/><input class="input_file" size="30" type="file" name="file1" id="file1" hidefocus onchange="txt1.value=this.value"/><a href="javascript:void(0);"  onclick="addRow();"><img src="images/add.png" width="28" height="28" border="0" alt="Ìí¼ÓÒ»ĞĞ" class="imgstyle"/></a><br>
 	<div id="tool">
 	</div>
 	<br>
-	<input type="submit" name="uploadButton" id="uploadButton" value="å¼€å§‹ä¸Šä¼ " class="up_btn"/>
-	<input type="button" name="cancelUploadButton" onclick="closeWindow();" id="cancelUploadButton" value="å–æ¶ˆä¸Šä¼ " class="up_btn"/><br>
+	<input type="submit" name="uploadButton" id="uploadButton" value="¿ªÊ¼ÉÏ´«" class="up_btn"/>
+	<input type="button" name="cancelUploadButton" onclick="closeWindow();" id="cancelUploadButton" value="È¡ÏûÉÏ´«" class="up_btn"/><br>
 	</form>
 	
 	<div id="progressBar">
@@ -204,11 +208,11 @@ Element.hide('progressBar');
 Event.observe('fileUploadForm','submit',startProgress,false);
 Event.observe('cancelUploadButton','click',cancelProgress,false);
 
-//åˆ·æ–°ä¸Šä¼ çŠ¶æ€
+//Ë¢ĞÂÉÏ´«×´Ì¬
 function refreshUploadStatus(){
 	var ajaxW = new AjaxWrapper(false);
 	ajaxW.putRequest(
-		'<%=basePath%>/BackGroundService.action',
+		'./BackGroundService.action',
 		'uploadStatus=',
 		function(responseText){
 				eval("uploadInfo = " + responseText);
@@ -216,48 +220,48 @@ function refreshUploadStatus(){
 					(uploadInfo.ReadTotalSize) / uploadInfo.UploadTotalSize * 100);
 	
 				if(uploadInfo.UploadFlag=='http'){
-				   flag='(HTTPçŠ¶æ€)';
+				   flag='(HTTP×´Ì¬)';
 				   
 				}else
 				{
-				   flag='(FTPçŠ¶æ€)';
+				   flag='(FTP×´Ì¬)';
 				}
 				
 				$('progressBarText').innerHTML=flag;
-				$('progressBarText').innerHTML += ' ä¸Šä¼ å¤„ç†è¿›åº¦: '+progressPercent+'% ã€'+
+				$('progressBarText').innerHTML += ' ÉÏ´«´¦Àí½ø¶È: '+progressPercent+'% ¡¾'+
 					getFileSize(uploadInfo.ReadTotalSize)+'/'+getFileSize(uploadInfo.UploadTotalSize) +
-					'ã€‘ æ­£åœ¨å¤„ç†ç¬¬'+uploadInfo.CurrentUploadFileNum+'ä¸ªæ–‡ä»¶'+
-					' è€—æ—¶: '+(uploadInfo.ProcessRunningTime-uploadInfo.ProcessStartTime)+' ms';
+					'¡¿ ÕıÔÚ´¦ÀíµÚ'+uploadInfo.CurrentUploadFileNum+'¸öÎÄ¼ş'+
+					' ºÄÊ±: '+(uploadInfo.ProcessRunningTime-uploadInfo.ProcessStartTime)+' ms';
 					
-				$('progressStatusText').innerHTML=' åé¦ˆçŠ¶æ€: '+uploadInfo.Status;
+				$('progressStatusText').innerHTML=' ·´À¡×´Ì¬: '+uploadInfo.Status;
 				$('totalProgressBarBoxContent').style.width = parseInt(progressPercent * 3.5) + 'px';
 		}
 	);
 }
-//ä¸Šä¼ å¤„ç†
+//ÉÏ´«´¦Àí
 function startProgress(){
     parent.addProgressHeight();
 	Element.show('progressBar');
-    $('progressBarText').innerHTML = ' ä¸Šä¼ å¤„ç†è¿›åº¦: 0%';
-    $('progressStatusText').innerHTML=' åé¦ˆçŠ¶æ€:';
+    $('progressBarText').innerHTML = ' ÉÏ´«´¦Àí½ø¶È: 0%';
+    $('progressStatusText').innerHTML=' ·´À¡×´Ì¬:';
     $('uploadButton').disabled = true;
     $('cancelUploadButton').disabled = true;
     var periodicalExe=new PeriodicalExecuter(refreshUploadStatus,0.5);
     return true;
 }
-//å–æ¶ˆä¸Šä¼ å¤„ç†
+//È¡ÏûÉÏ´«´¦Àí
 function cancelProgress(){
 	$('cancelUploadButton').disabled = true;
 	var ajaxW = new AjaxWrapper(false);
 	ajaxW.putRequest(
-		'<%=basePath%>/BackGroundService.action',
+		'./BackGroundService.action',
 		'cancelUpload=true',
-		//å› ä¸ºformçš„æäº¤ï¼Œè¿™å¯èƒ½ä¸ä¼šæ‰§è¡Œ
+		//ÒòÎªformµÄÌá½»£¬Õâ¿ÉÄÜ²»»áÖ´ĞĞ
 		function(responseText){
 			eval("uploadInfo = " + responseText);
-			$('progressStatusText').innerHTML=' åé¦ˆçŠ¶æ€: '+uploadInfo.status;
+			$('progressStatusText').innerHTML=' ·´À¡×´Ì¬: '+uploadInfo.status;
 			if (msgInfo.cancel=='true'){
-				alert('åˆ é™¤æˆåŠŸ!');
+				alert('É¾³ı³É¹¦!');
 				window.location.reload();
 			};
 		}

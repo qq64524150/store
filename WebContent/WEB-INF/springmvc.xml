@@ -25,7 +25,7 @@
 	<mvc:resources location="/themes/" mapping="/themes/**"></mvc:resources>
 	<mvc:resources location="/easyui/" mapping="/easyui/**"></mvc:resources>
 	<mvc:resources location="/images/" mapping="/images/**"></mvc:resources>
-	
+	<mvc:resources location="/upload/" mapping="/upload/**"></mvc:resources>
 	<!-- 视图解析器 -->
  	 <bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

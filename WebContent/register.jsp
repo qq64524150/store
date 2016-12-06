@@ -10,6 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="images/title.png" rel="shortout icon"/>
 <script src="<%=basePath%>/jquery/jquery-2.2.3.min.js"></script>
 <link rel="stylesheet"
 	href="<%=basePath%>/bootstrapcss/bootstrap.min.css">

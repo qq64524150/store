@@ -55,7 +55,7 @@
 		<a href="#">品牌大全</a> 
 	</div>
 	<div id="bottom_three"> 
-		<span>波多尔名酒网电子商务股份有限公司  ©  波多尔名酒网   2016  jiuxian.com  All   Rights Reserved   京ICP备11007961号-1   京公网安备1101050188221</span>
+		<span>格兰蒂名酒网电子商务股份有限公司  ©  格兰蒂名酒网   2016  jiuxian.com  All   Rights Reserved   京ICP备11007961号-1   京公网安备1101050188221</span>
 	</div>
 	<div id="bottom_four"> 
 		<span>统一社会信用代码  9111030255xxx3311D   食品流通许可证编号  SP1103021310005xxx   

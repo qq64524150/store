@@ -12,7 +12,7 @@
 	#head_left{
 		width: 300px ;
 		height: 80px ;
-		background: #666 ;
+		
 		margin: 10px ;
 		margin-left: 100px ;
 		float: left;
@@ -30,7 +30,7 @@
 
 <div id="head_one">
 	<div id="head_left">
-	
+		<img alt="" src="images/logo.png">
 	</div>
 	<div id="head_reght">
 		<img alt="" src="images/head_right.jpg">
