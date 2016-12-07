@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 	http://www.springframework.org/schema/aop
@@ -11,10 +10,15 @@
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
 	http://www.springframework.org/schema/mvc
-	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd ">
+	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.2.xsd ">
 	<!-- 开启springmvc注解 -->
-	<mvc:annotation-driven/>
-	
+	<mvc:annotation-driven />
+	<!-- 使Spring支持自动检测组件，如注解的Controller <context:component-scan base-package="com.yjde.web.controller" 
+		/> -->
+
+
 	<!-- 配置springmvc 静态文件过滤 -->
 	<mvc:resources location="/js/" mapping="/js/**"></mvc:resources>
 	<mvc:resources location="/css/" mapping="/css/**"></mvc:resources>
@@ -27,29 +31,53 @@
 	<mvc:resources location="/images/" mapping="/images/**"></mvc:resources>
 	<mvc:resources location="/upload/" mapping="/upload/**"></mvc:resources>
 	<!-- 视图解析器 -->
- 	 <bean
+	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- 配置JSTL支持 -->
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
-		<!--配置路径-->
-		<property name="prefix" value="/"/>
-		 <!-- 配置View后缀 -->
+		<!--配置路径 -->
+		<property name="prefix" value="/" />
+		<!-- 配置View后缀 -->
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
-		<!-- 全局异常处理 -->
-	<!-- <bean
-		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		定义默认的异常处理页面，当该异常类型的注册时使用
-		<property name="defaultErrorView" value="error"></property>
-		定义异常处理页面用来获取异常信息的变量名，默认名为exception
-		<property name="exceptionAttribute" value="ex"></property>
-		定义需要特殊处理的异常，用类名或完全路径名作为key，异常也页名作为值
-		<property name="exceptionMappings">
-			<props>
-				<prop key="java.lang.Exception">error</prop>
-			</props>
-		</property>
-	</bean> -->
+     <!-- <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean id="myHandlerInterceptor" class="com.mall.util.MyHandlerInterceptor">
+           		  设置不拦截的路径
+           		  <property name="excludedUrls">
+	                <list>
+	                    <value>/bootstrap/</value>
+	                    <value>/bootstrapcss/</value>
+	                    <value>/css/</value>
+	                    <value>/easyui/</value>
+	                    <value>/error/</value>
+	                    <value>/fonts/</value>
+	                    <value>/images/</value>
+	                    <value>/jquery/</value>
+	                    <value>/js/</value>
+	                    <value>/themes/</value>
+	                    <value>/upload/</value>
+	                    <value>/pages/</value>
+	                    <value>/bottom.jsp</value>
+	                    <value>/head.jsp</value>
+	                    <value>/index.jsp</value>
+	                    <value>/Login.jsp</value>
+	                    <value>/register.jsp</value>
+	                    <value>/test.jsp</value>
+	                    <value>/tovcode/vocde</value> 
+	                </list>
+           		 </property>
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors> -->
+
+	<!-- 全局异常处理 -->
+	<!-- <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
+		定义默认的异常处理页面，当该异常类型的注册时使用 <property name="defaultErrorView" value="error"></property> 
+		定义异常处理页面用来获取异常信息的变量名，默认名为exception <property name="exceptionAttribute" value="ex"></property> 
+		定义需要特殊处理的异常，用类名或完全路径名作为key，异常也页名作为值 <property name="exceptionMappings"> <props> 
+		<prop key="java.lang.Exception">error</prop> </props> </property> </bean> -->
 </beans>

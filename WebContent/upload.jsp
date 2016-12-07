@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -13,30 +13,72 @@
 <title>test</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">    
+<meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
 <script type="text/javascript" src="<%=basePath%>/js/myjs/zDrag.js"></script>
 <script type="text/javascript" src="<%=basePath%>/js/myjs/zDialog.js"></script>
-<script type="text/javascript" src="<%=basePath%>/js/myjs/prototype.js"  charset="utf-8"></script>
-<script type="text/javascript" src="<%=basePath%>/js/myjs/AjaxWrapper.js" charset="utf-8"></script>
-<link href="<%=basePath%>/css/mycss/fileUpload.css" type="text/css" rel="stylesheet"/>
-　<style type="text/css">
-　　　　　　div#readme{
-　　　　　　　　　width:100%;padding:3px 0;background: #BAFB80;
-               background-image: url("../../images/info_32.png");
-               background-repeat: no-repeat;
-               text-align: center;
-    font:85%/1.45 "Lucida Sans Unicode","Lucida Grande",Arial,sans-serif;
-    font-size:medium;
-    font-weight: bold;
-    line-height: 25px;
-    height: 25px;
-    color:gray;
-    　　　　　
-            }
-            
-　　　　</style>　
+<script type="text/javascript" src="<%=basePath%>/js/myjs/prototype.js"
+	charset="utf-8"></script>
+<script type="text/javascript"
+	src="<%=basePath%>/js/myjs/AjaxWrapper.js" charset="utf-8"></script>
+<link href="<%=basePath%>/css/mycss/fileUpload.css" type="text/css"
+	rel="stylesheet" />
+<style type="text/css">
+　　　　　　div#readme {
+	　　　　　　　　　width: 100%;
+	padding: 3px 0;
+	background: #BAFB80;
+	background-image: url("../../images/info_32.png");
+	background-repeat: no-repeat;
+	text-align: center;
+	font: 85%/1.45 "Lucida Sans Unicode", "Lucida Grande", Arial, sans-serif;
+	font-size: medium;
+	font-weight: bold;
+	line-height: 25px;
+	height: 25px;
+	color: gray;
+}
+
+div#readme {
+	width: 100%;
+	padding: 3px 0;
+	background: #BAFB80;
+	background-image: url("../../images/info_32.png");
+	background-repeat: no-repeat;
+	text-align: center;
+	font: 85%/1.45 "Lucida Sans Unicode", "Lucida Grande", Arial, sans-serif;
+	font-size: medium;
+	font-weight: bold;
+	line-height: 25px;
+	height: 25px;
+	color: gray;
+	　　　　　
+}
+
+.imgstyle {
+	margin-bottom: -8px;
+}
+
+.input_file {
+	margin-left: -270px;
+	filter: alpha(opacity = 0);
+	opacity: 0;
+}
+
+.input_file2 {
+	margin-left: -270px;
+	filter: alpha(opacity = 0);
+	opacity: 0;
+}
+
+.input_text {
+	border: 1px solid #CDEE79;
+	height: 24px;
+	width: 140px;
+}
+　　　　
+</style>
 
 
 <script type="text/javascript">
@@ -173,33 +215,40 @@
      parent.closeWindow();
   }
 </script>
-  </head>
-  <body onload="init();">
-  <div id="controlPanel">
-	<div id="readme">说明:&nbsp;&nbsp;最大上传量:1000M，单个文件最大容量:100M</div>
-	<div id="uploadFileUrl"></div>
-	<form id="fileUploadForm" name="fileUploadForm" action="./BackGroundService.action" 
-		enctype="multipart/form-data" method="post">
-	<input class="input_text" type="text" id="txt1" name="txt1" size="60"/><input type="button" name="uploadfile2"  id="uploadfile2" style="padding-left: 26px;"/><input class="input_file" size="30" type="file" name="file1" id="file1" hidefocus onchange="txt1.value=this.value"/><a href="javascript:void(0);"  onclick="addRow();"><img src="<%=basePath%>/images/add.png" width="28" height="28" border="0" alt="添加一行" class="imgstyle"/></a><br>
-	<div id="tool">
+</head>
+<body onload="init();">
+	<div id="controlPanel">
+
+		<div id="uploadFileUrl"></div>
+		<form id="fileUploadForm" name="fileUploadForm"
+			action="./BackGroundService.action" enctype="multipart/form-data"
+			method="post">
+			<input class="input_text" type="text" id="txt1" name="txt1" size="60" /><input
+				type="button" name="uploadfile2" id="uploadfile2"
+				style="padding-left: 3px;" /><input class="input_file input_file2"
+				size="30" type="file" name="file1" id="file1" hidefocus
+				onchange="txt1.value=this.value" /><a href="javascript:void(0);"
+				onclick="addRow();"><img src="<%=basePath%>/images/add.png"
+				width="28" height="28" border="0" alt="添加一行" class="imgstyle" /></a><br>
+			<div id="tool"></div>
+			<br> <input type="submit" name="uploadButton" id="uploadButton"
+				value="开始上传" class="up_btn" /> <input type="button"
+				name="cancelUploadButton" onclick="closeWindow();"
+				id="cancelUploadButton" value="取消上传" class="up_btn" /><br>
+		</form>
+
+		<div id="progressBar">
+			<div id="theMeter">
+				<div id="progressBarText"></div>
+				<div id="totalProgressBarBox">
+					<div id="totalProgressBarBoxContent"></div>
+				</div>
+			</div>
+			<div id="progressStatusText"></div>
+		</div>
+
 	</div>
-	<br>
-	<input type="submit" name="uploadButton" id="uploadButton" value="开始上传" class="up_btn"/>
-	<input type="button" name="cancelUploadButton" onclick="closeWindow();" id="cancelUploadButton" value="取消上传" class="up_btn"/><br>
-	</form>
-	
-	<div id="progressBar">
-	<div id="theMeter">
-    	<div id="progressBarText"></div>
-	        <div id="totalProgressBarBox">
-	        	<div id="totalProgressBarBoxContent"></div>
-	        </div>
-        </div>
-        <div id="progressStatusText"></div>
-   </div>
-   
-</div>
-<script>
+	<script>
 Element.hide('progressBar');
 Event.observe('fileUploadForm','submit',startProgress,false);
 Event.observe('cancelUploadButton','click',cancelProgress,false);
@@ -264,19 +313,17 @@ function cancelProgress(){
 	);
 }
 </script>
-<%
-String msg=(String)request.getAttribute("msg");
-if(msg!=null&&msg.length()>0)
-{
-   %>
-   <script type="text/javascript">
+	<%
+		String msg = (String) request.getAttribute("msg");
+		if (msg != null && msg.length() > 0) {
+	%>
+	<script type="text/javascript">
       Dialog.alert('<%=msg%>');
-      parent.resizeHeight();
-      
-   </script>
-   
-   <%
-}
- %>
-  </body>
+		parent.resizeHeight();
+	</script>
+
+	<%
+		}
+	%>
+</body>
 </html>

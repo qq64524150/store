@@ -1,6 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+<base href="<%=basePath%>">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">    
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+<script type="text/javascript" src="<%=basePath%>/js/myjs/zDrag.js"></script>
+<script type="text/javascript" src="<%=basePath%>/js/myjs/zDialog.js"></script>
+<script type="text/javascript" src="<%=basePath%>/js/myjs/prototype.js"  charset="utf-8"></script>
+<script type="text/javascript" src="<%=basePath%>/js/myjs/AjaxWrapper.js" charset="utf-8"></script>
+<%-- <link href="<%=basePath%>/css/mycss/fileUpload.css" type="text/css" rel="stylesheet"/>
+
+ --%>
+
 <style>
 	#comm_bg{
 		width: 1000px ;
@@ -26,146 +45,7 @@
 	input {
 		height: 27px;
 	}
-	
-	
-	
 </style>
-<script type="text/javascript">
-  var flag=1;
-  function getFileSize(fileSize)
-	{
-		var num = new Number();
-		var unit = '';
-		
-		if (fileSize > 1*1024*1024*1024){
-			num = fileSize/1024/1024/1024;
-			unit = "G"
-		}
-		else if (fileSize > 1*1024*1024){
-			num = fileSize/1024/1024;
-			unit = "M"			
-		}
-		else if (fileSize > 1*1024){
-			num = fileSize/1024;
-			unit = "K"
-		}
-		else{
-			return fileSize;
-		}
-		
-		return num.toFixed(2) + unit;
-		
-	}	
-  function addRow()
-  {
-  
-     if(flag>4)
-     {
-       Dialog.alert('<font size=2><b>一次最多上传５个文件!</b></font>');
-       
-       return;
-     }
-  
-     var form=document.getElementById('tool');
-     
-     var text1 = document.createElement("input");
-	 text1.size = "60";
-	 text1.type = "text";
-	 text1.name = "txt"+flag+1;
-	 text1.id = "txt"+flag+1;
-     text1.className='input_text';
-     
-     var btn1=  document.createElement("input");
-     btn1.name='uploadfile'+flag+1;
-     btn1.id='uploadfile'+flag+1;
-     btn1.size=40;
-     btn1.value='浏览...';
-     btn1.className="uploadfile2";
-     btn1.hidefocus=''; 
-     
-     
-     
-     var inputNode1 = document.createElement("input");
-	 inputNode1.size = "30";
-	 inputNode1.type = "file";
-	 inputNode1.name = "file"+flag+1;
-	 inputNode1.id = "file"+flag+1;
-	 inputNode1.className='input_file';
-	 
-	 
-     if(inputNode1.addEventListener)
-	{
-					inputNode1.addEventListener("change",changeValue(text1,inputNode1),false);
-	}
-	else if(inputNode1.attachEvent)
-	{
-				
-					inputNode1.attachEvent("onchange", changeValue(text1,inputNode1)) ;
-	}	
-	
-	 var inputNode3 = document.createElement("a");
-	 inputNode3.href = "javascript:void(0);";
-	 
-	 
-	 var img=document.createElement("img");
-	 img.src='../../images/delete.png';
-	 img.width=28;
-	 img.height=28;
-	 img.border='0';
-	 img.className='imgstyle';
-	 img.alt='删除一行';
-	 inputNode3.appendChild(img);
-	 
-	 if(inputNode3.addEventListener)
-	{
-					inputNode3.addEventListener("click",deleterow(form,text1,btn1,inputNode1,inputNode3),false);
-	}
-	else if(inputNode3.attachEvent)
-	{
-				
-					inputNode3.attachEvent("onclick", deleterow(form,text1,btn1,inputNode1,inputNode3)) ;
-	}
-	 
-	 form.appendChild(text1);
-	 form.appendChild(btn1);
-	 form.appendChild(inputNode1);
-	 flag++;
-	 
-	 parent.addHeight();
-	 
-  }
-
-  var changeValue=function changeValue(v1,v2)
-  {
-     return function()
-     {
-        v1.value=v2.value;
-     }
-  }
-  function init()
-  {
-     var btn1=document.getElementById('uploadfile2');
-     btn1.size=40;
-     btn1.value='浏览...';
-     btn1.className="uploadfile2";
-     
-  } 
-  var deleterow = function(form,text1,btn1,inputNode1,inputNode3){
-				 return function(){
-				    form.removeChild(text1);
-      form.removeChild(btn1);
-      form.removeChild(inputNode1);
-      form.removeChild(inputNode3);
-      flag--;
-      parent.decreaseHeight();
-	}
-  }
-  function closeWindow()
-  {
-     parent.closeWindow();
-  }
-</script>
-
 
 
 
@@ -177,7 +57,9 @@
 
 	<div id="comm_zhu">
 		<!-- 商品 -->
-		<form action="" id="comm_form">
+		<!-- <form action="" id="comm_form"> -->
+		<form id="fileUploadForm" name="fileUploadForm" action="./BackGroundService.action" 
+		enctype="multipart/form-data" method="post">
 			<table  cellspacing="0" >
 				<tr>
 					<td colspan="4">添加商品</td>
@@ -408,41 +290,37 @@
 				
 				<tr>
 				
-					<td class="comm_text01" colspan="4"><label>图片详细描述	:</label></td>
-					<td>
-						
-						
-						
-						
+					<td class="comm_text01"><label>图片详细描述	:</label></td>
+					<td style="width: 270px;">
 						
 					</td>
-					
 				</tr>
 				<tr>
 				
 					<td class="comm_text01">图片介绍（大小）:</td>
-					<td><input type="file" name=""></td>
-					
+					<td style="width: 270px;">
+						 
+					</td>
 				</tr>
-				
-				
-		
-			
-			
 		</form>
-				
-				
-				
 			</table>
 		</form>
-		
-		
-				
 	</div>
 	
 </div>
+<%-- <div id="uploadImg" style="display: none;">
+	<c:import url="../../upload.jsp"></c:import>
+</div> --%>
+<div id="win">   
+  <c:import url="../../upload.jsp"></c:import> 
+</div> 
 
-<c:import url="../../test.jsp"></c:import>
+<script type="text/javascript">
+$('#win').window({    
+    width:600,    
+    height:400,    
+    modal:true   
+}); 
+$('#win').window('close');  // close a window  
 
- 
-
+</script>

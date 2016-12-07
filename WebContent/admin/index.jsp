@@ -87,9 +87,12 @@
 </html>
 <script type="text/javascript">
 	
-
+	/* $.get("../toInterceptor/toPerHandle","",function(data){
+		alert(data);
+	}); */
 	
-	/* alert("---")
+	/* 
+		alert("---")
 		var tabTitle = $(this).children('.nav').text();
 
 		var url = $(this).attr("rel");
@@ -99,10 +102,12 @@
 		addTab(tabTitle, url, icon);
 		$('.accordion-body li div').removeClass("selected");
 		$(this).parent().addClass("selected");
-	}).hover(function() {
-		$(this).parent().addClass("hover");
-	}, function() {
-		$(this).parent().removeClass("hover");
-	}); */
+		}).hover(function() {
+			$(this).parent().addClass("hover");
+		}, function() {
+			$(this).parent().removeClass("hover");
+		});
+	
+	*/
 </script>
 

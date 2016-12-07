@@ -7,11 +7,11 @@ body {
 	margin-top: 0px;
 }
 #controlPanel,#resultPanel{
-	width:660px;
+	width:360px;
 	margin:0px auto;
 }
 #errorArea{
-	width:400px;
+	width:300px;
 	margin:20px auto;
 	padding:25px;
 	border:3px solid gray;
@@ -19,7 +19,7 @@ body {
 	background:red;
 }
 #normalMessageArea{
-	width:400px;
+	width:300px;
 	margin:20px auto;
 	padding:25px;
 	border:3px solid gray;
@@ -28,7 +28,7 @@ body {
 }
 #progressBar { padding-top: 5px; }
 #totalProgressBarBox { 
-   	width: 350px; 
+   	width: 300px; 
    	height: 20px; 
    	border: 1px inset; 
    	background: #eee;
@@ -56,24 +56,22 @@ body {
 .uploadfile2
 {
 	
-	background-image:url(../images/btn_off.gif);
+	background-image:url(../../images/btn_off.gif);
 	background-repeat:no-repeat;
 	border:0px;
 	width:82px;
 	height:23px;
 	cursor:pointer;
-	margin-left: -30px;
-	padding-top: 6px;
-	padding-left: 30px;
+	padding-left: 20px;
 	
 }
 .uploadfile2:hover
 {
-	background-image:url(../images/btn_on.gif);
+	background-image:url(../../images/btn_on.gif);
 }
 .up_btn
 {
-	background-image:url(../images/btn_off.gif);
+	background-image:url(../../images/btn_off.gif);
 	background-repeat:no-repeat;
 	border:0px;
 	width:82px;
@@ -85,20 +83,22 @@ body {
 }
 .up_btn:hover
 {
-	background-image:url(../images/btn_on.gif);
+	background-image:url(../../images/btn_on.gif);
 }
 .input_text
 {
    border:1px solid #CDEE79;
-   height:23px;
+   height:24px;
+   width: 140px ;
 }
 .input_file
 {
      margin-left:-300px; filter:alpha(opacity=0); opacity:0;
     
 }
+
 .imgstyle
 {
 	margin-left: 10px;
-	margin-bottom: -5px;
+	margin-bottom: -8px;
 }

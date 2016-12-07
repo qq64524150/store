@@ -200,7 +200,7 @@ public class UserRegisterAction {
 		
 		//获取会话中的信息
 		User user = (User) req.getSession().getAttribute("userInfo");
-		System.out.println("菜单:手机号"+user.getUphone());
+		//System.out.println("菜单:手机号"+user.getUphone());
 		
 		if(user!=null && !(user.equals(""))){
 			Role r = roleService.findRole(user.getUrole());
@@ -213,15 +213,19 @@ public class UserRegisterAction {
 			ObjectMapper mapper = new ObjectMapper();
 			try {
 				String s = mapper.writeValueAsString(lost);
+				out.print(s);
+				
 			} catch (JsonProcessingException e) {
 				System.out.println("转换有误！");
 				e.printStackTrace();
 			}
 		}else{
 			System.out.println("会话为空！");
+			out.print("0");
+			
 		}
 		
-		
+		out.close();
 		
 	}
 	

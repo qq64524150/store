@@ -33,8 +33,13 @@ function InitLeftMenu() {
 	var data = ManageCommentText();
 	
 	$("#nav").accordion({animate:false});
-	$.post("../test/funs","",function(data){
+	$.post("../userAction/funs","",function(data){
+		//进行跳转
+		if(data==0){
 			
+			location.href="../Login.jsp";
+			return ;
+		}
 	
 	
 	$.each(data, function(i, n) {
