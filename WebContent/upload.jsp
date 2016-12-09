@@ -25,11 +25,11 @@
 <link href="<%=basePath%>/css/mycss/fileUpload.css" type="text/css"
 	rel="stylesheet" />
 <style type="text/css">
-　　　　　　div#readme {
-	　　　　　　　　　width: 100%;
+div#readme {
+	width: 100%;
 	padding: 3px 0;
 	background: #BAFB80;
-	background-image: url("../../images/info_32.png");
+	background-image: url("../images/info_32.png");
 	background-repeat: no-repeat;
 	text-align: center;
 	font: 85%/1.45 "Lucida Sans Unicode", "Lucida Grande", Arial, sans-serif;
@@ -44,7 +44,7 @@ div#readme {
 	width: 100%;
 	padding: 3px 0;
 	background: #BAFB80;
-	background-image: url("../../images/info_32.png");
+	background-image: url("../images/info_32.png");
 	background-repeat: no-repeat;
 	text-align: center;
 	font: 85%/1.45 "Lucida Sans Unicode", "Lucida Grande", Arial, sans-serif;
@@ -77,7 +77,6 @@ div#readme {
 	height: 24px;
 	width: 140px;
 }
-　　　　
 </style>
 
 
@@ -217,15 +216,17 @@ div#readme {
 </script>
 </head>
 <body onload="init();">
-	<div id="controlPanel">
+	<div id="uptext2" style="margin:30px auto 0px; width:300px ; margin-left: 70px;font-size: 12px; color: #CCCCFF;">每张图片不能超过10M，最多只能上传5张图片。</div>
+	
+	<div id="controlPanel" style="width: 230px; margin-top: 5px;">
 
 		<div id="uploadFileUrl"></div>
 		<form id="fileUploadForm" name="fileUploadForm"
 			action="./BackGroundService.action" enctype="multipart/form-data"
 			method="post">
 			<input class="input_text" type="text" id="txt1" name="txt1" size="60" /><input
-				type="button" name="uploadfile2" id="uploadfile2"
-				style="padding-left: 3px;" /><input class="input_file input_file2"
+				type="button" name="uploadfile2" id="uploadfile2" class="uploadfile2"
+				value="浏览..." style="padding-left: 3px;" /><input class="input_file input_file2"
 				size="30" type="file" name="file1" id="file1" hidefocus
 				onchange="txt1.value=this.value" /><a href="javascript:void(0);"
 				onclick="addRow();"><img src="<%=basePath%>/images/add.png"

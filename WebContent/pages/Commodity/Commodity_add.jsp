@@ -1,24 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<base href="<%=basePath%>">
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">    
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<link rel="stylesheet" type="text/css"
+	href="<%=basePath%>/js/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=basePath%>/js/themes/icon.css" />
+	
+<link href="<%=basePath%>/css/mycss/fileUpload.css" type="text/css"
+	rel="stylesheet" />
+
+<script type="text/javascript"
+	src="<%=basePath%>/js/jquery-1.7.2.js"></script>
+<script type="text/javascript"src="<%=basePath%>/js/jquery.easyui.min.1.2.2.js"></script>
+<script type="text/javascript" src='<%=basePath%>/js/outlook2.js'></script>
+<script type="text/javascript" src='<%=basePath%>/js/myjs/admin.js'></script>
+
+
 <script type="text/javascript" src="<%=basePath%>/js/myjs/zDrag.js"></script>
 <script type="text/javascript" src="<%=basePath%>/js/myjs/zDialog.js"></script>
-<script type="text/javascript" src="<%=basePath%>/js/myjs/prototype.js"  charset="utf-8"></script>
+<%-- <script type="text/javascript" src="<%=basePath%>/js/myjs/prototype.js" charset="utf-8"></script> --%>
 <script type="text/javascript" src="<%=basePath%>/js/myjs/AjaxWrapper.js" charset="utf-8"></script>
-<%-- <link href="<%=basePath%>/css/mycss/fileUpload.css" type="text/css" rel="stylesheet"/>
 
- --%>
+
 
 <style>
 	#comm_bg{
@@ -45,9 +53,208 @@
 	input {
 		height: 27px;
 	}
+	
+	#file_upload input,#file_upload{
+		margin-top: 5px;
+		cursor: pointer;
+	}
+	select,select option{
+		cursor: pointer;
+	}
+	select{
+		height: 25px;
+	}
+	
+	div#readme {
+	width: 100%;
+	padding: 3px 0;
+	background: #BAFB80;
+	background-image: url("../images/info_32.png");
+	background-repeat: no-repeat;
+	text-align: center;
+	font: 85%/1.45 "Lucida Sans Unicode", "Lucida Grande", Arial, sans-serif;
+	font-size: medium;
+	font-weight: bold;
+	line-height: 25px;
+	height: 25px;
+	color: gray;
+}
+
+div#readme {
+	width: 100%;
+	padding: 3px 0;
+	background: #BAFB80;
+	background-image: url("../images/info_32.png");
+	background-repeat: no-repeat;
+	text-align: center;
+	font: 85%/1.45 "Lucida Sans Unicode", "Lucida Grande", Arial, sans-serif;
+	font-size: medium;
+	font-weight: bold;
+	line-height: 25px;
+	height: 25px;
+	color: gray;
+	　　　　　
+}
+
+.imgstyle {
+	margin-bottom: -8px;
+}
+
+.input_file {
+	margin-left: -270px;
+	filter: alpha(opacity = 0);
+	opacity: 0;
+}
+
+.input_file2 {
+	margin-left: -270px;
+	filter: alpha(opacity = 0);
+	opacity: 0;
+}
+
+.input_text {
+	border: 1px solid #CDEE79;
+	height: 24px;
+	width: 140px;
+}
+	
+	
 </style>
 
+<script type="text/javascript">
+  var flag=1;
+  function getFileSize(fileSize)
+	{
+		var num = new Number();
+		var unit = '';
+		
+		if (fileSize > 1*1024*1024*1024){
+			num = fileSize/1024/1024/1024;
+			unit = "G"
+		}
+		else if (fileSize > 1*1024*1024){
+			num = fileSize/1024/1024;
+			unit = "M"			
+		}
+		else if (fileSize > 1*1024){
+			num = fileSize/1024;
+			unit = "K"
+		}
+		else{
+			return fileSize;
+		}
+		
+		return num.toFixed(2) + unit;
+		
+	}	
+  function addRow()
+  {
+  
+     if(flag>4)
+     {
+       Dialog.alert('<font size=2><b>一次最多上传５个文件!</b></font>');
+       
+       return;
+     }
+  
+     var form=document.getElementById('tool');
+     
+     var text1 = document.createElement("input");
+	 text1.size = "60";
+	 text1.type = "text";
+	 text1.name = "txt"+flag+1;
+	 text1.id = "txt"+flag+1;
+     text1.className='input_text';
+     
+     var btn1=  document.createElement("input");
+     btn1.name='uploadfile'+flag+1;
+     btn1.id='uploadfile'+flag+1;
+     btn1.size=40;
+     btn1.value='浏览...';
+     btn1.className="uploadfile2";
+     btn1.hidefocus='';
+     
+     var inputNode1 = document.createElement("input");
+	 inputNode1.size = "30";
+	 inputNode1.type = "file";
+	 inputNode1.name = "file"+flag+1;
+	 inputNode1.id = "file"+flag+1;
+	 inputNode1.className='input_file';
+	 
+	 
+     if(inputNode1.addEventListener)
+	{
+					inputNode1.addEventListener("change",changeValue(text1,inputNode1),false);
+	}
+	else if(inputNode1.attachEvent)
+	{
+				
+					inputNode1.attachEvent("onchange", changeValue(text1,inputNode1)) ;
+	}	
+	
+	 var inputNode3 = document.createElement("a");
+	 inputNode3.href = "javascript:void(0);";
+	 
+	 
+	 var img=document.createElement("img");
+	 img.src='<%=basePath%>/images/delete.png';
+	 img.width=28;
+	 img.height=28;
+	 img.border='0';
+	 img.className='imgstyle';
+	 img.alt='删除一行';
+	 inputNode3.appendChild(img);
+	 
+	 if(inputNode3.addEventListener)
+	{
+					inputNode3.addEventListener("click",deleterow(form,text1,btn1,inputNode1,inputNode3),false);
+	}
+	else if(inputNode3.attachEvent)
+	{
+				
+					inputNode3.attachEvent("onclick", deleterow(form,text1,btn1,inputNode1,inputNode3)) ;
+	}
+	 
+	 form.appendChild(text1);
+	 form.appendChild(btn1);
+	 form.appendChild(inputNode1);
+	 form.appendChild(inputNode3);
+	 flag++;
+	 
+	 parent.addHeight();
+	 
+  }
 
+  var changeValue=function changeValue(v1,v2)
+  {
+     return function()
+     {
+        v1.value=v2.value;
+     }
+  }
+ function init()
+  {
+     var btn1=document.getElementById('uploadfile2');
+     btn1.size=40;
+     btn1.value='浏览...';
+     btn1.className="uploadfile2";
+     
+  }
+  var deleterow = function(form,text1,btn1,inputNode1,inputNode3){
+				 return function(){
+				    form.removeChild(text1);
+      form.removeChild(btn1);
+      form.removeChild(inputNode1);
+      form.removeChild(inputNode3);
+      flag--;
+      parent.decreaseHeight();
+	}
+  }
+  function closeWindow()
+  {
+     parent.closeWindow();
+  }
+</script>
 
 
 
@@ -80,7 +287,7 @@
 					</td>
 					
 					<td>
-						<input name="" placeholder="请输入商品折扣" /> 折(如：9.99)
+						<input name="" placeholder="请输入商品折扣" /> <label style="color:#CC99CC">折(如:9.99)</label>
 					</td>
 					
 				</tr>
@@ -91,8 +298,10 @@
 					</td>
 					
 					<td>
-						<input type="radio" name="pisExist" value="1" > 是
-						<input type="radio" name="pisExist" value="0" checked="checked"> 否
+						
+							<input type="radio" id="yesH" name="pisExist" value="1" > <label for="yesH" style="position: relative; top:-8px;">是</label>
+							<input type="radio" id="noH" name="pisExist" value="0" checked="checked">  <label for="noH" style="position: relative; top:-8px;">否</label>
+						
 					</td>
 					
 					<td class="comm_text01">
@@ -112,7 +321,7 @@
 						<label>商品销售价:</label>
 					</td>
 					<td>
-						<input name="" placeholder="请输入实时商品销售价"/> ￥
+						<input name="" placeholder="请输入实时商品销售价"/> <label style="font-weight: 800;color: #CC99CC;">￥</label>
 					</td>
 					
 					<td class="comm_text01">
@@ -138,8 +347,8 @@
 						<label>是否包邮:</label>
 					</td>
 					<td>
-						<input type="radio" name="pPinkage" value="1" > 是
-						<input type="radio" name="pPinkage" value="0" checked="checked"> 否
+						<input type="radio" name="pPinkage" id="yesE" value="1" > <label for="yesE" style="position: relative; top:-8px;">是</label>
+						<input type="radio" name="pPinkage" id="noE" value="0" checked="checked"> <label for="noE" style="position: relative; top:-8px;">否</label>
 					</td>
 					
 				</tr>	
@@ -156,7 +365,7 @@
 						<label>商品图片:</label>
 					</td>
 					
-					<td>
+					<td  id="file_upload">
 						<input  type="file" name=""/>
 					</td>
 				</tr>
@@ -205,7 +414,7 @@
 						<label>建议醒酒时间:</label>
 					</td>
 					<td>
-						<input name="" placeholder="请输入建议醒酒时间"> 分钟
+						<input name="" placeholder="请输入建议醒酒时间"><label style="color:#CC99CC"> 分钟</label>
 					</td>
 						
 					<td class="comm_text01">
@@ -270,7 +479,7 @@
 				<tr>
 					<td class="comm_text01"><label>年份:</label></td>
 					<td>
-						<input name="" placeholder="请输入年份"> 年
+						<input name="" placeholder="请输入年份"><label style="color:#CC99CC">年</label>
 					</td>
 					
 					<td class="comm_text01"><label>产区:</label></td>
@@ -292,14 +501,18 @@
 				
 					<td class="comm_text01"><label>图片详细描述	:</label></td>
 					<td style="width: 270px;">
-						
+						<a  class="easyui-linkbutton btn_add"
+							data-options="iconCls:'icon-add'" data-toggle="modal"
+							data-target="#myModal">添加</a>
 					</td>
 				</tr>
 				<tr>
 				
 					<td class="comm_text01">图片介绍（大小）:</td>
 					<td style="width: 270px;">
-						 
+						 <a  class="easyui-linkbutton btn_add"
+							data-options="iconCls:'icon-add'" data-toggle="modal"
+							data-target="#myModal">添加</a>
 					</td>
 				</tr>
 		</form>
@@ -308,19 +521,144 @@
 	</div>
 	
 </div>
-<%-- <div id="uploadImg" style="display: none;">
-	<c:import url="../../upload.jsp"></c:import>
-</div> --%>
-<div id="win">   
-  <c:import url="../../upload.jsp"></c:import> 
-</div> 
+<!-- <div id="win" class="easyui-window" title="My Window" style="width:600px;height:400px"   
+        data-options="iconCls:'icon-save',modal:true">   
+    Window Content    
+</div>  -->
+	
+
+<div id="dd">
+	<div id="upload_img" style="display: none;">
+		<div id="uptext2" style="margin:30px auto 0px; width:300px ; margin-left: 80px;font-size: 12px; color: #CCCCFF; ">每张图片不能超过10M，最多只能上传5张图片。</div>
+		
+		<div id="controlPanel" style="width: 230px; margin-top: 5px;">
+	
+			<div id="uploadFileUrl"></div>
+			<form id="fileUploadForm" name="fileUploadForm"
+				action="./BackGroundService.action" enctype="multipart/form-data"
+				method="post">
+				<input class="input_text" type="text" id="txt1" name="txt1" size="60" /><input
+					type="button" name="uploadfile2" id="uploadfile2" class="uploadfile2"
+					value="浏览..." style="padding-left: 3px;" /><input class="input_file input_file2"
+					size="30" type="file" name="file1" id="file1" hidefocus
+					onchange="txt1.value=this.value" /><a href="javascript:void(0);"
+					onclick="addRow();"><img src="<%=basePath%>/images/add.png"
+					width="28" height="28" border="0" alt="添加一行" class="imgstyle" /></a><br>
+				<div id="tool"></div>
+				<br> <input type="submit" name="uploadButton" id="uploadButton"
+					value="开始上传" class="up_btn" /> <input type="button"
+					name="cancelUploadButton" onclick="closeWindow();"
+					id="cancelUploadButton" value="取消上传" class="up_btn" /><br>
+			</form>
+	
+			<div id="progressBar">
+				<div id="theMeter">
+					<div id="progressBarText"></div>
+					<!-- <div id="totalProgressBarBox">
+						<div id="totalProgressBarBoxContent"></div>
+					</div> -->
+				</div>
+				<div id="progressStatusText"></div>
+			</div>
+	
+		</div> 
+	</div>
+</div>  
+ 
 
 <script type="text/javascript">
-$('#win').window({    
-    width:600,    
-    height:400,    
-    modal:true   
+
+ $("body").on('click', '.btn_add', function(){
+	 //display: block;
+ 	 $("#upload_img").css("display","block");
+	  $('#dd').dialog({    
+		    title: '上传图片',    
+		    width:420,    
+		    height:230,    
+		    closed: false,    
+		    cache: false,    
+		    //href: '/* ../../upload.jsp */',    
+		    modal: true   
+		}); 
+	 
 }); 
-$('#win').window('close');  // close a window  
 
 </script>
+<script>
+Element.hide('progressBar');
+Event.observe('fileUploadForm','submit',startProgress,false);
+Event.observe('cancelUploadButton','click',cancelProgress,false);
+
+//刷新上传状态
+function refreshUploadStatus(){
+	var ajaxW = new AjaxWrapper(false);
+	ajaxW.putRequest(
+		'<%=basePath%>/BackGroundService',
+		'uploadStatus=',
+		function(responseText){
+				eval("uploadInfo = " + responseText);
+				var progressPercent = Math.ceil(
+					(uploadInfo.ReadTotalSize) / uploadInfo.UploadTotalSize * 100);
+	
+				if(uploadInfo.UploadFlag=='http'){
+				   flag='(HTTP状态)';
+				   
+				}else
+				{
+				   flag='(FTP状态)';
+				}
+				
+				$('progressBarText').innerHTML=flag;
+				$('progressBarText').innerHTML += ' 上传处理进度: '+progressPercent+'% 【'+
+					getFileSize(uploadInfo.ReadTotalSize)+'/'+getFileSize(uploadInfo.UploadTotalSize) +
+					'】 正在处理第'+uploadInfo.CurrentUploadFileNum+'个文件'+
+					' 耗时: '+(uploadInfo.ProcessRunningTime-uploadInfo.ProcessStartTime)+' ms';
+					
+				$('progressStatusText').innerHTML=' 反馈状态: '+uploadInfo.Status;
+				$('totalProgressBarBoxContent').style.width = parseInt(progressPercent * 3.5) + 'px';
+		}
+	);
+}
+//上传处理
+function startProgress(){
+    parent.addProgressHeight();
+	Element.show('progressBar');
+    $('progressBarText').innerHTML = ' 上传处理进度: 0%';
+    $('progressStatusText').innerHTML=' 反馈状态:';
+    $('uploadButton').disabled = true;
+    $('cancelUploadButton').disabled = true;
+    var periodicalExe=new PeriodicalExecuter(refreshUploadStatus,0.5);
+    return true;
+}
+//取消上传处理
+function cancelProgress(){
+	$('cancelUploadButton').disabled = true;
+	var ajaxW = new AjaxWrapper(false);
+	ajaxW.putRequest(
+		'<%=basePath%>/BackGroundService',
+		'cancelUpload=true',
+		//因为form的提交，这可能不会执行
+		function(responseText){
+			eval("uploadInfo = " + responseText);
+			$('progressStatusText').innerHTML=' 反馈状态: '+uploadInfo.status;
+			if (msgInfo.cancel=='true'){
+				alert('删除成功!');
+				window.location.reload();
+			};
+		}
+	);
+}
+</script>
+
+<%-- <%
+	String msg = (String) request.getAttribute("msg");
+	if (msg != null && msg.length() > 0) {
+%>
+<script type="text/javascript">
+     Dialog.alert('<%=msg%>');
+	parent.resizeHeight();
+</script>
+
+<%
+	}
+%> --%>

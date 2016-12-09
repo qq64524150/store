@@ -60,8 +60,9 @@ body {
 	background-repeat:no-repeat;
 	border:0px;
 	width:82px;
-	height:23px;
+	height:24px;
 	cursor:pointer;
+	margin-top:10px ;
 	padding-left: 20px;
 	
 }
@@ -75,7 +76,7 @@ body {
 	background-repeat:no-repeat;
 	border:0px;
 	width:82px;
-	height:23px;
+	height:24px;
 	cursor:pointer;
 	margin-left:10px;
 	padding:0px;
@@ -90,6 +91,7 @@ body {
    border:1px solid #CDEE79;
    height:24px;
    width: 140px ;
+  
 }
 .input_file
 {

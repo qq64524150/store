@@ -17,6 +17,7 @@ package com.mall.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -27,12 +28,16 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mall.util.BeanControler;
 import com.mall.util.FileUploadListener;
 import com.mall.util.FileUploadStatus;
 
-
+@Controller
+@RequestMapping("BackGroundService")
 public class BackGroundService extends javax.servlet.http.HttpServlet implements
         javax.servlet.Servlet {
 
@@ -128,6 +133,7 @@ public class BackGroundService extends javax.servlet.http.HttpServlet implements
     /**
      * 处理文件上传
      */
+    @ResponseBody
     private void processFileUpload(HttpServletRequest request,
                                    HttpServletResponse response) throws
             ServletException, IOException {
@@ -192,8 +198,9 @@ public class BackGroundService extends javax.servlet.http.HttpServlet implements
         if (forwardURL.length() == 0) {
             forwardURL = DEFAULT_UPLOAD_FAILURE_URL;
         }
-        request.setAttribute("msg", "<font size=2><b>文件上传成功!</b></font>");
-        request.getRequestDispatcher("admin/index.jsp").forward(request, response);
+        // request.setAttribute("msg", "<font size=2><b>文件上传成功!</b></font>");
+        //request.getRequestDispatcher("admin/index.jsp").forward(request, response);
+        response.getWriter().println("1");;
     }
 
     /**
@@ -212,6 +219,7 @@ public class BackGroundService extends javax.servlet.http.HttpServlet implements
     /**
      * 处理取消文件上传
      */
+    
     private void processCancelFileUpload(HttpServletRequest request,
                                          HttpServletResponse response) throws
             IOException {

@@ -104,7 +104,7 @@ $(function(){
 			var pamar = $("#froms").serialize();
 			$.post("userAction/login",pamar,function(data){
 				$("#login").val("登录");
-				alert(data)
+				//alert(data)
 				location.href=data;
 				
 			});
@@ -158,7 +158,7 @@ $(function(){
 					$("#tis").css("display","none");
 					$("#login2").val("登录");
 					//跳转
-					alert(data)
+					//alert(data)
 					location.href=data;
 					
 				}

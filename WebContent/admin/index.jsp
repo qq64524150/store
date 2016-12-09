@@ -25,6 +25,7 @@
 <script type="text/javascript"
 	src="<%=basePath%>/js/jquery.easyui.min.1.2.2.js"></script>
 <script type="text/javascript" src='<%=basePath%>/js/outlook2.js'></script>
+<script type="text/javascript" src='<%=basePath%>/js/myjs/admin.js'></script>
 
 
 
@@ -83,11 +84,16 @@
 		<div class="menu-sep"></div>
 		<div id="mm-exit">退出</div>
 	</div>
+	
+	
+	
+	
 </body>
 </html>
 <script type="text/javascript">
-	
-	/* $.get("../toInterceptor/toPerHandle","",function(data){
+
+	/* 
+	$.get("../toInterceptor/toPerHandle","",function(data){
 		alert(data);
 	}); */
 	
