@@ -10,21 +10,12 @@
 	href="<%=basePath%>/js/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css"
 	href="<%=basePath%>/js/themes/icon.css" />
-	
-<link href="<%=basePath%>/css/mycss/fileUpload.css" type="text/css"
-	rel="stylesheet" />
 
 <script type="text/javascript"
 	src="<%=basePath%>/js/jquery-1.7.2.js"></script>
 <script type="text/javascript"src="<%=basePath%>/js/jquery.easyui.min.1.2.2.js"></script>
-<script type="text/javascript" src='<%=basePath%>/js/outlook2.js'></script>
 <script type="text/javascript" src='<%=basePath%>/js/myjs/admin.js'></script>
 
-
-<script type="text/javascript" src="<%=basePath%>/js/myjs/zDrag.js"></script>
-<script type="text/javascript" src="<%=basePath%>/js/myjs/zDialog.js"></script>
-<%-- <script type="text/javascript" src="<%=basePath%>/js/myjs/prototype.js" charset="utf-8"></script> --%>
-<script type="text/javascript" src="<%=basePath%>/js/myjs/AjaxWrapper.js" charset="utf-8"></script>
 
 
 
@@ -65,200 +56,30 @@
 		height: 25px;
 	}
 	
-	div#readme {
-	width: 100%;
-	padding: 3px 0;
-	background: #BAFB80;
-	background-image: url("../images/info_32.png");
-	background-repeat: no-repeat;
-	text-align: center;
-	font: 85%/1.45 "Lucida Sans Unicode", "Lucida Grande", Arial, sans-serif;
-	font-size: medium;
-	font-weight: bold;
-	line-height: 25px;
-	height: 25px;
-	color: gray;
-}
-
-div#readme {
-	width: 100%;
-	padding: 3px 0;
-	background: #BAFB80;
-	background-image: url("../images/info_32.png");
-	background-repeat: no-repeat;
-	text-align: center;
-	font: 85%/1.45 "Lucida Sans Unicode", "Lucida Grande", Arial, sans-serif;
-	font-size: medium;
-	font-weight: bold;
-	line-height: 25px;
-	height: 25px;
-	color: gray;
-	　　　　　
-}
-
-.imgstyle {
-	margin-bottom: -8px;
-}
-
-.input_file {
-	margin-left: -270px;
-	filter: alpha(opacity = 0);
-	opacity: 0;
-}
-
-.input_file2 {
-	margin-left: -270px;
-	filter: alpha(opacity = 0);
-	opacity: 0;
-}
-
-.input_text {
-	border: 1px solid #CDEE79;
-	height: 24px;
-	width: 140px;
-}
+	.upText{
+		font-size: 12px ;
+		font-weight: 800 ;
+	}
+	.pimg{
 	
+		cursor:pointer
+	}
+	.upTextImg{
+		font-size: 12px ;
+		font-weight: 800 ;
+	}
+	.pimgImg{
+	
+		cursor:pointer
+	}
+	.clos{
+		cursor:pointer
+	}
+	.clos:HOVER {
+		color:#FF0000;
+	}
 	
 </style>
-
-<script type="text/javascript">
-  var flag=1;
-  function getFileSize(fileSize)
-	{
-		var num = new Number();
-		var unit = '';
-		
-		if (fileSize > 1*1024*1024*1024){
-			num = fileSize/1024/1024/1024;
-			unit = "G"
-		}
-		else if (fileSize > 1*1024*1024){
-			num = fileSize/1024/1024;
-			unit = "M"			
-		}
-		else if (fileSize > 1*1024){
-			num = fileSize/1024;
-			unit = "K"
-		}
-		else{
-			return fileSize;
-		}
-		
-		return num.toFixed(2) + unit;
-		
-	}	
-  function addRow()
-  {
-  
-     if(flag>4)
-     {
-       Dialog.alert('<font size=2><b>一次最多上传５个文件!</b></font>');
-       
-       return;
-     }
-  
-     var form=document.getElementById('tool');
-     
-     var text1 = document.createElement("input");
-	 text1.size = "60";
-	 text1.type = "text";
-	 text1.name = "txt"+flag+1;
-	 text1.id = "txt"+flag+1;
-     text1.className='input_text';
-     
-     var btn1=  document.createElement("input");
-     btn1.name='uploadfile'+flag+1;
-     btn1.id='uploadfile'+flag+1;
-     btn1.size=40;
-     btn1.value='浏览...';
-     btn1.className="uploadfile2";
-     btn1.hidefocus='';
-     
-     var inputNode1 = document.createElement("input");
-	 inputNode1.size = "30";
-	 inputNode1.type = "file";
-	 inputNode1.name = "file"+flag+1;
-	 inputNode1.id = "file"+flag+1;
-	 inputNode1.className='input_file';
-	 
-	 
-     if(inputNode1.addEventListener)
-	{
-					inputNode1.addEventListener("change",changeValue(text1,inputNode1),false);
-	}
-	else if(inputNode1.attachEvent)
-	{
-				
-					inputNode1.attachEvent("onchange", changeValue(text1,inputNode1)) ;
-	}	
-	
-	 var inputNode3 = document.createElement("a");
-	 inputNode3.href = "javascript:void(0);";
-	 
-	 
-	 var img=document.createElement("img");
-	 img.src='<%=basePath%>/images/delete.png';
-	 img.width=28;
-	 img.height=28;
-	 img.border='0';
-	 img.className='imgstyle';
-	 img.alt='删除一行';
-	 inputNode3.appendChild(img);
-	 
-	 if(inputNode3.addEventListener)
-	{
-					inputNode3.addEventListener("click",deleterow(form,text1,btn1,inputNode1,inputNode3),false);
-	}
-	else if(inputNode3.attachEvent)
-	{
-				
-					inputNode3.attachEvent("onclick", deleterow(form,text1,btn1,inputNode1,inputNode3)) ;
-	}
-	 
-	 form.appendChild(text1);
-	 form.appendChild(btn1);
-	 form.appendChild(inputNode1);
-	 form.appendChild(inputNode3);
-	 flag++;
-	 
-	 parent.addHeight();
-	 
-  }
-
-  var changeValue=function changeValue(v1,v2)
-  {
-     return function()
-     {
-        v1.value=v2.value;
-     }
-  }
- function init()
-  {
-     var btn1=document.getElementById('uploadfile2');
-     btn1.size=40;
-     btn1.value='浏览...';
-     btn1.className="uploadfile2";
-     
-  }
-  var deleterow = function(form,text1,btn1,inputNode1,inputNode3){
-				 return function(){
-				    form.removeChild(text1);
-      form.removeChild(btn1);
-      form.removeChild(inputNode1);
-      form.removeChild(inputNode3);
-      flag--;
-      parent.decreaseHeight();
-	}
-  }
-  function closeWindow()
-  {
-     parent.closeWindow();
-  }
-</script>
-
-
-
-
 
 <div id="comm_bg">
 
@@ -279,7 +100,7 @@ div#readme {
 					</td>
 					<td>
 						
-						<input name="" placeholder="请输入商品名称" />
+						<input name="pname" placeholder="请输入商品名称" />
 					</td>
 					
 					<td class="comm_text01">
@@ -287,7 +108,7 @@ div#readme {
 					</td>
 					
 					<td>
-						<input name="" placeholder="请输入商品折扣" /> <label style="color:#CC99CC">折(如:9.99)</label>
+						<input name="pdis" placeholder="请输入商品折扣" /> <label style="color:#CC99CC">折(如:9.99)</label>
 					</td>
 					
 				</tr>
@@ -308,7 +129,7 @@ div#readme {
 						<label>商品类型:</label>
 					</td>
 					<td>
-						<select name="" id="commType">
+						<select name="ptype" id="commType">
 							<option>请选择</option>
 						</select>
 					</td>
@@ -321,14 +142,14 @@ div#readme {
 						<label>商品销售价:</label>
 					</td>
 					<td>
-						<input name="" placeholder="请输入实时商品销售价"/> <label style="font-weight: 800;color: #CC99CC;">￥</label>
+						<input name="pSelingPrice" placeholder="请输入实时商品销售价"/> <label style="font-weight: 800;color: #CC99CC;">￥</label>
 					</td>
 					
 					<td class="comm_text01">
 						<label>商品进价:</label>
 					</td>
 					<td>
-						<input name="" placeholder="请输入商品进价"/>
+						<input name="pprice" placeholder="请输入商品进价"/>
 					</td>
 					
 				</tr>	
@@ -338,7 +159,7 @@ div#readme {
 						<label>商品品牌:</label>
 					</td>
 					<td>
-						<select name="" id="commBrand">
+						<select name="pbrand" id="commBrand">
 							<option>请选择</option>
 						</select>
 					</td>
@@ -358,7 +179,7 @@ div#readme {
 						<label>库存数量:</label>
 					</td>
 					<td>
-						<input name="" placeholder="请输入库存数量"/>
+						<input name="pnumber" placeholder="请输入库存数量"/>
 					</td>
 					
 					<td class="comm_text01">
@@ -366,7 +187,7 @@ div#readme {
 					</td>
 					
 					<td  id="file_upload">
-						<input  type="file" name=""/>
+						<input  type="file" name="file"/>
 					</td>
 				</tr>
 				
@@ -382,7 +203,7 @@ div#readme {
 						<label>级别:</label>
 					</td>
 					<td>
-						<select name="" >
+						<select name="pdlevel" >
 							<option>请选择</option>
 							<option value="VDT">日常餐酒</option>
 							<option value="VDP">地区餐酒</option>
@@ -397,7 +218,7 @@ div#readme {
 						<label>口感:</label>
 					</td>
 					<td>
-						<select name="" >
+						<select name="pdtaste" >
 							<option>请选择</option>
 							<option value="柔和">柔和</option>
 							<option value="平衡">平衡</option>
@@ -414,7 +235,7 @@ div#readme {
 						<label>建议醒酒时间:</label>
 					</td>
 					<td>
-						<input name="" placeholder="请输入建议醒酒时间"><label style="color:#CC99CC"> 分钟</label>
+						<input name="pdsoberUp" placeholder="请输入建议醒酒时间"><label style="color:#CC99CC"> 分钟</label>
 					</td>
 						
 					<td class="comm_text01">
@@ -422,7 +243,7 @@ div#readme {
 					</td>
 					
 					<td>
-						<select name="" >
+						<select name="pdvol" >
 							<option>请选择</option>
 							<option value="500ml">500ml</option>
 							<option value="750ml">750ml</option>
@@ -436,13 +257,13 @@ div#readme {
 						<label>酒精度:</label>
 					</td>
 					<td>
-						<input name="" placeholder="请输入酒精度数">
+						<input name="pdspirit" placeholder="请输入酒精度数">
 					</td>
 				</tr>
 				<tr>
 					<td class="comm_text01"><label>色泽:</label></td>
 					<td>
-						<select name="" >
+						<select name="colorur" >
 							<option>请选择</option>
 							<option value="凡宝石红">凡宝石红</option>
 							<option value="深红">深红</option>
@@ -454,7 +275,7 @@ div#readme {
 					
 					<td class="comm_text01"><label>品种:</label></td>
 					<td>
-						<select name="" >
+						<select name="pdbreed" >
 							<option>请选择</option>
 							<option value="赤霞珠">赤霞珠</option>
 							<option value="品丽珠">品丽珠</option>
@@ -479,12 +300,12 @@ div#readme {
 				<tr>
 					<td class="comm_text01"><label>年份:</label></td>
 					<td>
-						<input name="" placeholder="请输入年份"><label style="color:#CC99CC">年</label>
+						<input name="pdyear" placeholder="请输入年份"><label style="color:#CC99CC">年</label>
 					</td>
 					
 					<td class="comm_text01"><label>产区:</label></td>
 					<td>
-						<select name="" >
+						<select name="pdregion" >
 							<option>请选择</option>
 							<option value="法国波尔多产区">法国波尔多产区</option>
 							<option value="国勃艮第产区">国勃艮第产区</option>
@@ -503,14 +324,14 @@ div#readme {
 					<td style="width: 270px;">
 						<a  class="easyui-linkbutton btn_add"
 							data-options="iconCls:'icon-add'" data-toggle="modal"
-							data-target="#myModal">添加</a>
+							data-target="#myModal">添加</a> 
 					</td>
 				</tr>
 				<tr>
 				
 					<td class="comm_text01">图片介绍（大小）:</td>
 					<td style="width: 270px;">
-						 <a  class="easyui-linkbutton btn_add"
+						 <a  class="easyui-linkbutton btn_addImg"
 							data-options="iconCls:'icon-add'" data-toggle="modal"
 							data-target="#myModal">添加</a>
 					</td>
@@ -520,145 +341,172 @@ div#readme {
 		</form>
 	</div>
 	
-</div>
-<!-- <div id="win" class="easyui-window" title="My Window" style="width:600px;height:400px"   
-        data-options="iconCls:'icon-save',modal:true">   
-    Window Content    
-</div>  -->
-	
+	<div id="dd">
 
-<div id="dd">
-	<div id="upload_img" style="display: none;">
-		<div id="uptext2" style="margin:30px auto 0px; width:300px ; margin-left: 80px;font-size: 12px; color: #CCCCFF; ">每张图片不能超过10M，最多只能上传5张图片。</div>
-		
-		<div id="controlPanel" style="width: 230px; margin-top: 5px;">
-	
-			<div id="uploadFileUrl"></div>
-			<form id="fileUploadForm" name="fileUploadForm"
-				action="./BackGroundService.action" enctype="multipart/form-data"
-				method="post">
-				<input class="input_text" type="text" id="txt1" name="txt1" size="60" /><input
-					type="button" name="uploadfile2" id="uploadfile2" class="uploadfile2"
-					value="浏览..." style="padding-left: 3px;" /><input class="input_file input_file2"
-					size="30" type="file" name="file1" id="file1" hidefocus
-					onchange="txt1.value=this.value" /><a href="javascript:void(0);"
-					onclick="addRow();"><img src="<%=basePath%>/images/add.png"
-					width="28" height="28" border="0" alt="添加一行" class="imgstyle" /></a><br>
-				<div id="tool"></div>
-				<br> <input type="submit" name="uploadButton" id="uploadButton"
-					value="开始上传" class="up_btn" /> <input type="button"
-					name="cancelUploadButton" onclick="closeWindow();"
-					id="cancelUploadButton" value="取消上传" class="up_btn" /><br>
-			</form>
-	
-			<div id="progressBar">
-				<div id="theMeter">
-					<div id="progressBarText"></div>
-					<!-- <div id="totalProgressBarBox">
-						<div id="totalProgressBarBoxContent"></div>
-					</div> -->
-				</div>
-				<div id="progressStatusText"></div>
-			</div>
-	
-		</div> 
-	</div>
-</div>  
- 
-
-<script type="text/javascript">
-
- $("body").on('click', '.btn_add', function(){
-	 //display: block;
- 	 $("#upload_img").css("display","block");
-	  $('#dd').dialog({    
-		    title: '上传图片',    
-		    width:420,    
-		    height:230,    
-		    closed: false,    
-		    cache: false,    
-		    //href: '/* ../../upload.jsp */',    
-		    modal: true   
-		}); 
-	 
-}); 
-
-</script>
-<script>
-Element.hide('progressBar');
-Event.observe('fileUploadForm','submit',startProgress,false);
-Event.observe('cancelUploadButton','click',cancelProgress,false);
-
-//刷新上传状态
-function refreshUploadStatus(){
-	var ajaxW = new AjaxWrapper(false);
-	ajaxW.putRequest(
-		'<%=basePath%>/BackGroundService',
-		'uploadStatus=',
-		function(responseText){
-				eval("uploadInfo = " + responseText);
-				var progressPercent = Math.ceil(
-					(uploadInfo.ReadTotalSize) / uploadInfo.UploadTotalSize * 100);
-	
-				if(uploadInfo.UploadFlag=='http'){
-				   flag='(HTTP状态)';
-				   
-				}else
-				{
-				   flag='(FTP状态)';
-				}
-				
-				$('progressBarText').innerHTML=flag;
-				$('progressBarText').innerHTML += ' 上传处理进度: '+progressPercent+'% 【'+
-					getFileSize(uploadInfo.ReadTotalSize)+'/'+getFileSize(uploadInfo.UploadTotalSize) +
-					'】 正在处理第'+uploadInfo.CurrentUploadFileNum+'个文件'+
-					' 耗时: '+(uploadInfo.ProcessRunningTime-uploadInfo.ProcessStartTime)+' ms';
+		<div id = 'imgs' style="display: none;">
+			
+			<div style="color:#CCCCFF; font-size: 12px;width: 300px;margin: 20px auto 10px;">图片不能大于20M，并且图片格式只能(jsp,png)内.</div>
+			<div style="width: 340px;margin: 0px auto ">
+				<form id="pimg" action="<%=basePath%>/commodityAction/addPrductImg" method="post" enctype="multipart/form-data">
 					
-				$('progressStatusText').innerHTML=' 反馈状态: '+uploadInfo.Status;
-				$('totalProgressBarBoxContent').style.width = parseInt(progressPercent * 3.5) + 'px';
-		}
-	);
-}
-//上传处理
-function startProgress(){
-    parent.addProgressHeight();
-	Element.show('progressBar');
-    $('progressBarText').innerHTML = ' 上传处理进度: 0%';
-    $('progressStatusText').innerHTML=' 反馈状态:';
-    $('uploadButton').disabled = true;
-    $('cancelUploadButton').disabled = true;
-    var periodicalExe=new PeriodicalExecuter(refreshUploadStatus,0.5);
-    return true;
-}
-//取消上传处理
-function cancelProgress(){
-	$('cancelUploadButton').disabled = true;
-	var ajaxW = new AjaxWrapper(false);
-	ajaxW.putRequest(
-		'<%=basePath%>/BackGroundService',
-		'cancelUpload=true',
-		//因为form的提交，这可能不会执行
-		function(responseText){
-			eval("uploadInfo = " + responseText);
-			$('progressStatusText').innerHTML=' 反馈状态: '+uploadInfo.status;
-			if (msgInfo.cancel=='true'){
-				alert('删除成功!');
-				window.location.reload();
-			};
-		}
-	);
-}
-</script>
+					<div class='pimgDiv'><label class='upText'>图片(1): </label><input type="file" name="ufile" class='pimg'></div>
+					<div class='pimgDiv'><label class='upText'>图片(1): </label><input type="file" name="ufile" class='pimg'></div>
+					<div class='pimgDiv'><label class='upText'>图片(1): </label><input type="file" name="ufile" class='pimg'></div>
+					<div class='pimgDiv'><label class='upText'>图片(1): </label><input type="file" name="ufile" class='pimg'></div>
+ 			
+				</form>
+				
+			</div>
+			
+			
+		</div>
+	</div>  
+	<div id="ddImg">
 
-<%-- <%
-	String msg = (String) request.getAttribute("msg");
-	if (msg != null && msg.length() > 0) {
-%>
+		<div id = 'imgsimg' style="display: none;">
+			
+			<div style="color:#CCCCFF; font-size: 12px;width: 300px;margin: 20px auto 10px;">图片不能大于20M，并且图片格式只能(jsp,png)内.</div>
+			<div style="width: 340px;margin: 0px auto ">
+				<form id="pimgImg" method="post" enctype="multipart/form-data">
+					
+					<div class='pimgDivImg'><label class='upText'>图片(1): </label><input type="file" name="file" class='pimgImg'></div>
+ 			
+				</form>
+				
+			</div>
+			
+			
+		</div>
+	</div>  
+
+	
+	
+	
+</div>
+
 <script type="text/javascript">
-     Dialog.alert('<%=msg%>');
-	parent.resizeHeight();
+
+
+$(".btn_add").click(function(){
+	$("#imgs").css("display","block");
+	$('#dd').dialog({    
+	    title: '选择图片',    
+	    width: 400,    
+	    height: 280,    
+	    closed: false,    
+	    cache: false,    
+	    modal: true,
+	    buttons:[{
+			text:'保存',
+			handler:function(){
+				var form = new FormData($("#pimg")[0])
+				$.ajax({
+					url:"<%=basePath%>/commodityAction/addPrductImg",
+					data: form ,
+					type: 'POST', 
+					async:false,
+					cache:false,
+					contentType: false,  
+			         processData: false,  
+			         success: function (data) {  
+			             alert(data);  
+			         },  
+			         error: function (returndata) {  
+			             alert(returndata);  
+			         }  
+					
+				});
+				
+				
+				
+			}
+		},{
+			text:'关闭',
+			handler:function(){
+				$('#dd').window('close');  // close a window  
+				
+			}
+		}],
+		toolbar:[{
+			text:'添加',
+			iconCls:'icon-edit',
+			handler:function(){
+				var s = $(".pimgDiv").length;
+				//alert(s)
+				if((s+1)>5){
+					$.messager.alert('警告','添加失败，最多5张图片');    
+				}else{
+					var $inp = "<div class='pimgDiv'><label class='upText'>图片("+(s+1)+"): </label><input type='file' name='file' class='pimg'> <span class='clos'>&#10006;</span></div>" ; 
+					$("#pimg").append($inp);
+					
+				}
+			  	
+				
+				
+				
+			}
+		},{
+			text:'帮助',
+			iconCls:'icon-help',
+			handler:function(){alert('help')}
+		}]
+	}); 
+});
+$(".btn_addImg").click(function(){
+	$("#imgsimg").css("display","block");
+	$('#ddImg').dialog({    
+	    title: '选择图片',    
+	    width: 400,    
+	    height: 280,    
+	    closed: false,    
+	    cache: false,    
+	    modal: true,
+	    buttons:[{
+			text:'保存',
+			handler:function(){
+				
+				
+				
+			}
+		},{
+			text:'关闭',
+			handler:function(){
+				$('#dd').window('close');  // close a window  
+				
+			}
+		}],
+		toolbar:[{
+			text:'添加',
+			iconCls:'icon-edit',
+			handler:function(){
+				var s = $(".pimgDiv").length;
+				//alert(s)
+				if((s+1)>5){
+					$.messager.alert('警告','添加失败，最多5张图片');    
+				}else{
+					var $inp = "<div class='pimgDivImg'><label class='upTextImg'>图片("+(s+1)+"): </label><input type='file' name='file' class='pimgImg'> <span class='clos'>&#10006;</span></div>" ; 
+					$("#pimgImg").append($inp);
+					
+				}
+			  	
+				
+				
+				
+			}
+		},{
+			text:'帮助',
+			iconCls:'icon-help',
+			handler:function(){alert('help')}
+		}]
+	}); 
+});
+//$(this).parent().parent().find(":nth-child(2)").html()
+$("body").on("click",".clos",function(){
+	//删除指定元素
+	$(this).parent().remove();
+	
+});
+
+
 </script>
 
-<%
-	}
-%> --%>

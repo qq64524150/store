@@ -22,10 +22,10 @@ public class PhoneInform {
 		AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
 		req.setExtend( "" );
 		req.setSmsType( "normal" );
-		req.setSmsFreeSignName( "波多尔名酒网" );
+		req.setSmsFreeSignName( "格兰蒂名酒网" );
 		req.setSmsParamString(  "{date:'"+date+"',name:'"+usenName+"'}" );
 		req.setRecNum( phone );
-		req.setSmsTemplateCode( "SMS_27655051" );
+		req.setSmsTemplateCode( "SMS_33680484" );
 		AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);
 		//System.out.println(rsp.getBody());
 		return rsp.getBody();

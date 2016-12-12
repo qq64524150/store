@@ -26,7 +26,8 @@ public class Pdepict {
 	private String pdsoberUp ;			//醒酒	
 	private String pdvol ;				//含量
 	private String pdspirit	;			//酒精	
-	private String pdbreed ;			//品种	
+	private String pdbreed ;			//品种
+	private String colorur ;            //色泽
 	private String pdyear ;				//年份		
 	private String pdregion ;			//产区
 	private String pdimagesDepict ;		//图片详细描述
@@ -40,9 +41,10 @@ public class Pdepict {
 		super();
 	}
 	
+	
 	public Pdepict(String pdno, String pdlevel, String pdtaste, String pdsoberUp, String pdvol, String pdspirit,
-			String pdbreed, String pdyear, String pdregion, String pdimagesDepict, String ptime,
-			String pimagesReferral) {
+			String pdbreed, String colorur, String pdyear, String pdregion, String pdimagesDepict, String ptime,
+			String pimagesReferral, Product product) {
 		super();
 		this.pdno = pdno;
 		this.pdlevel = pdlevel;
@@ -51,12 +53,16 @@ public class Pdepict {
 		this.pdvol = pdvol;
 		this.pdspirit = pdspirit;
 		this.pdbreed = pdbreed;
+		this.colorur = colorur;
 		this.pdyear = pdyear;
 		this.pdregion = pdregion;
 		this.pdimagesDepict = pdimagesDepict;
 		this.ptime = ptime;
 		this.pimagesReferral = pimagesReferral;
+		this.product = product;
 	}
+
+
 	@Id
 	@GeneratedValue(generator="pk")
 	@GenericGenerator(name="pk",strategy="uuid.hex")
@@ -132,6 +138,17 @@ public class Pdepict {
 	public void setPimagesReferral(String pimagesReferral) {
 		this.pimagesReferral = pimagesReferral;
 	}
+	
+	
+	
+	public String getColorur() {
+		return colorur;
+	}
+
+	public void setColorur(String colorur) {
+		this.colorur = colorur;
+	}
+
 	@OneToOne(optional=false,cascade=CascadeType.REFRESH)
 	@JoinColumn(name="product_ID",referencedColumnName="pno",unique=true)
 	public Product getProduct() {

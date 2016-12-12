@@ -25,6 +25,7 @@
 		<property name="password" value="root"/>
 	</bean>
 	
+	
  	 <!-- 配置SessionFactory -->
  	 <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<!-- 注入数据源 -->

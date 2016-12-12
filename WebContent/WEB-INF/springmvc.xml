@@ -80,4 +80,12 @@
 		定义异常处理页面用来获取异常信息的变量名，默认名为exception <property name="exceptionAttribute" value="ex"></property> 
 		定义需要特殊处理的异常，用类名或完全路径名作为key，异常也页名作为值 <property name="exceptionMappings"> <props> 
 		<prop key="java.lang.Exception">error</prop> </props> </property> </bean> -->
+		
+		
+	<!-- 文件上传解析器 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8"></property>   
+        <property name="maxUploadSize" value="10485760000"></property>   
+	</bean>
+	
 </beans>

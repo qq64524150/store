@@ -27,7 +27,7 @@ public class PhoneCode {
 		AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
 		req.setExtend("");
 		req.setSmsType("normal");
-		req.setSmsFreeSignName("波多尔名酒网");
+		req.setSmsFreeSignName("格兰蒂名酒网");
 		req.setSmsParamString("{number:'" + code + "'}");
 		req.setRecNum(phone);
 		req.setSmsTemplateCode("SMS_25665742");
