@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -10,7 +11,7 @@
 	href="<%=basePath%>/js/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css"
 	href="<%=basePath%>/js/themes/icon.css" />
-
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>  
 <script type="text/javascript"
 	src="<%=basePath%>/js/jquery-1.7.2.js"></script>
 <script type="text/javascript"src="<%=basePath%>/js/jquery.easyui.min.1.2.2.js"></script>
@@ -73,11 +74,54 @@
 		cursor:pointer
 	}
 	.clos{
-		cursor:pointer
+		cursor:pointer;
+		position: relative;
+		top:-10px;
 	}
 	.clos:HOVER {
 		color:#FF0000;
 	}
+#pimgDivImg a{
+	margin-top: 10px ;
+}	
+	
+.a-upload {
+    padding: 4px 10px;
+    height: 20px;
+    line-height: 20px;
+    position: relative;
+    cursor: pointer;
+    color: #888;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    
+}
+
+.a-upload  input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+   
+    
+}
+
+.a-upload:hover {
+    color: #444;
+    background: #eee;
+    border-color: #ccc;
+    text-decoration: none
+}
+	
+	
 	
 </style>
 
@@ -86,7 +130,7 @@
 	<div id="comm_zhu">
 		<!-- 商品 -->
 		<!-- <form action="" id="comm_form"> -->
-		<form id="fileUploadForm" name="fileUploadForm" action="./BackGroundService.action" 
+		<form id="fileUploadForm" name="fileUploadForm" 
 		enctype="multipart/form-data" method="post">
 			<table  cellspacing="0" >
 				<tr>
@@ -126,7 +170,7 @@
 					</td>
 					
 					<td class="comm_text01">
-						<label>商品类型:</label>
+						<label>国家:</label>
 					</td>
 					<td>
 						<select name="ptype" id="commType">
@@ -182,13 +226,7 @@
 						<input name="pnumber" placeholder="请输入库存数量"/>
 					</td>
 					
-					<td class="comm_text01">
-						<label>商品图片:</label>
-					</td>
 					
-					<td  id="file_upload">
-						<input  type="file" name="file"/>
-					</td>
 				</tr>
 				
 				<!-- 商品描述 -->
@@ -300,7 +338,7 @@
 				<tr>
 					<td class="comm_text01"><label>年份:</label></td>
 					<td>
-						<input name="pdyear" placeholder="请输入年份"><label style="color:#CC99CC">年</label>
+						<input name="pdyear" placeholder="请输入年份"><label style="color:#CC99CC"> 年</label>
 					</td>
 					
 					<td class="comm_text01"><label>产区:</label></td>
@@ -318,41 +356,60 @@
 					
 				</tr>
 				
+				
+				<tr>
+				
+					<td class="comm_text01">图片介绍:</td>
+					<td style="width: 270px;" id="btn_addImg">
+						 <a  class="easyui-linkbutton btn_addImg"
+							data-options="iconCls:'icon-add'" data-toggle="modal"
+							data-target="#myModal">选择图片</a> 
+					</td>
+				</tr>
+				
 				<tr>
 				
 					<td class="comm_text01"><label>图片详细描述	:</label></td>
-					<td style="width: 270px;">
+					<td style="width: 270px;" id="btn_add">
 						<a  class="easyui-linkbutton btn_add"
 							data-options="iconCls:'icon-add'" data-toggle="modal"
-							data-target="#myModal">添加</a> 
+							data-target="#myModal">选择图片</a> 
 					</td>
 				</tr>
-				<tr>
 				
-					<td class="comm_text01">图片介绍（大小）:</td>
-					<td style="width: 270px;">
-						 <a  class="easyui-linkbutton btn_addImg"
+				
+				
+				<tr>
+					<td colspan="4" align="center">
+						<a  class="easyui-linkbutton" id="addComm"
 							data-options="iconCls:'icon-add'" data-toggle="modal"
-							data-target="#myModal">添加</a>
+							data-target="#myModal">提交</a>
+							<a  class="easyui-linkbutton" id="exitComm"
+							data-options="iconCls:'icon-add'" data-toggle="modal"
+							data-target="#myModal">退出</a>
 					</td>
 				</tr>
 		</form>
 			</table>
 		</form>
 	</div>
-	
+	<!-- 添加商品图片 -->
 	<div id="dd">
 
 		<div id = 'imgs' style="display: none;">
 			
 			<div style="color:#CCCCFF; font-size: 12px;width: 300px;margin: 20px auto 10px;">图片不能大于20M，并且图片格式只能(jsp,png)内.</div>
-			<div style="width: 340px;margin: 0px auto ">
+			<div style="width: 200px;margin: 0px auto ">
 				<form id="pimg" action="<%=basePath%>/commodityAction/addPrductImg" method="post" enctype="multipart/form-data">
 					
-					<div class='pimgDiv'><label class='upText'>图片(1): </label><input type="file" name="ufile" class='pimg'></div>
-					<div class='pimgDiv'><label class='upText'>图片(1): </label><input type="file" name="ufile" class='pimg'></div>
-					<div class='pimgDiv'><label class='upText'>图片(1): </label><input type="file" name="ufile" class='pimg'></div>
-					<div class='pimgDiv'><label class='upText'>图片(1): </label><input type="file" name="ufile" class='pimg'></div>
+					<div class='pimgDiv'>
+					
+						<!-- <label class='upText'>图片(1): </label><input type="file" name="ufile" class='pimg'> -->
+						<a href="javascript:;" class="a-upload" style="margin-bottom: 3px;">
+					   	 	<label class='upText'>图片(1): </label> <input type="file" name="ufile" class='pimg'>点击这里选择图片
+						</a>
+						
+					</div>
  			
 				</form>
 				
@@ -361,15 +418,25 @@
 			
 		</div>
 	</div>  
+	
+	<!-- 添加描述图片 -->
 	<div id="ddImg">
 
 		<div id = 'imgsimg' style="display: none;">
 			
 			<div style="color:#CCCCFF; font-size: 12px;width: 300px;margin: 20px auto 10px;">图片不能大于20M，并且图片格式只能(jsp,png)内.</div>
-			<div style="width: 340px;margin: 0px auto ">
+			<div style="width: 200px;margin: 0px auto ">
 				<form id="pimgImg" method="post" enctype="multipart/form-data">
 					
-					<div class='pimgDivImg'><label class='upText'>图片(1): </label><input type="file" name="file" class='pimgImg'></div>
+					<div class='pimgDivImg'>
+					
+						<!-- <input type="file" name="ufile" class='pimgImg'> -->
+						<a href="javascript:;" class="a-upload" style="margin-bottom: 3px;">
+					   	 	<label class='upText'>图片(1): </label> <input type="file" name="ufile" class='pimgImg'>点击这里选择图片
+						</a>
+					
+				
+					</div>
  			
 				</form>
 				
@@ -378,21 +445,21 @@
 			
 		</div>
 	</div>  
-
-	
-	
 	
 </div>
 
+
+
 <script type="text/javascript">
 
+$("body").on("click",".btn_add,#newAdd_1",function(){
+	
 
-$(".btn_add").click(function(){
 	$("#imgs").css("display","block");
 	$('#dd').dialog({    
 	    title: '选择图片',    
 	    width: 400,    
-	    height: 280,    
+	    height: 325,    
 	    closed: false,    
 	    cache: false,    
 	    modal: true,
@@ -401,7 +468,7 @@ $(".btn_add").click(function(){
 			handler:function(){
 				var form = new FormData($("#pimg")[0])
 				$.ajax({
-					url:"<%=basePath%>/commodityAction/addPrductImg",
+					url:"<%=basePath%>/commodityAction/addPrductImg?toImg=0",
 					data: form ,
 					type: 'POST', 
 					async:false,
@@ -409,10 +476,23 @@ $(".btn_add").click(function(){
 					contentType: false,  
 			         processData: false,  
 			         success: function (data) {  
-			             alert(data);  
+			             if(data==0){
+			            	 $.messager.alert('恭喜','添加商品描述图片成功！',"info"); 
+			            	 $("#btn_add").empty();
+			            	 $("#btn_add").append(" <a style=' font-size: 10px;color:#CC99FF;'>如果选择有误，请<a href='#' id='newAdd_1' style=' font-size: 10px;'>重新选择</a></a>");
+			            	 $('#dd').window('close');  // close a window  
+			            	 
+			             }else if(data == -1){
+			            	 $.messager.alert('抱歉','添加商品描述图片失败。',"error");  
+			             }else if(data == 1){
+			            	 $.messager.alert('抱歉','图片不能大于20M,请重新选择。',"error");  
+			             }
+			        	 
+			        	 
 			         },  
 			         error: function (returndata) {  
-			             alert(returndata);  
+			        	 $.messager.alert('抱歉','添加失败，请检查网络。',"error");  
+			        
 			         }  
 					
 				});
@@ -428,22 +508,17 @@ $(".btn_add").click(function(){
 			}
 		}],
 		toolbar:[{
-			text:'添加',
+			text:'添加一张图片',
 			iconCls:'icon-edit',
 			handler:function(){
 				var s = $(".pimgDiv").length;
 				//alert(s)
 				if((s+1)>5){
-					$.messager.alert('警告','添加失败，最多5张图片');    
+					$.messager.alert('警告','添加失败，最多5张图片',"error");    
 				}else{
-					var $inp = "<div class='pimgDiv'><label class='upText'>图片("+(s+1)+"): </label><input type='file' name='file' class='pimg'> <span class='clos'>&#10006;</span></div>" ; 
+					var $inp = "<div class='pimgDiv'><a href='javascript:;' class='a-upload' style='margin-bottom: 3px;'><label class='upText'>图片("+(s+1)+"): </label> <input type='file' name='ufile' class='pimg'>点击这里选择图片</a> <span class='clos'>&#10006;</span></div>" ; 
 					$("#pimg").append($inp);
-					
 				}
-			  	
-				
-				
-				
 			}
 		},{
 			text:'帮助',
@@ -452,12 +527,15 @@ $(".btn_add").click(function(){
 		}]
 	}); 
 });
-$(".btn_addImg").click(function(){
+/* $("body").on("click",".btn_addImg,#newAdd",function(){
+	
+}); */
+$("body").on("click",".btn_addImg,#newAdd",function(){
 	$("#imgsimg").css("display","block");
 	$('#ddImg').dialog({    
 	    title: '选择图片',    
 	    width: 400,    
-	    height: 280,    
+	    height: 310,    
 	    closed: false,    
 	    cache: false,    
 	    modal: true,
@@ -465,33 +543,51 @@ $(".btn_addImg").click(function(){
 			text:'保存',
 			handler:function(){
 				
-				
-				
+				var form = new FormData($("#pimgImg")[0])
+				$.ajax({
+					url:"<%=basePath%>/commodityAction/addPrductImg?toImg=1",
+					data: form ,
+					type: 'POST', 
+					async:false,
+					cache:false,
+					contentType: false,  
+			         processData: false,  
+			         success: function (data) {  
+			        	 if(data==0){
+			            	 $.messager.alert('恭喜','添加商品图片成功！',"info");  
+			            	 $("#btn_addImg").empty();
+			            	 $("#btn_addImg").append(" <a style=' font-size: 10px;color:#CC99FF;'>如果选择有误，请<a href='#' id='newAdd' style=' font-size: 10px;'>重新选择</a></a>");
+			            	 $('#ddImg').window('close');  // close a window  
+			            	 
+			             }else if(data == -1){
+			            	 $.messager.alert('抱歉','添加商品图片失败。',"error");  
+			             }else if(data == 1){
+			            	 $.messager.alert('抱歉','商品图片不能大于20M，请重新选择。',"error");  
+			             }
+			         },  
+			         error: function (returndata) {  
+			        	 $.messager.alert('抱歉','添加失败，请检查网络。',"error");  
+			         }  
+				});
 			}
 		},{
 			text:'关闭',
 			handler:function(){
 				$('#dd').window('close');  // close a window  
-				
 			}
 		}],
 		toolbar:[{
-			text:'添加',
+			text:'添加一张图片',
 			iconCls:'icon-edit',
 			handler:function(){
-				var s = $(".pimgDiv").length;
+				var s = $(".pimgDivImg").length;
 				//alert(s)
 				if((s+1)>5){
-					$.messager.alert('警告','添加失败，最多5张图片');    
+					$.messager.alert('警告','添加失败，最多5张图片',"error");    
 				}else{
-					var $inp = "<div class='pimgDivImg'><label class='upTextImg'>图片("+(s+1)+"): </label><input type='file' name='file' class='pimgImg'> <span class='clos'>&#10006;</span></div>" ; 
+					var $inp = "<div class='pimgDivImg'><a href='javascript:;' class='a-upload'><label class='upText'>图片("+(s+1)+"): </label> <input type='file' name='ufile' class='pimgImg'>点击这里选择图片</a> <span class='clos'>&#10006;</span></div>" ; 
 					$("#pimgImg").append($inp);
-					
 				}
-			  	
-				
-				
-				
 			}
 		},{
 			text:'帮助',
@@ -501,12 +597,84 @@ $(".btn_addImg").click(function(){
 	}); 
 });
 //$(this).parent().parent().find(":nth-child(2)").html()
+
 $("body").on("click",".clos",function(){
 	//删除指定元素
 	$(this).parent().remove();
 	
 });
 
+/* 
+	提交数据
+*/
+$("#addComm").click(function(){
+	var params = $("#fileUploadForm").serialize();
+	params = decodeURIComponent(params,true);
+	
+	/* $.ajax({
+		
+		url:"../../commodityAction/addCommod",
+		data: params ,
+		type: 'POST', 
+        success: function (data) { 
+        	alert(data)
+        	 //$.messager.alert('恭喜','添加商品成功！',"info");  
+         }
+	});  */
+	$.messager.defaults = { ok: "确定", cancel: "取消" };  
+	$.messager.confirm('确认','您确认想要提交吗?',function(r){  
+		
+	    if (r){    
+	    	$.ajax({
+	    		url:"../../commodityAction/addCommod",
+	    		data: params ,
+	    		type: 'POST', 
+	            success: function (data) { 
+	            	if("true"==data){
+	            		$.messager.alert('恭喜','添加商品成功！',"info"); 
+	            	}else{
+	            		$.messager.alert('恭喜','添加商品失败！',"error"); 
+	            	}
+	            	  
+	             }
+	    	}); 
+	    }     
+	}); 
+	
+	
+	
+	
+});
 
+/*
+ * 生成国家
+ */
+ 
+ $.post("../../countryAction/findAllCountry","",function(data){
+	 //commType
+	 $.each(data,function(i,o){
+		 
+		$op = "<option value='"+o.ptname+"'>"+o.ptname+"</option>"; 
+		 $("#commType").append($op);
+	 });
+	 
+	 
+ });
+/**
+ * 生成商品类型
+ 
+ */
+ 
+ $.post("../../brandAction/findAllBrand","",function(data){
+	 //commType
+	 $.each(data,function(i,o){
+		 
+		$op = "<option value='"+o.brname+"'>"+o.brname+"</option>"; 
+		 $("#commBrand").append($op);
+	 });
+	 
+	 
+ });
+ 
 </script>
 

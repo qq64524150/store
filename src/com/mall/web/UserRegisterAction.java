@@ -1,5 +1,7 @@
 package com.mall.web;
-
+/**
+ * 这是用户的控制类
+ */
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
