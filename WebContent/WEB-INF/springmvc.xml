@@ -40,6 +40,7 @@
 		<property name="prefix" value="/" />
 		<!-- 配置View后缀 -->
 		<property name="suffix" value=".jsp" />
+		
 	</bean>
 	
      <!-- <mvc:interceptors>

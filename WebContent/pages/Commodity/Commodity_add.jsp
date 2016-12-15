@@ -226,6 +226,25 @@
 						<input name="pnumber" placeholder="请输入库存数量"/>
 					</td>
 					
+					<td class="comm_text01">商品图片:</td>
+					<td style="width: 270px;" id="btn_addImg">
+						 <a  class="easyui-linkbutton btn_addImg"
+							data-options="iconCls:'icon-add'" data-toggle="modal"
+							data-target="#myModal">选择图片</a> 
+					</td>
+				</tr>
+				
+				
+				<tr>
+					<td class="comm_text01">
+						<label>商品状态:</label>
+					</td>
+					<td>
+							<input type="radio" id="yesH1" name="pisExist" value="上架" checked="checked"> <label for="yesH1" style="position: relative; top:-8px;">上架</label>
+							<input type="radio" id="yesH2" name="pisExist" value="下架" >  <label for="yesH2" style="position: relative; top:-8px;">下架</label>
+							<input type="radio" id="yesH3" name="pisExist" value="无货" >  <label for="yesH3" style="position: relative; top:-8px;">无货</label>
+					</td>
+					
 					
 				</tr>
 				
@@ -357,15 +376,7 @@
 				</tr>
 				
 				
-				<tr>
 				
-					<td class="comm_text01">图片介绍:</td>
-					<td style="width: 270px;" id="btn_addImg">
-						 <a  class="easyui-linkbutton btn_addImg"
-							data-options="iconCls:'icon-add'" data-toggle="modal"
-							data-target="#myModal">选择图片</a> 
-					</td>
-				</tr>
 				
 				<tr>
 				

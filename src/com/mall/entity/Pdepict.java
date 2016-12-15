@@ -1,7 +1,10 @@
 package com.mall.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -17,7 +20,7 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name="tb_pdepict")
-public class Pdepict {
+public class Pdepict implements Serializable{
 	
 	private String pdno	;				//id						
 	//private String pdid	; 				//所属商品
@@ -149,8 +152,8 @@ public class Pdepict {
 		this.colorur = colorur;
 	}
 
-	@OneToOne(optional=false,cascade=CascadeType.REFRESH)
-	@JoinColumn(name="product_ID",referencedColumnName="pno",unique=true)
+	@OneToOne(cascade={CascadeType.REFRESH,CascadeType.MERGE},fetch=FetchType.LAZY)
+	@JoinColumn(name="product_ID")
 	public Product getProduct() {
 		return product;
 	}

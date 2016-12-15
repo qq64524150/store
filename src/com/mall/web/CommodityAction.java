@@ -1,12 +1,14 @@
 package com.mall.web;
-
+/**
+ * 这是商品的web类
+ */
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -14,11 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mall.entity.Pdepict;
 import com.mall.entity.Product;
 import com.mall.service.CommodService;
@@ -119,14 +121,69 @@ public class CommodityAction {
 	@RequestMapping(value = "/addCommod")
 	@ResponseBody
 	public String addIctAndUct(Product product,Pdepict pdepict,HttpServletResponse response,HttpServletRequest request) throws Exception {
+		String msg = "false" ;
 		
-		pdepict.setPdimagesDepict(getPdepictImg()); //pdepictImg
-		pdepict.setPimagesReferral(getProductImg());
-		return commodService.addProduct(product, pdepict)?"true":"false";
+		//设置图片
+		product.setPimage(getProductImg());
+		//设置时间
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日HH:mm");
+		product.setPtime(sdf.format(new Date()));
+		
+		Product prodComm =  commodService.addProduct(product);
+		if(prodComm!=null){
+			//设置图片
+			pdepict.setPdimagesDepict(getPdepictImg()); //pdepictImg
+			//添加商品描述
+			if(commodService.addPdepict(pdepict, prodComm)){
+				msg = "true" ;
+			}
+		}
+		
+		return msg ;
 	}
-
+	/**
+	 * 查询全部商品信息
+	 * @return 商品全部信息
+	 * @throws JsonProcessingException 
+	 */
+	@RequestMapping("/findAllComm")
+	@ResponseBody
+	public List<Object[]> findAllComm(){
+		List<Object[]> list  = commodService.findAllCommList();
+		System.out.println(list.size());
+		for (Object[] objs : list) {
+			Product ch=(Product)objs[0];
+			System.out.println(ch.getPname());
+			Pdepict card=(Pdepict)objs[1];
+			System.out.println(card.getColorur());
+		}
+		return list;
+		/*ObjectMapper mapper = new ObjectMapper();
+		String s = null;
+		try {
+			s = mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		out.print(s);*/
+	}
 	
+	//查询商品信息
+	@RequestMapping("/findAllProduct")
+	@ResponseBody
+	public List<Product> findAllProduct(){
+		//commodService.findAllProduct();
+		return commodService.findAllProduct() ;
+	}
 	
+	//查询指定商品信息;
+	@RequestMapping("/findPdepictById")
+	@ResponseBody
+	public Pdepict findPdepictById(String id){
+		
+		return commodService.findPdepictById(id) ;
+	}
 	
 	public String getPdepictImg() {
 		return pdepictImg;

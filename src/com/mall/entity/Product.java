@@ -1,13 +1,18 @@
 package com.mall.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * 创建一个商品实体对象
@@ -16,7 +21,8 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name="tb_product")
-public class Product {
+@JsonIgnoreProperties(value={"pdepict"})
+public class Product implements Serializable{
 	private String pno	;			//id			
 	//private String pdepict ;    	//商品描述
 	private String pdis	;			//商品折扣
@@ -145,7 +151,7 @@ public class Product {
 	public void setPheat(String pheat) {
 		this.pheat = pheat;
 	}
-	@OneToOne(optional = true,cascade=CascadeType.ALL,mappedBy="product")
+	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="product")
 	public Pdepict getPdepict() {
 		return pdepict;
 	}

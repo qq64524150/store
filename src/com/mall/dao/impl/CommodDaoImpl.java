@@ -15,17 +15,21 @@ public class CommodDaoImpl extends BaseDao implements CommodDao {
 	 * 添加商品
 	 */
 	@Override
-	public boolean addProduct(Product product) {
+	public Product addProduct(Product product) {
+		Product p = null ;
 		//添加
-		return addObject(product);
+		if(addObject(product)){
+			System.out.println("daoUUID"+product.getPno());
+			p = (Product) getSession().get(Product.class,product.getPno());
+		}
+		return p ;
 	}
 	/**
 	 * 添加商品描述
 	 */
 	@Override
 	public boolean addPdepict(Pdepict pdepict) {
-		// TODO Auto-generated method stub
-		return false;
+		return addObject(pdepict);
 	}
 	/**
 	 * 分页查询商品
@@ -34,6 +38,44 @@ public class CommodDaoImpl extends BaseDao implements CommodDao {
 	public List findCommList(PageBean bean, String sql) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	/**
+	 * 查询出全部商品
+	 */
+	@Override
+	public List<Object[]> findAllCommList() {
+	
+		String hql = "from Product  p inner join p.pdepict" ;
+		return getSession().createQuery(hql).list();
+	}
+	/**
+	 * 根据商品ID进行查询
+	 */
+	
+	@Override
+	public Product findProductById(String id) {
+		Product p = (Product) getObject(Product.class, id);
+		return p;
+	}
+	
+	/**
+	 * 查询出全部商品2
+	 */
+	
+	@Override
+	public List<Product> findAllProduct() {
+		String hql = "from Product p order by p.ptime asc" ;
+		return getSession().createQuery(hql).list();
+	}
+	
+	/**
+	 * 查询出指定的商品描述
+	 */
+	@Override
+	public Pdepict findPdepictById(String id) {
+		
+		return (Pdepict) getObject(Pdepict.class, id);
 	}
 
 }
