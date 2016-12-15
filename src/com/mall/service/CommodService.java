@@ -14,7 +14,10 @@ public interface CommodService {
 	public boolean addPdepict(Pdepict pdepict, Product product);
 
 	// 查询分页商品
-	public List findCommList(PageBean bean, String sql);
+	public PageBean findCommList(PageBean bean, String sql);
+
+	// 分页查询出商品信息
+	public PageBean findAllProductPageBean(PageBean bean,Product Product,String[] msg);
 
 	// 按照id进程商品查询
 	public Product findProductById(String id);

@@ -1,5 +1,6 @@
 package com.mall.entity;
 
+import java.beans.Transient;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
@@ -38,6 +39,9 @@ public class Product implements Serializable{
 	private String ptime ;			//时间
 	private String pimage ;			//商品图片
 	private String pheat ;			//购买的热度
+	
+	private String pdate_from ;     //
+	private String pdate_to ;
 	
 	//进行和商品描述一对一关联
 	private Pdepict pdepict ;
@@ -158,5 +162,22 @@ public class Product implements Serializable{
 	public void setPdepict(Pdepict pdepict) {
 		this.pdepict = pdepict;
 	}
+	
+	@Transient
+	public String getPdate_from() {
+		return pdate_from;
+	}
+	public void setPdate_from(String pdate_from) {
+		this.pdate_from = pdate_from;
+	}
+	@Transient
+	public String getPdate_to() {
+		return pdate_to;
+	}
+	public void setPdate_to(String pdate_to) {
+		this.pdate_to = pdate_to;
+	}
+	
+	
 	
 }

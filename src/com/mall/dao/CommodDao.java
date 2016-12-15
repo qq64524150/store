@@ -16,6 +16,9 @@ public interface CommodDao {
 	//查询分页商品
 	public List findCommList(PageBean bean ,String sql);
 	
+	//分页查询出商品信息
+	public List findAllProductPageBean(PageBean bean ,String sql);
+	
 	//按照id进程商品查询
 	public Product findProductById(String id) ;
 	//修改商品
@@ -31,5 +34,7 @@ public interface CommodDao {
 	public List<Product> findAllProduct();
 	//查询指定商品描述信息;
 	public Pdepict findPdepictById(String id);
+	//查询出所有商品3
+	public List findAllProduct(String hql);
 	
 }

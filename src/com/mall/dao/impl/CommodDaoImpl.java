@@ -2,6 +2,7 @@ package com.mall.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.mall.dao.BaseDao;
@@ -9,6 +10,7 @@ import com.mall.dao.CommodDao;
 import com.mall.entity.Pdepict;
 import com.mall.entity.Product;
 import com.mall.util.PageBean;
+import com.sun.swing.internal.plaf.basic.resources.basic;
 @Repository
 public class CommodDaoImpl extends BaseDao implements CommodDao {
 	/**
@@ -32,7 +34,7 @@ public class CommodDaoImpl extends BaseDao implements CommodDao {
 		return addObject(pdepict);
 	}
 	/**
-	 * 分页查询商品
+	 * 分页查询商品及商品描述
 	 */
 	@Override
 	public List findCommList(PageBean bean, String sql) {
@@ -46,9 +48,27 @@ public class CommodDaoImpl extends BaseDao implements CommodDao {
 	@Override
 	public List<Object[]> findAllCommList() {
 	
-		String hql = "from Product  p inner join p.pdepict" ;
+		String hql = "from Product  p inner join p.pdepict order by p.ptime asc" ;
 		return getSession().createQuery(hql).list();
 	}
+	/**
+	 * 分页查询出全部商品信息
+	 */
+	@Override
+	public List findAllProductPageBean(PageBean bean, String sql) {
+		Query query = getSession().createQuery(sql);
+		//设置分页信息
+		System.out.println("当前页："+bean.getCpage());
+		System.out.println("每页显示条数："+bean.getShowNum());
+		query.setFirstResult((bean.getCpage()-1)*bean.getShowNum());
+		query.setMaxResults(bean.getShowNum());
+		//执行查询
+		List list = query.list();
+		//返回
+		return list;
+	}
+	
+	
 	/**
 	 * 根据商品ID进行查询
 	 */
@@ -77,5 +97,14 @@ public class CommodDaoImpl extends BaseDao implements CommodDao {
 		
 		return (Pdepict) getObject(Pdepict.class, id);
 	}
+	/**
+	 * 查询出所有商品3
+	 */
+	@Override
+	public List findAllProduct(String hql) {
+		
+		return  getSession().createQuery(hql).list();
+	}
+	
 
 }

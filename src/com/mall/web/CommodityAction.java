@@ -21,9 +21,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mall.entity.Pdepict;
 import com.mall.entity.Product;
 import com.mall.service.CommodService;
+import com.mall.util.PageBean;
 import com.mall.util.PicUtils;
 
 @Controller
@@ -31,6 +33,8 @@ import com.mall.util.PicUtils;
 public class CommodityAction {
 	private String pdepictImg; // 存储商品描述图片
 	private String productImg; // 存储商品图片
+	private PageBean pageBean = new PageBean() ;
+	
 	@Resource
 	private CommodService commodService ;
 	// 商品的图片
@@ -126,7 +130,7 @@ public class CommodityAction {
 		//设置图片
 		product.setPimage(getProductImg());
 		//设置时间
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日HH:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		product.setPtime(sdf.format(new Date()));
 		
 		Product prodComm =  commodService.addProduct(product);
@@ -150,40 +154,64 @@ public class CommodityAction {
 	@ResponseBody
 	public List<Object[]> findAllComm(){
 		List<Object[]> list  = commodService.findAllCommList();
-		System.out.println(list.size());
-		for (Object[] objs : list) {
-			Product ch=(Product)objs[0];
-			System.out.println(ch.getPname());
-			Pdepict card=(Pdepict)objs[1];
-			System.out.println(card.getColorur());
-		}
 		return list;
-		/*ObjectMapper mapper = new ObjectMapper();
-		String s = null;
-		try {
-			s = mapper.writeValueAsString(list);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		out.print(s);*/
 	}
 	
 	//查询商品信息
 	@RequestMapping("/findAllProduct")
 	@ResponseBody
-	public List<Product> findAllProduct(){
+	public List<Product> findAllProduct(String page,String rows ){
 		//commodService.findAllProduct();
+		System.out.println("page"+page);
+		System.out.println("rows"+rows);
+		
+		
 		return commodService.findAllProduct() ;
 	}
 	
 	//查询指定商品信息;
 	@RequestMapping("/findPdepictById")
 	@ResponseBody
-	public Pdepict findPdepictById(String id){
+	public Pdepict findPdepictById(String page,String rows ,String id){
+		System.out.println("page"+page);
+		System.out.println("rows"+rows);
+		
 		
 		return commodService.findPdepictById(id) ;
 	}
+	/**
+	 * 分页查询出商品信息
+	 * @return 商品信息
+	 * @throws JsonProcessingException 
+	 */
+	@RequestMapping("/findAllProductPageBean")
+	@ResponseBody
+	public void findAllProductPageBean(String page,String rows,PrintWriter out,
+			String sort,String order,String pname,String date_from,
+			String date_to) throws JsonProcessingException{
+		//获取查询数值
+		System.out.println("搜索的内容是："+pname + date_from + date_to);
+		Product p = new Product();
+		p.setPname(pname);
+		p.setPdate_from(date_from);
+		p.setPdate_to(date_to);
+		
+		// 封装客户端传过来的数据
+		String[] infoMsg = {sort,order} ;
+		//下一页 & 上一页
+		pageBean.setCpage(Integer.parseInt(page));
+		//当前显示的数据
+		pageBean.setShowNum(Integer.parseInt(rows));
+		pageBean = commodService.findAllProductPageBean(pageBean, p,infoMsg);
+		ObjectMapper mapper = new ObjectMapper();
+		String s = mapper.writeValueAsString(pageBean.getShowResult());
+		//进行json拼接
+		String ss = "{"+"\"total\""+":"+pageBean.getAllNum()+","+"\"rows\""+":"+s+"}";
+		out.print(ss);
+		//return null ;
+		
+	}
+	
 	
 	public String getPdepictImg() {
 		return pdepictImg;
@@ -205,7 +233,4 @@ public class CommodityAction {
 		this.commodService = commodService;
 	}
 
-		
-	
-	
 }

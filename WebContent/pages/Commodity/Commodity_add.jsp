@@ -240,9 +240,9 @@
 						<label>商品状态:</label>
 					</td>
 					<td>
-							<input type="radio" id="yesH1" name="pisExist" value="上架" checked="checked"> <label for="yesH1" style="position: relative; top:-8px;">上架</label>
-							<input type="radio" id="yesH2" name="pisExist" value="下架" >  <label for="yesH2" style="position: relative; top:-8px;">下架</label>
-							<input type="radio" id="yesH3" name="pisExist" value="无货" >  <label for="yesH3" style="position: relative; top:-8px;">无货</label>
+							<input type="radio" id="yesH1" name="pstate" value="上架" checked="checked"> <label for="yesH1" style="position: relative; top:-8px;">上架</label>
+							<input type="radio" id="yesH2" name="pstate" value="下架" >  <label for="yesH2" style="position: relative; top:-8px;">下架</label>
+							<input type="radio" id="yesH3" name="pstate" value="无货" >  <label for="yesH3" style="position: relative; top:-8px;">无货</label>
 					</td>
 					
 					
@@ -644,7 +644,7 @@ $("#addComm").click(function(){
 	            	if("true"==data){
 	            		$.messager.alert('恭喜','添加商品成功！',"info"); 
 	            	}else{
-	            		$.messager.alert('恭喜','添加商品失败！',"error"); 
+	            		$.messager.alert('抱歉','添加商品失败！',"error"); 
 	            	}
 	            	  
 	             }

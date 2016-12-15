@@ -36,11 +36,48 @@ public class CommodServiceImpl implements CommodService {
 		pdepict.setProduct(product);
 		return commodDao.addPdepict(pdepict);
 	}
-
+	/**
+	 * 分页查询出全部商品信息及商品描述信息
+	 * 
+	 */
 	@Override
-	public List findCommList(PageBean bean, String sql) {
+	public PageBean findCommList(PageBean bean, String sql) {
 		return null;
 	}
+	
+	/**
+	 * 分页查询出全部商品信息
+	 */
+	@Override
+	public PageBean findAllProductPageBean(PageBean bean,Product Product,String[] msg) {
+		//desc
+		String hql = "from Product p where 1=1" ;
+		if(Product!=null){
+			if(Product.getPname()!=null && Product.getPname().length()>0){
+				hql+=" and p.pname like '%"+Product.getPname()+"%' ";
+			}
+			if(Product.getPdate_from()!=null && Product.getPdate_from().length()>0){
+				hql +=" and p.ptime>= '"+Product.getPdate_from()+"' " ; 
+			}
+			if(Product.getPdate_to()!=null && Product.getPdate_to().length()>0){
+				hql +=" and p.ptime<= '"+Product.getPdate_to()+"' " ;
+			}
+		}
+			
+		
+	   hql+=" order by p."+msg[0]+" "+msg[1]+"";
+		
+		
+		//要显示当前要显示的数据
+		bean.setShowResult(commodDao.findAllProductPageBean(bean, hql));
+		//获取总总数据条数
+		hql = "select count(*) "+hql ;
+		bean.setAllNum(((Long)commodDao.findAllProduct(hql).get(0)).intValue());
+		
+		
+		return bean;
+	}
+	
 	
 	
 	/**
@@ -89,6 +126,7 @@ public class CommodServiceImpl implements CommodService {
 	public void setCommodDao(CommodDao commodDao) {
 		this.commodDao = commodDao;
 	}
+	
 	
 
 	
