@@ -28,7 +28,7 @@ public class Product implements Serializable{
 	//private String pdepict ;    	//商品描述
 	private String pdis	;			//商品折扣
 	private int pisExist	;		//是否存在活动(0,正常，1活动)
-	private String ptype ;			//商品类型
+	private String ptype ;			//国家
 	private String pSelingPrice ;	//实时商品销售价
 	private String pprice ;			//商品进价
 	private String pbrand ;			//商品品牌
@@ -38,7 +38,8 @@ public class Product implements Serializable{
 	private int pnumber ;			//数量
 	private String ptime ;			//时间
 	private String pimage ;			//商品图片
-	private String pheat ;			//购买的热度
+	private String pheat = "0";			//购买的数量
+	private int bitPdepict = 0;        //是否添加了商品描述 0/1
 	
 	private String pdate_from ;     //
 	private String pdate_to ;
@@ -49,9 +50,12 @@ public class Product implements Serializable{
 	public Product() {
 		super();
 	}
+	
+	
+
 	public Product(String pno, String pdis, int pisExist, String ptype, String pSelingPrice, String pprice,
 			String pbrand, String pname, String pPinkage, String pstate, int pnumber, String ptime, String pimage,
-			String pheat) {
+			String pheat, int bitPdepict, String pdate_from, String pdate_to, Pdepict pdepict) {
 		super();
 		this.pno = pno;
 		this.pdis = pdis;
@@ -67,7 +71,14 @@ public class Product implements Serializable{
 		this.ptime = ptime;
 		this.pimage = pimage;
 		this.pheat = pheat;
+		this.bitPdepict = bitPdepict;
+		this.pdate_from = pdate_from;
+		this.pdate_to = pdate_to;
+		this.pdepict = pdepict;
 	}
+
+
+
 	@Id
 	@GeneratedValue(generator="pk")
 	@GenericGenerator(name="pk",strategy="uuid.hex")
@@ -155,6 +166,13 @@ public class Product implements Serializable{
 	public void setPheat(String pheat) {
 		this.pheat = pheat;
 	}
+	public int getBitPdepict() {
+		return bitPdepict;
+	}
+	public void setBitPdepict(int bitPdepict) {
+		this.bitPdepict = bitPdepict;
+	}
+	
 	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="product")
 	public Pdepict getPdepict() {
 		return pdepict;
@@ -163,6 +181,8 @@ public class Product implements Serializable{
 		this.pdepict = pdepict;
 	}
 	
+	
+	
 	@Transient
 	public String getPdate_from() {
 		return pdate_from;
@@ -170,6 +190,9 @@ public class Product implements Serializable{
 	public void setPdate_from(String pdate_from) {
 		this.pdate_from = pdate_from;
 	}
+	
+	
+	
 	@Transient
 	public String getPdate_to() {
 		return pdate_to;

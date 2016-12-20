@@ -10,7 +10,6 @@ import com.mall.dao.CommodDao;
 import com.mall.entity.Pdepict;
 import com.mall.entity.Product;
 import com.mall.util.PageBean;
-import com.sun.swing.internal.plaf.basic.resources.basic;
 @Repository
 public class CommodDaoImpl extends BaseDao implements CommodDao {
 	/**
@@ -74,8 +73,9 @@ public class CommodDaoImpl extends BaseDao implements CommodDao {
 	 */
 	
 	@Override
-	public Product findProductById(String id) {
-		Product p = (Product) getObject(Product.class, id);
+	public Product findProductById(Product product) {
+		//System.out.println("dao:  "+id);
+		Product p = (Product)getSession().get(Product.class, product.getPno());
 		return p;
 	}
 	
@@ -97,6 +97,8 @@ public class CommodDaoImpl extends BaseDao implements CommodDao {
 		
 		return (Pdepict) getObject(Pdepict.class, id);
 	}
+	
+	
 	/**
 	 * 查询出所有商品3
 	 */
@@ -105,6 +107,72 @@ public class CommodDaoImpl extends BaseDao implements CommodDao {
 		
 		return  getSession().createQuery(hql).list();
 	}
+	
+	
+	/**
+	 * 修改商品
+	 */
+	@Override
+	public boolean updataCommImg(Product p) {
+		return updateObject(p);
+	}
+	
+	/**
+	 * 删除商品 + 批量
+	 */
+	@Override
+	public int deleteProductById(String pnos) {
+		List<Product> list= getSession().createQuery("from Product p where p.pno in ("+pnos+") ").list();
+		int b = -1;
+		if(list.size()>0){
+			for (Product product : list) {
+				 delObject(product);//进行删除 返回删除记录
+			}
+			b = list.size(); 
+		}
+		
+		
+		return b;
+	}
+	
+	/**
+	 * 删除商品描述
+	 */
+	
+	@Override
+	public int deletePdepict(String pdno) {
+		List<Product> list= getSession().createQuery("from Pdepict p where p.product.pno in ("+pdno+") ").list();
+		
+		int b = -1;
+		if(list.size()>0){
+			for (Product product : list) {
+				 delObject(product);//进行删除 返回删除记录
+			}
+			b = list.size(); 
+		}
+		
+		
+		return b;
+	}
+	/**
+	 * 查询出某件商品的描述信息
+	 */
+	@Override
+	public List findPdepictByIdTwo(String id) {
+		System.out.println("id===:"+id);
+		String hql = "from Product  p inner join p.pdepict where p.pno ='"+id+"'" ;
+	
+		return getSession().createQuery(hql).list();
+	}
+	/**
+	 * 修改商品描述信息
+	 */
+	@Override
+	public boolean updataPdepictById(Pdepict pdepict) {
+		
+		return updateObject(pdepict);
+	}
+	
 	
 
 }

@@ -478,6 +478,7 @@ $("body").on("click",".btn_add,#newAdd_1",function(){
 			text:'保存',
 			handler:function(){
 				var form = new FormData($("#pimg")[0])
+			
 				$.ajax({
 					url:"<%=basePath%>/commodityAction/addPrductImg?toImg=0",
 					data: form ,
@@ -651,10 +652,6 @@ $("#addComm").click(function(){
 	    	}); 
 	    }     
 	}); 
-	
-	
-	
-	
 });
 
 /*

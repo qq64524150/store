@@ -4,11 +4,12 @@ package com.mall.web;
  */
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -37,10 +40,12 @@ public class CommodityAction {
 	
 	@Resource
 	private CommodService commodService ;
+	
 	// 商品的图片
 	@RequestMapping("addPrductImg")
-	public void addPrductImg(int toImg, HttpServletRequest request, HttpServletResponse response, PrintWriter out,
+	public void addPrductImg(String toImg, String pno, HttpServletRequest request, HttpServletResponse response, PrintWriter out,
 			MultipartHttpServletRequest multipar) throws Exception {
+		
 		response.setContentType("text/html;charset=utf-8");
 
 		// 多内容请求对象
@@ -57,14 +62,15 @@ public class CommodityAction {
 			Long l = file.get(i).getSize();
 			System.out.println(hquz.indexOf(name));
 			is = hquz.indexOf(name);
+			
 			if (is == -1) {
 				break;
 			}
+			
 			if (l > 20971520) {
 				is = 1;
 				break;
 			}
-
 		}
 
 		System.out.println("---" + is);
@@ -102,10 +108,19 @@ public class CommodityAction {
 
 		System.out.println(ss); 
 		//保存商品描述图片
-		if(toImg == 0){
+		if(toImg.equals("0")){
 			setPdepictImg(ss);
-		}else if(toImg ==1 ){  //保存商品图片
+		}else if(toImg.equals("1") || "undefined".equals(toImg)){  //保存商品图片
 			setProductImg(ss);
+		}else if(toImg!="undefined" && toImg.length()>10){
+			
+			Product p  = new Product();
+			p.setPno(toImg);
+			p.setPimage(ss);
+			if(!commodService.updataCommImg(p)){
+				is = -1 ;
+			}
+			
 		}
 		
 		out.print(is);
@@ -132,14 +147,19 @@ public class CommodityAction {
 		//设置时间
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		product.setPtime(sdf.format(new Date()));
-		
+		//标志是否有商品描述
+		product.setBitPdepict(1);
 		Product prodComm =  commodService.addProduct(product);
 		if(prodComm!=null){
 			//设置图片
-			pdepict.setPdimagesDepict(getPdepictImg()); //pdepictImg
+			pdepict.setPdimagesDepict(getPdepictImg()); //描述
+			pdepict.setPimagesReferral(getProductImg()); //商品
 			//添加商品描述
 			if(commodService.addPdepict(pdepict, prodComm)){
 				msg = "true" ;
+				//清空图片
+				setPdepictImg(null);
+				setProductImg(null);
 			}
 		}
 		
@@ -162,10 +182,6 @@ public class CommodityAction {
 	@ResponseBody
 	public List<Product> findAllProduct(String page,String rows ){
 		//commodService.findAllProduct();
-		System.out.println("page"+page);
-		System.out.println("rows"+rows);
-		
-		
 		return commodService.findAllProduct() ;
 	}
 	
@@ -173,10 +189,6 @@ public class CommodityAction {
 	@RequestMapping("/findPdepictById")
 	@ResponseBody
 	public Pdepict findPdepictById(String page,String rows ,String id){
-		System.out.println("page"+page);
-		System.out.println("rows"+rows);
-		
-		
 		return commodService.findPdepictById(id) ;
 	}
 	/**
@@ -188,14 +200,16 @@ public class CommodityAction {
 	@ResponseBody
 	public void findAllProductPageBean(String page,String rows,PrintWriter out,
 			String sort,String order,String pname,String date_from,
-			String date_to) throws JsonProcessingException{
+			String date_to,String pbrand,String ptype) throws JsonProcessingException{
 		//获取查询数值
-		System.out.println("搜索的内容是："+pname + date_from + date_to);
+		
+		System.out.println("搜索的内容是："+pbrand);
 		Product p = new Product();
 		p.setPname(pname);
 		p.setPdate_from(date_from);
 		p.setPdate_to(date_to);
-		
+		p.setPbrand(pbrand);
+		p.setPtype(ptype);
 		// 封装客户端传过来的数据
 		String[] infoMsg = {sort,order} ;
 		//下一页 & 上一页
@@ -211,6 +225,162 @@ public class CommodityAction {
 		//return null ;
 		
 	}
+	/**
+	 * 添加商品描述
+	 * @param pno
+	 * @param pdepict
+	 * @return true/false 到客户端
+	 */
+	@RequestMapping("/addPdepict")
+	@ResponseBody
+	public String addPdepict(Product pno,Pdepict pdepict){
+		//System.out.println("----2--: "+pdepict.getColorur());
+		String msg = "false" ;
+		Product prodComm =  commodService.findProductById(pno);
+		if(prodComm!=null){
+			//设置图片
+			pdepict.setPdimagesDepict(getPdepictImg()); //pdepictImg
+			pdepict.setPimagesReferral(getProductImg());
+			//添加商品描述
+			if(commodService.addPdepict(pdepict, prodComm)){
+				msg = "true" ;
+				setPdepictImg(null);
+				setProductImg(null);
+			}
+		}
+		
+		
+		
+		return msg ;
+	}
+	
+	
+	
+	/**
+	 * 单独添加商品
+	 * @param p
+	 * @throws UnsupportedEncodingException 
+	 */
+	@RequestMapping(value="/addProduct")
+	@ResponseBody
+	public String addProduct(String pdis,int pisExist,String ptype,String pSelingPrice,
+			String pprice,String pbrand,String pname,String pPinkage,String pstate,
+			int pnumber) throws UnsupportedEncodingException{
+		//System.out.println("=========="+ptype);
+		String msg = "false" ;
+		Product p = new Product();
+		p.setPname(pname);
+		p.setPdis(pdis);
+		p.setPisExist(pisExist);
+		p.setPtype(ptype);
+		p.setpSelingPrice(pSelingPrice);
+		p.setpPinkage(pPinkage);
+		p.setPprice(pprice);
+		p.setPbrand(pbrand);
+		p.setPstate(pstate);
+		p.setPnumber(pnumber);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		p.setPtime(sdf.format(new Date()));
+		
+		if(commodService.addProduct(p)!=null){
+			msg="true" ;
+		}
+		
+		return msg ;
+	}
+	/**
+	 * 单独修改商品	
+	 * @param p
+	 */
+	@RequestMapping("/updateProduct")
+	@ResponseBody
+	public String updateProduct(String pno,String pdis,int pisExist,String ptype,String pSelingPrice,
+			String pprice,String pbrand,String pname,String pPinkage,String pstate,
+			int pnumber){
+		String msg = "false" ;
+		Product p = new Product();
+		p.setPno(pno);
+		p.setPname(pname);
+		p.setPdis(pdis);
+		p.setPisExist(pisExist);
+		p.setPtype(ptype);
+		p.setpSelingPrice(pSelingPrice);
+		p.setpPinkage(pPinkage);
+		p.setPprice(pprice);
+		p.setPbrand(pbrand);
+		p.setPstate(pstate);
+		p.setPnumber(pnumber);
+		if(commodService.updataCommImg(p)){
+			msg = "true" ;
+		}
+		return msg ;
+	}
+	/**
+	 * 删除商品
+	 * @param p
+	 */
+	@RequestMapping("/dateleProduct")
+	@ResponseBody
+	public String dateleProduct(String pno){
+		String msg = "0" ; 
+		int j = commodService.deleteProductById(pno);
+		if(j>0){
+			msg =  j+"";
+		}
+		return msg ;
+	}
+	
+	@RequestMapping("/findPdepictById_two")
+	@ResponseBody
+	public void findPdepictById_two(String pno,PrintWriter out){
+		List p = commodService.findPdepictByIdTwo(pno);
+		/*for (Object object : p) {
+			Object[] op = (Object[])object ;
+			Product ps0 =(Product)op[0] ;
+			Pdepict ps1 =(Pdepict)op[1] ;
+			
+			System.out.println(ps1.getColorur());
+			
+		}*/
+		
+		ObjectMapper mapper = new ObjectMapper();
+			try {
+				String s = mapper.writeValueAsString(p);
+				out.println(s);
+			} catch (JsonProcessingException e) {
+				System.out.println("出错了。。查询详细信息");
+				e.printStackTrace();
+			}
+	
+	}
+	/**
+	 * 修改商品描述
+	 * @param pdepict
+	 * @return
+	 */
+	@RequestMapping("/updataPdepictById")
+	@ResponseBody
+	public String updataPdepictById(Product p ,Pdepict pdepict){
+		String msg = "false" ;
+		pdepict.setProduct(p);
+		//判断是否有新添加的图片
+		if(getPdepictImg()!=null && getPdepictImg().length()>8){ //描述
+			pdepict.setPdimagesDepict(getPdepictImg());
+		}
+		if(getProductImg()!=null && getProductImg().length()>8){ //商品图
+			pdepict.setPimagesReferral(getProductImg());
+		}
+		
+		if(commodService.updataPdepictById(pdepict)){
+			msg = "true" ;
+			setPdepictImg(null);
+			setProductImg(null);
+		}
+		
+		return msg ;
+	}
+	
+	
 	
 	
 	public String getPdepictImg() {

@@ -34,6 +34,10 @@ public class CommodServiceImpl implements CommodService {
 	@Override
 	public boolean addPdepict(Pdepict pdepict,Product product) {
 		pdepict.setProduct(product);
+		//进行修改已添加商品描述 --1
+		product.setBitPdepict(1);
+		commodDao.updataCommImg(product);
+		
 		return commodDao.addPdepict(pdepict);
 	}
 	/**
@@ -61,6 +65,12 @@ public class CommodServiceImpl implements CommodService {
 			}
 			if(Product.getPdate_to()!=null && Product.getPdate_to().length()>0){
 				hql +=" and p.ptime<= '"+Product.getPdate_to()+"' " ;
+			}
+			if(Product.getPbrand()!=null && Product.getPbrand().length()>0){
+				hql +=" and p.pbrand = '"+Product.getPbrand()+"' " ;
+			}
+			if(Product.getPtype()!=null && Product.getPtype().length()>0){
+				hql +=" and p.ptype = '"+Product.getPtype()+"' " ;
 			}
 		}
 			
@@ -92,9 +102,9 @@ public class CommodServiceImpl implements CommodService {
 	 * 根据商品ID进行查询
 	 */
 	@Override
-	public Product findProductById(String id) {
+	public Product findProductById(Product product) {
 		// TODO Auto-generated method stub
-		return commodDao.findProductById(id);
+		return commodDao.findProductById(product);
 	}
 	
 	/**
@@ -113,11 +123,38 @@ public class CommodServiceImpl implements CommodService {
 		
 		return commodDao.findPdepictById(id);
 	}
+	/**
+	 * 修改图片
+	 */
+	@Override
+	public boolean updataCommImg(Product p) {
+		
+		return commodDao.updataCommImg(p);
+	}
+	/**
+	 * 删除商品	
+	 */
+	@Override
+	public int deleteProductById(String pnos) {
+		return commodDao.deleteProductById(pnos);
+	}
 	
+	/**
+	 * 查询出指定商品描述信息
+	 */
+	@Override
+	public List findPdepictByIdTwo(String id) {
+		// TODO Auto-generated method stub
+		return commodDao.findPdepictByIdTwo(id);
+	}
 	
-	
-	
-	
+	/**
+	 * 修改商品描述信息
+	 */
+	@Override
+	public boolean updataPdepictById(Pdepict pdepict) {
+		return commodDao.updataPdepictById(pdepict);
+	}
 	
 	
 	
@@ -126,6 +163,7 @@ public class CommodServiceImpl implements CommodService {
 	public void setCommodDao(CommodDao commodDao) {
 		this.commodDao = commodDao;
 	}
+	
 	
 	
 

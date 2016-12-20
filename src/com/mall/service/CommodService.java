@@ -17,14 +17,16 @@ public interface CommodService {
 	public PageBean findCommList(PageBean bean, String sql);
 
 	// 分页查询出商品信息
-	public PageBean findAllProductPageBean(PageBean bean,Product Product,String[] msg);
+	public PageBean findAllProductPageBean(PageBean bean, Product Product, String[] msg);
 
 	// 按照id进程商品查询
-	public Product findProductById(String id);
-	// 修改商品
+	public Product findProductById(Product product);
+
 	// 删除商品
-	// 批量删除
-	// 模糊查询
+	public int deleteProductById(String pnos);
+
+	// 修改图片
+	public boolean updataCommImg(Product p);
 
 	// 查询出全部商品
 	public List<Object[]> findAllCommList();
@@ -34,5 +36,11 @@ public interface CommodService {
 
 	// 查询指定商品描述信息;
 	public Pdepict findPdepictById(String id);
+
+	// 查询出某件商品的描述信息
+	public List findPdepictByIdTwo(String id);
+
+	// 修改描述信息
+	public boolean updataPdepictById(Pdepict pdepict);
 
 }
