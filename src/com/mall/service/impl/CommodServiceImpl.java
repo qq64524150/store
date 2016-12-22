@@ -55,6 +55,7 @@ public class CommodServiceImpl implements CommodService {
 	@Override
 	public PageBean findAllProductPageBean(PageBean bean,Product Product,String[] msg) {
 		//desc
+		System.out.println("Service:"+Product.getPtype());
 		String hql = "from Product p where 1=1" ;
 		if(Product!=null){
 			if(Product.getPname()!=null && Product.getPname().length()>0){
@@ -66,9 +67,11 @@ public class CommodServiceImpl implements CommodService {
 			if(Product.getPdate_to()!=null && Product.getPdate_to().length()>0){
 				hql +=" and p.ptime<= '"+Product.getPdate_to()+"' " ;
 			}
+			
 			if(Product.getPbrand()!=null && Product.getPbrand().length()>0){
 				hql +=" and p.pbrand = '"+Product.getPbrand()+"' " ;
 			}
+			
 			if(Product.getPtype()!=null && Product.getPtype().length()>0){
 				hql +=" and p.ptype = '"+Product.getPtype()+"' " ;
 			}

@@ -199,8 +199,8 @@
 		<div style="padding:0 0 0 7px;">
 			查 询 名 称 ： <input class="textbox" name="pname"
 			style="width:110px">
-			查 询 品 牌 ： <input id="cc" name="pbrand" value="请选择" >    
-			国 家 ： <input id="ccgj" name="ptype" value="请选择" >    
+			查 询 品 牌 ： <input id="cc" name="pbrand" value="" >  
+			国 家 ： <input id="ccgj" name="ptype" value="" >
 			时 间 从 ： <input class="easyui-datebox" name="date_from" editable ='false'
 			style="width:110px">
 			到 ： <input class="easyui-datebox" name="date_to" editable ='false'
@@ -242,6 +242,7 @@
 					   	 	<label class='upText'>图片(1): </label> <input type="file" name="ufile" class='pimgImg' id='fileImg1'>点击这里选择图片
 						</a>
 						<span class='clos' id='pimgImg1'></span></div>
+						
 					</div>
 				</form>
 			</div>
@@ -465,10 +466,15 @@
 		obj = {
 			editRow : undefined ,
 			search : function(){
+				
 				$("#comm").datagrid('load',{
+					
 					pname : $.trim($('input[name="pname"]').val()),
 					date_from : $.trim($('input[name="date_from"]').val()),
 					date_to : $.trim($('input[name="date_to"]').val()),
+				/* 	ptype : $.trim($('input[name="ptype"]').val()),
+					pbrand : $.trim($('input[name="pbrand"]').val()), */
+					
 				});
 				
 			},
@@ -1001,6 +1007,7 @@
     	width:100,
     	valueField:'brname',    
     	textField:'brname',
+    	editable: false,    	  //不可编辑
     	onSelect:function(){
     		$("#comm").datagrid('load',{
     			pbrand : $.trim($('input[name="pbrand"]').val()),
@@ -1014,8 +1021,9 @@
 	$('#ccgj').combobox({    
     	url:'<%=basePath%>/countryAction/findAllCountry',   
     	width:100,
-    	valueField:'ptname',    
+    	valueField:'ptdp',    
     	textField:'ptname',
+    	editable: false,    	  //不可编辑
     	onSelect:function(){
     		$("#comm").datagrid('load',{
     			ptype : $.trim($('input[name="ptype"]').val()),

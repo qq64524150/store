@@ -210,6 +210,15 @@ public class CommodityAction {
 		p.setPdate_to(date_to);
 		p.setPbrand(pbrand);
 		p.setPtype(ptype);
+		if("请选择".equals(pbrand)){
+			System.out.println("----请选择1");
+			p.setPbrand(null);
+		}
+		if("请选择".equals(ptype.trim())){
+			System.out.println("----请选择2");
+			p.setPtype(null);
+		}
+		
 		// 封装客户端传过来的数据
 		String[] infoMsg = {sort,order} ;
 		//下一页 & 上一页
@@ -217,6 +226,7 @@ public class CommodityAction {
 		//当前显示的数据
 		pageBean.setShowNum(Integer.parseInt(rows));
 		pageBean = commodService.findAllProductPageBean(pageBean, p,infoMsg);
+		
 		ObjectMapper mapper = new ObjectMapper();
 		String s = mapper.writeValueAsString(pageBean.getShowResult());
 		//进行json拼接
