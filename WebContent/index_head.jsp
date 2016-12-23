@@ -23,11 +23,15 @@
 <style>
 a{
 	color: black;
+	text-decoration:none;
 }
 body{
+	
 	margin: 0px ;
 	padding: 0px ;
 	font-size: 12px ;
+	font-familly:微软雅黑;
+	position: relative;
 }
 #head_one {
 	overflow:hidden;
@@ -196,6 +200,9 @@ li{
 }
 
 /* 商品分类 */
+#type_comm a:HOVER{
+	color: #990000 ;
+}
 #type_comm{
 	
 	position: absolute;
@@ -220,7 +227,6 @@ li{
 .type_comm_2{
 	width: 730px ;
 	height: 490px ;
-	
 	position: absolute;
 	cursor: pointer  ;
 }
@@ -249,10 +255,12 @@ li{
 	
 	text-align:left;
 }
-#type_comm_head_1 span,#type_comm_head_3 a,#type_comm_head_2 a,#type_comm_head_4 span{
+#type_comm_head_1 a,#type_comm_head_3 a,#type_comm_head_2 a,#type_comm_head_4 a{
 	margin-left: 15px ;
 	font-weight: 200 ;
-	color: black;
+	font-size: 13px ;
+	
+	
 }
 
 
@@ -352,22 +360,52 @@ li{
 }
 
 
+/* 设置字体的颜色 */
+.re{
+	
+	background: #FFCC00 ;
+	padding:2px ;
+	
+}
+
+
+/* 分类右边展示 */
+#type_comm_2_right{
+
+	width: 200px ;
+	height:400px ; ;
+	z-index:10000 ;
+	position: absolute;
+	right: 30px ;
+	
+}
+#type_comm_2_right img{
+
+	cursor: pointer ;
+	margin:20px auto ;
+	
+}
+
+
+
+
+
 /* 设置最小宽度 */
-#head_one,#head_w,.DivSize,#daoHao_1{
+#head_one,#head_w,.DivSize,#daoHao_1,body{
 	width: 100%;
 	min-width: 1000px;
 	width: expression_r(document.body.clientWidth < 1000 ? "1200px" : "auto");
 }
 
 /* 设置最大宽度 */
-#head_one,#head_w,.DivSize,#daoHao_1{
+#head_one,#head_w,.DivSize,#daoHao_1,body{
 	width: 100%;
 	max-width: 1400px;
 	width: expression_r(document.body.clientWidth > 1400 ? "1400px" : "auto");
 }
 
 /* 同时设置最大宽度和最小宽度 */
-#head_one,#head_w,.DivSize,#daoHao_1{
+#head_one,#head_w,.DivSize,#daoHao_1,body{
 	width: 100%;
 	min-width: 1300px;
 	max-width: 1400px;
@@ -377,7 +415,7 @@ li{
 </style>
 
 
-<body>
+<body style="margin: 0px auto;">
 	
 	<div id='head_w'>
 		
@@ -454,11 +492,11 @@ li{
 				<div><img src="images/ip.png"/>葡萄酒</div>
 				<div class='type_comm_head_1' id='type_comm_head_2'>
 						<a href="#"> 拉菲 </a>
-						<a href="#">奔富 </a>
+						<a href="#" class='re'>奔富 </a>
 						<a href="#">长城 </a>
 						<a href="#">木桐 </a>
 						<a href="#">小企鹅</a>
-						<a href="#">澜爵 </a>
+						<a href="#" class='re'>澜爵 </a>
 						<a href="#">博若莱</a>
 						
 						
@@ -470,9 +508,9 @@ li{
 				
 				<div class='type_comm_head_1' id='type_comm_head_3'>
 					<a href="#">酒杯</a>
-					<a href="#">开瓶器</a>
+					<a href="#" class='re'>开瓶器</a>
 				 	<a href="#">海马酒刀</a><br>
-					<a href="#">醒酒器</a>
+					<a href="#" class='re'>醒酒器</a>
 					
 					<a href="#">红酒礼盒包装</a>
 				</div>
@@ -500,14 +538,14 @@ li{
 				<div id='type_comm_2_1_1_conter'>
 					<ul>
 						<li>
-							<a href='#'>炫酷品牌日</a>
+							<a href='#' class='re'>炫酷品牌日</a>
 							<a href='#'>清仓特卖</a>
 							
 						</li>
 						<li>
 							<a href="#">各地名酒</a>
-							<a href="#">香型选酒</a>
-							<a href="#">新品会场</a>
+							<a href="#" class='re'>香型选酒</a>
+							<a href="#" class='re'>新品会场</a>
 							<a href="#">宴请用酒</a>
 						</li>
 						<li>
@@ -524,21 +562,21 @@ li{
 						</li>
 						<li>
 							<a href="">华北区</a>
-							<a href="">华中区</a>
+							<a href="" class='re'>华中区</a>
 							<a href="">华南区</a>
 							<a href="">西南区</a>
 							<a href="">华东区</a>
 							
 						</li>
 						<li>
-							<a href="#">洋酒疯抢</a>
+							<a href="#" class='re'>洋酒疯抢</a>
 							<a href="#">整箱特惠</a>
 							<a href="#">高分推荐</a>
 							<a href="#">送礼优选</a>
 						</li>
 						<li>
 							<a href="#">名庄名窖</a>
-							<a href="#">名庄特卖</a>
+							<a href="#" class='re'>名庄特卖</a>
 						</li>
 					</ul>
 					
@@ -566,7 +604,7 @@ li{
 							
 						</li>
 						<li style="height: 60px;" id='leix'>
-							<a href='#'>法国波尔多产区</a>
+							<a href='#' class='re'>法国波尔多产区</a>
 							<a href='#'>法国香槟产</a> 
 							<a href='#'>国勃艮第产区</a>
 							<br>
@@ -621,27 +659,27 @@ li{
 				<div id="type_comm_2_3_2_right">
 					<ul>
 						<li style="height: 40px;" >
-							<a href="#">拉菲 </a>
+							<a href="#" class='re'>拉菲 </a>
 							<a href="#">奔富</a>
 							<a href="#">长城 </a>
 							<a href="#">木桐</a>
-							<a href="#">小企鹅</a>
+							<a href="#" class='re'>小企鹅</a>
 							<a href="#">澜爵 </a>
 							<a href="#">尼雅</a>
 							<a href="#">黄尾袋鼠</a>
 							<a href="#">博若莱</a>
-							<a href="#">智利猫</a>
+							<a href="#" class='re'>智利猫</a>
 							<a href="#">32领域</a>
 							<a href="#">红魔鬼</a>
 						</li>
 						
 						<li>
 							
-							<a href='#'>赤霞珠</a>
+							<a href='#' class='re'>赤霞珠</a>
 							<a href='#'>美乐</a>
 							<a href='#'>霞多丽</a>
 							<a href='#'>西拉</a>
-							<a href='#'>品丽珠</a>
+							<a href='#' class='re'>品丽珠</a>
 							<a href='#'>歌海娜</a>
 							<a href='#'>添帕尼尤</a>
 							<a href='#'>长相思</a>
@@ -657,7 +695,7 @@ li{
 						
 						<li>
 							<a href="#">干白</a>
-							<a href="#">半干白</a>
+							<a href="#" class='re'>半干白</a>
 							<a href="#">甜白</a>
 							<a href="#">半甜白</a>
 							
@@ -667,7 +705,7 @@ li{
 							<a href="#">干红</a>
 							<a href="#">半干红</a>
 							<a href="#">甜红</a>
-							<a href="#">半甜红</a>
+							<a href="#" class='re'>半甜红</a>
 							
 							
 						</li>
@@ -699,13 +737,13 @@ li{
 				<div id="type_comm_2_4_2_conent">
 					<ul>
 						<li style="height: 50px ;">
-							<a href="#">酒杯</a>
+							<a href="#" >酒杯</a>
 							<a href="#">开瓶器</a>
-							<a href="#">红酒礼盒包装</a>
+							<a href="#" class='re'>红酒礼盒包装</a>
 							<a href="#">醒酒器</a>
 							<a href="#">海马酒刀</a>
 							<a href="#">香槟杯</a><br>
-							<a href="#">直身杯</a>
+							<a href="#" class='re'>直身杯</a>
 							<a href="#">水晶高脚杯</a>
 							<a href="#">鸡尾酒杯</a>
 							<a href="#">烈酒杯</a>
@@ -723,7 +761,7 @@ li{
 							<a href="#">滇红凤牌</a>
 							<a href="#">南国公主</a>
 							<a href="#">传奇会</a>
-							<a href="#">八马茶业</a>
+							<a href="#" class='re'>八马茶业</a>
 						</li>
 						<li>
 							<a href="#">茶壶 </a>
@@ -733,7 +771,7 @@ li{
 							<a href="#">西班牙火腿切片</a>
 							<a href="#">泰国金枪鱼罐头</a>
 							<a href="#">西班牙意面乐享装</a><br>
-							<a href="#">伊比利亚前腿切片</a>
+							<a href="#" class='re'>伊比利亚前腿切片</a>
 							<a href="#">伊比利亚火腿切片</a>
 							<a href="#">加拿大必美蜂蜜</a><br>
 							<a href="#">哥氏卡布奇诺咖啡</a>
@@ -751,7 +789,10 @@ li{
 		
 	</div>
 	
-	
+	<!-- 这是右边 -->
+	<div id='type_comm_2_right'>
+		<img src="images/index_head_reght.png">
+	</div>
 	
 	
 </body>
@@ -761,6 +802,7 @@ li{
 	$.get("<%=basePath%>navigationBarAction/findAllNavigationBar","",function(data){
 		//alert(data)
 		$.each(data,function(i,o){
+			
 			var $ul ="<ul>" ;
 				$ul += "<li style='width:210px;'><span class='glyphicon glyphicon-list' style='font-size:13px;'></span> "+o.nAllCommType+"</li>" ;
 				$ul += "<li class='ulLi'>"+o.nIndex+"</li>" ;
@@ -772,6 +814,7 @@ li{
 				$ul +="</ul>"; 
 				
 				$("#daoHao_1").append($ul);
+				
 		});
 		
 	});
@@ -779,10 +822,14 @@ li{
 	$.get("<%=basePath%>/brandAction/findAllBrand","",function(data){
 	
 		$.each(data,function(i,o){
-			var $pp = "<span>"+o.brname+"</span>" ;
+			var $pp = "<a href=''>"+o.brname+"</a>" ;
 			
 			if(i==2){
+				
 				$pp += "<br/>" ;
+			}
+			if(i==3){
+				$pp = "<a href='' class='re'>"+o.brname+"</a>" ;
 			}
 			$("#type_comm_head_1").append($pp) ;
 			if(i==4){
@@ -797,9 +844,10 @@ li{
 	$.get("<%=basePath%>/brandAction/findAllBrand","",function(data){
 	
 		$.each(data,function(i,o){
-			var $pp = "<span>"+o.brname+"</span>" ;
+			var $pp = "<a href=''>"+o.brname+"</a>" ;
 			
 			if(i==2){
+				$pp = "<a href='' class='re'>"+o.brname+"</a>" ;
 				$pp += "<br/>" ;
 			}
 			$("#type_comm_head_4").append($pp) ;
@@ -815,7 +863,7 @@ li{
 	 $.get("<%=basePath%>/countryAction/findAllCountry","",function(data){
 	
 		$.each(data,function(i,o){
-			var $pp = "<span>"+o.ptname+"</span>" ;
+			var $pp = "<a href='#'>"+o.ptname+"</a>" ;
 			
 			if(i==2){
 				$pp += "<br/>" ;
@@ -841,6 +889,15 @@ li{
 			if(i==15){
 				$pp += "<br/>" ;
 			}
+			if(i==3){
+				$pp = "<a href='' class='re'>"+o.ptname+"</a>" ;
+			}
+			if(i==14){
+				$pp = "<a href='' class='re'>"+o.ptname+"</a>" ;
+			}
+			if(i==18){
+				$pp = "<a href='' class='re'>"+o.ptname+"</a>" ;
+			}
 			$("#gjia").append($pp) ;
 			
 		});
@@ -856,6 +913,13 @@ li{
 			if(i==13){
 				$pp += "<br/>" ;
 			}
+			if(i==3){
+				$pp = "<a href='' class='re'>"+o.ptname+"</a>" ;
+			}
+			if(i==10){
+				$pp = "<a href='' class='re'>"+o.ptname+"</a>" ;
+			}
+			
 			$("#ppj").append($pp) ;
 			
 		});
@@ -880,6 +944,19 @@ li{
 			if(i==30){
 				$pp +="<br>" ;
 			}
+			if(i==4){
+				$pp = "<a href='' class='re'>"+o.brname+"</a>" ;
+			}
+			if(i==20){
+				$pp = "<a href='' class='re'>"+o.brname+"</a>" ;
+			}
+			if(i==15){
+				$pp = "<a href='' class='re'>"+o.brname+"</a>" ;
+			}
+			if(i==3){
+				$pp = "<a href='' class='re'>"+o.brname+"</a>" ;
+			}
+			
 			
 			$("#type_pp").append($pp) ;
 		});

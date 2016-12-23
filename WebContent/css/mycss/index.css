@@ -1,69 +1,263 @@
 /* 设置默认值 */
-body ,div, ul, li, img,p,span{
-	
-	margin:0px;
-	padding:0px ;
-	list-style:none ;
-	
-}
-a{
-	border:0 ;
-	text-decoration:none ;
-	color:black ;
-}
-html{
-	font-size:14px ;
-	
+body {
+	position: relative;
+	font-size: 12px;
+	font-familly: 微软雅黑;
 }
 
+body, div, ul, li, img, p, span {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
 
+a {
+	border: 0;
+	text-decoration: none;
+	color: black;
+}
 
+html {
+	font-size: 14px;
+}
 
 /* 图片轮播布局开始 */
-#imgages{
-	overflow:hidden;
-	height: 500px ;
-	
-	
+#imgages {
+	overflow: hidden;
+	height: 500px;
 }
-#imgages img{
+
+#imgages img {
 	/* //width: 1400px ; */
-	height: 480px ;
+	height: 480px;
+}
+
+/* 中间开始 */
+#index_conter {
+	width: 100%;
+	height: 400px;
+	overflow: hidden;
+}
+
+#index_coter_1 {
+	width: 100%;
+	margin-top: -10px;
+}
+
+/* 中 -- 左开始 */
+#index_coter_left {
+	width: 210px;
+	height: 400px;
+	background: #fff;
+	float: left;
+	/* margin-left: 90px; */
+}
+
+/* 鼠标经过事件 */
+.index_jinguo {
+	background: #fff;
+}
+
+/* 中-- 右开始 */
+#index_conter_right {
+	width: 980px;
+	height: 400px;
+	float: left;
+	
+}
+/* 左边 框图 */
+#left_img{
+	width: 90px ;
+	height: 400px ;
+	float: left;
+	overflow: hidden;
+}
+#left_img2{
+	width: 69px ;
+	height: 400px ;
+	float: left;
+	overflow: hidden;
+}
+#left_img img,#left_img2 img{
+	margin-left: -400px ;
+	
 }
 
 
+/* 二级导航栏开始 */
+/* #index_conter_right_head{
+	
+	background: #125 ;
+	widows: 100% ;
+	height: 70px ;
+	
+}
+#index_conter_right_boot{
+	width: 980px ;
+	height: 330px ;
+	background: #888 ;
+}
 
+
+#index_conter_right_head ul li{
+	height: 70px ;
+	width: 196px ;
+	float: left ;
+	
+} */
+
+/* 图片展示 样式*/
+/* .index_conter_right_boot_bidyImg{
+	margin:0px auto ;
+	width: 900px ;
+	background: #902 ;
+	height: 330px ;
+	position: relative;
+	
+} */
+.commImg {
+	background: #fff;
+	width: 980px;
+	height: 330px;
+}
+
+#idNum {
+	margin-top: -10px;
+}
+#index_conter_right_1{
+	width: 980px;
+	height: 60px;
+	background: #FFE4E1;
+}
+#idNum li {
+	cursor: pointer;
+	width: 196px;
+	height: 60px;
+	float: left;
+	border-left: 2px #fff solid;
+}
+
+#idTransformView {
+	width: 980px;
+	position: relative;
+	height: 330px;
+	margin: 0px auto;
+	border-top: 3px #CD0000 solid;
+	background: #fff;
+}
+
+.hdnum li.on {
+	padding: 0;
+	background-color: #CC0000;
+	width: 63px;
+	color: #fff;
+}
+
+/* 这是二级导航栏 */
+.hean_index {
+	width: 196px;
+	height: 40px;
+	text-align: center;
+	font-size: 17px;
+	font-weight: 600;
+	line-height: 40px;
+}
+
+.head_index_tile {
+	width: 196px;
+	height: 20px;
+	text-align: center;
+	margin-top: -5px;
+	font-size: 13px;
+	color: #CDC0B0;
+}
+
+.commImg li {
+	width: 180px;
+	height: 320px;
+	float: left;
+	background: #444;
+	margin: 10px auto;
+	margin-left: 13px;
+}
+/* 这是上图片 */
+#index_left_img {
+	
+	width: 210px;
+	height: 240px;
+	
+}
+/* 这是公告 */
+#index_left_gg {
+	width: 210px;
+	height: 160px;
+	
+}
+#index_left_gg{
+	margin: -10px auto;
+	
+}
+#index_left_gg_1{
+	width: 210px;
+	height: 30px ;
+	background: #F2F2F2;
+	color: #8B1A1A ;
+	cursor: pointer ;
+}
+#index_left_gg_1 ul li{
+	
+	text-align:center;
+	width: 105px ;
+	height: 30px ;
+	float:left;
+	line-height:30px ;
+	font-size: 15px ;
+}
+
+.top_left{
+	z-index: 1 ;
+	
+}
+#test_left{
+	margin-top: -10px ;
+}
+#test_left ul li{
+	width: 210px;
+	height: 130px ;
+	background: #fff ;
+	position: absolute;
+}
 
 /* ************************************************************** */
 /* ************************************************************** */
 /* ************************************************************** */
 
+/* 小图片轮播样式 */
+
+
+/* ************************************************************** */
+/* ************************************************************** */
+/* ************************************************************** */
 
 /* 设置最小宽度 */
-#head_one,#head_w,.DivSize,#imgages  {
+#head_one, #head_w, .DivSize, #imgages, body,#index_conter {
 	width: 100%;
 	min-width: 1000px;
 	width: expression_r(document.body.clientWidth < 1000 ? "1200px" : "auto");
 }
 
 /* 设置最大宽度 */
-#head_one,#head_w,.DivSize,#imgages {
+#head_one, #head_w, .DivSize, #imgages, body,#index_conter {
 	width: 100%;
 	max-width: 1400px;
 	width: expression_r(document.body.clientWidth > 1400 ? "1400px" : "auto");
 }
 
 /* 同时设置最大宽度和最小宽度 */
-#head_one,#head_w,.DivSize,#imgages {
+#head_one, #head_w, .DivSize, #imgages, body,#index_conter {
 	width: 100%;
 	min-width: 1300px;
 	max-width: 1400px;
 	width: expression_r(Math.max ( 1200, Math.min ( 1200, document.body.offsetWidth
 		* 0.99))+"px");
 }
-
-
-
-
-
- 
