@@ -228,11 +228,245 @@ html {
 	position: absolute;
 }
 
-/* ************************************************************** */
-/* ************************************************************** */
-/* ************************************************************** */
 
-/* 小图片轮播样式 */
+#indexBulletin{
+	margin-top:10px ;
+	width: 100% ;
+	height: 76px ;
+	background: #777 ;
+	
+}
+
+/* 这是热门推荐 */
+.rmtj{
+	margin-top:10px ;
+	background: #fff ;
+	width: 100%;
+	height: 680px ;
+	
+}
+
+/* 这是热门推荐头 */
+.rmtj_head img {
+	margin-left: 25px ;
+	
+}
+.rmtj_head{
+	width: 100% ;
+	height:40px ;
+	font-size:17px ;
+	font-weight:600 ;
+	line-height:40px ;
+	border-bottom: 2px #990000 solid;
+	color: #660000;
+	
+}
+
+.gengd{
+	float: right;
+	margin-right: 30px ;
+	font-size: 15px ;
+	font-weight: 200 ;
+	color: #9966FF ;
+}
+
+/* 这是热门推荐左边 */
+.rmtj_left{
+	width: 1010px ;
+	height: 640px ;
+	float: left;
+	margin-left: 30px ;
+}
+.rmtj_left ul li{
+	background: #765 ;
+	width: 190px ;
+	height:300px ;
+	float: left;
+	margin-left: 10px ;
+	margin-top: 10px ; 
+	
+	
+}
+
+
+
+
+
+
+/* 这是热门推荐右边 */
+.rmtj_right{
+	width: 249px ;
+	height: 640px ;
+	float: left;
+	margin-left:0px;
+}
+
+.rmtj_right_1,.rmtj_right_zu1{
+	width: 249px ;
+	height: 170px ;
+	background: #fff ;
+	margin-top: 20px ;
+}
+
+.rmtj_right_2,.rmtj_right_zu2{
+	width: 249px ;
+	height: 450px ;
+	background: #fff ;
+	
+}
+
+/* 这是葡萄酒酒馆 */
+
+/* 这是葡萄酒酒馆 头 */
+
+
+/* 这是葡萄酒酒馆 左边 */
+.rmtj_left_zu1 {
+	margin-top:-10px ;
+	width: 249px ;
+	height: 640px ;
+	float: left;
+	
+	margin-left: 40px ;
+	
+}
+
+
+/* 这是葡萄酒酒馆 右边 */
+
+.rmtj_right_zu{
+	width: 1010px ;
+	height: 640px ;
+	float: left;
+	
+}
+.rmtj_right_zu ul li{
+	background: #765 ;
+	width: 190px ;
+	height:300px ;
+	float: left;
+	margin-left: 10px ;
+	margin-top: 10px ; 
+}
+
+/* 这是品牌推荐 */
+#pingph{
+	
+	width: 100% ;
+	height: 500px ;
+	background: #fff ;
+	
+}
+
+#pingph_2{
+	
+	width: 1300px ;
+	height: 260px ;
+	margin:0px auto ;
+	margin-top: -50px ;
+}
+#pingph_3{
+	
+	background: #fff ;
+	width: 1170px ;
+	height: 120px ;
+	margin: 0px auto;
+	line-height: 120px ;
+	border: 1px  #FAFAD2 solid;
+	
+}
+/* #pingph_3 div{
+	margin-left: 10px ;
+	
+} */
+#pingph_3 div {
+	margin-top:5px ;
+	cursor: pointer;
+	width: 230px ;
+	height: 110px ;
+	float: left;
+	overflow: hidden;
+}
+
+
+.pimg{
+	position: relative;
+	left: 0px ;
+}
+
+
+/* 这是底部 */
+
+#boot_zu{
+	margin-top:-70px ;
+	width: 100% ;
+	height: 350px ;
+	background: #FFFAF0 ;
+	border-top: 1px #F0F0F0 solid;
+	
+}
+
+#boot_zu_1{
+	margin:0px auto ;
+	width: 1280px ;
+	height: 90px ;
+	border-bottom: 2px #CC0000 solid;
+	margin-bottom: 40px ;
+	
+	
+}
+#boot_zu_1 ul li{
+	width:200px ;
+	height:80px ;
+	float: left;
+	font-size: 20px ;
+	font-weight: 900 ;
+	line-height: 80px ;
+	color: #CC0000 ;
+	
+}
+
+#boot_zu_2_1 p{
+	font-size: 12px ;
+	margin-left: 35px ;
+}
+#boot_zu_2_1 b{
+	font-size: 15px ;
+}
+#boot_zu_2{
+	margin:0px auto ;
+	width: 1100px ;
+	height: 220px ;
+	
+}
+
+#boot_zu_2_1{
+	
+	width: 900px ;
+	height: 220px ;
+	float: left;
+}
+
+#boot_zu_2_1 ul li{
+	width: 130px ;
+	height: 200px ;
+	
+	margin-left: 10px ;
+	float: left;
+	
+}
+
+
+#boot_zu_2_2{
+	
+	width: 200px ;
+	height:200px ;
+	
+	float: left;
+	
+}
+
+
 
 
 /* ************************************************************** */
@@ -240,21 +474,21 @@ html {
 /* ************************************************************** */
 
 /* 设置最小宽度 */
-#head_one, #head_w, .DivSize, #imgages, body,#index_conter {
+#head_one, #head_w,.DivSize, #imgages, body,#index_conter,#rmtj {
 	width: 100%;
 	min-width: 1000px;
 	width: expression_r(document.body.clientWidth < 1000 ? "1200px" : "auto");
 }
 
 /* 设置最大宽度 */
-#head_one, #head_w, .DivSize, #imgages, body,#index_conter {
+#head_one, #head_w,.DivSize, #imgages, body,#index_conter,#rmtj {
 	width: 100%;
 	max-width: 1400px;
 	width: expression_r(document.body.clientWidth > 1400 ? "1400px" : "auto");
 }
 
 /* 同时设置最大宽度和最小宽度 */
-#head_one, #head_w, .DivSize, #imgages, body,#index_conter {
+#head_one, #head_w,.DivSize, #imgages, body,#index_conter,#rmtj{
 	width: 100%;
 	min-width: 1300px;
 	max-width: 1400px;

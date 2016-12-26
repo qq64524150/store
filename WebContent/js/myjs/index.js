@@ -1,4 +1,21 @@
 $(function(){
+	/**
+	 * 这是图片移动效果
+	 */
+	$("#pingph_3 div").mouseover(function(){
+		var indeximgs = $(this).index();
+		//alert("-- "+$(".pimg").length);
+		//先把所有的效果清0
+		$(".pimg").animate({'left':'0px'});
+		//向右移动
+		$(".pimg").eq(indeximgs).animate({'left':'-90px'});
+	});
+	
+	
+	
+	/*
+	 * 这是公告
+	 * */
 	$("#index_left_gg ul li").mouseover(function(){
 		
 		var index = $(this).index();
@@ -7,25 +24,7 @@ $(function(){
 		
 		$("#test_left ul li").removeClass("top_left");
 		$("#test_left ul li").eq(index).addClass("top_left");
-		/*if(index==0){
-			$(".index_conter_right_boot_bidyImg").eq(0).animate({top:'0px'});
-		}
-		if(index==1){
-			$(".index_conter_right_boot_bidyImg").eq(1).animate({top:'-330px'});
-		}
-		
-		if(index==2){
-			$(".index_conter_right_boot_bidyImg").eq(2).animate({top:'-660px'});
-		}
-		if(index==3){
-			$(".index_conter_right_boot_bidyImg").eq(3).animate({top:'-990px'});
-		}
-		if(index==4){
-			$(".index_conter_right_boot_bidyImg").eq(4).animate({top:'-1320px'});
-		}*/
-		
-		
-		
+	
 		
 		/* 	
 		 * 		动画效果

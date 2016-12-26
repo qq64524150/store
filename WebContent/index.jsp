@@ -24,7 +24,7 @@
 <script src="<%=basePath %>js/myjs/index.js"></script>
 <link rel="stylesheet"href="js/dist/pageSwitch.min.css">
 <link rel="stylesheet" type="text/css" href="<%=basePath %>css/mycss/index.css">
-
+<script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript">
 jQuery(function($){
 $(window).load(function() {
@@ -42,17 +42,25 @@ $(window).load(function() {
 });
 </script>
 <style>
-#container {
+#container{
 	width: 100%;
 	height: 240px;;
 	overflow: hidden;
 }
+#container2,#container3,#container4,#container5 {
+	width: 100%;
+	height: 450px;;
+	overflow: hidden;
+}
 
-.sections, .section {
+
+.sections, .section{
 	height: 100%;
 }
 
-#container, .sections {
+
+
+#container, .sections,#container2,#container3,#container4,#container5 {
 	position: relative;
 }
 
@@ -267,6 +275,7 @@ $(window).load(function() {
 						  <div style="POSITION: relative">
 						  		
 						  		<div class='commImg'>
+						  		
 						 			<ul>
 						 				<li></li>
 						 				<li></li>
@@ -289,7 +298,315 @@ $(window).load(function() {
 		
 	</div>
 	
+	<!-- 这是公告图 -->
+	<div id="indexBulletin">
+		
+	</div>
+	
+	<!-- 这是热门推荐 -->
+	<div class='rmtj' class='DivSize'>
+		<!-- 这是热门推荐头 -->
+		<div class='rmtj_head'>
+			  <span> <img alt="" src="images/jiant.png"></span> 热门推荐
+			  <a href="#"><span class='gengd'>更多>></span></a>
+		</div>
+		
+		<!-- 这是热门推荐头左边 -->
+		<div class='rmtj_left'>
+			<div class='rmtj_left_1'>
+				 <ul>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 </ul>
+			</div>
+			
+		</div>
+		
+		<!-- 这是热门推荐头右边 -->
+		<div class='rmtj_right'>
+			<div class='rmtj_right_1'></div>
+			
+			<div class='rmtj_right_2'>
+				<!-- 这是热门推荐的图片轮播 -->
+				<div id="container2">
+					<div class="sections">
+						<div class="section" id="section0"><h3></h3></div>
+						<div class="section" id="section1"><h3></h3></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 这是葡萄酒馆 -->
+	<div class='rmtj'>
+		<!-- 这是葡萄酒馆头 -->
+		<div class='rmtj_head' style="border-bottom: 2px #0066CC solid;">
+			  <span> <img alt="" src="images/jiant.png"></span> 葡萄酒馆
+			  <a href="#"><span class='gengd'>更多>></span></a>
+		</div>
+		
+		<!-- 这是葡萄酒馆头左边 -->
+		<div class='rmtj_left_zu'>
+			<div class='rmtj_left_zu1'>
+			
+				<div class='rmtj_right_zu1'>
+					<!-- 这是葡萄酒的图片轮播 -->
+					<div id="container3">
+						<div class="sections">
+							<div class="section" id="section0"><h3></h3></div>
+							<div class="section" id="section1"><h3></h3></div>
+						</div>
+					</div>
+				</div>
+			
+				<div class='rmtj_right_zu2'></div>
+				
+			</div>
+			
+		</div>
+		
+		<!-- 这是葡萄酒馆头右边 -->
+		<div class='rmtj_right_zu'>
+			 <ul>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 </ul>
+		</div>
+	</div>
+	
+	
+	<!-- 这是洋酒 -->
+	<div class='rmtj' class='DivSize'>
+		<!-- 这是洋酒头 -->
+		<div class='rmtj_head' style="border-bottom: 2px #009900 solid;">
+			  <span> <img alt="" src="images/jiant.png"></span>洋酒馆
+			  <a href="#"><span class='gengd'>更多>></span></a>
+		</div>
+		
+		<!-- 这是洋酒左边 -->
+		<div class='rmtj_left'>
+			<div class='rmtj_left_1'>
+				 <ul>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 </ul>
+			</div>
+			
+		</div>
+		
+		<!-- 这是洋酒右边 -->
+		<div class='rmtj_right'>
+			<div class='rmtj_right_1'></div>
+			
+			<div class='rmtj_right_2'>
+				<!-- 这是葡萄酒的图片轮播 -->
+				<div id="container4">
+					<div class="sections">
+						<div class="section" id="section0"><h3></h3></div>
+						<div class="section" id="section1"><h3></h3></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 这是啤酒，养生酒 -->
+	<div class='rmtj'>
+		<!-- 这是啤酒，养生酒头 -->
+		<div class='rmtj_head' style="border-bottom: 2px #7A67EE solid;">
+			  <span> <img alt="" src="images/jiant.png"></span> 啤酒&养生酒馆
+			  <a href="#"><span class='gengd'>更多>></span></a>
+		</div>
+		
+		<!-- 这是啤酒，养生酒左边 -->
+		<div class='rmtj_left_zu'>
+			<div class='rmtj_left_zu1'>
+			
+				<div class='rmtj_right_zu1'>
+					<!-- 这是啤酒，养生酒的图片轮播 -->
+					<div id="container5">
+						<div class="sections">
+							<div class="section" id="section0"><h3></h3></div>
+							<div class="section" id="section1"><h3></h3></div>
+						</div>
+					</div>
+				</div>
+			
+				<div class='rmtj_right_zu2'></div>
+				
+			</div>
+			
+		</div>
+		
+		<!-- 这是啤酒，养生酒右边 -->
+		<div class='rmtj_right_zu'>
+			 <ul>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 	<li></li>
+				 </ul>
+		</div>
+	</div>
+	
+	<!-- 这是品牌展示 -->
+	<div id='pingph' class='DivSize'>
+		
+		<!-- 这是品牌展示头 -->
+		<div class='rmtj_head' style="border-bottom: 2px #330000 solid;">
+			  <span> <img alt="" src="images/jiant.png"></span> 品牌展示区
+			  <a href="#"><span class='gengd'>更多>></span></a>
+		</div>
+		
+		<!-- 这是品牌展示尾 -->
+		
+		<div id='pingph_2'>
+			
+			<div class="wrap">
+				<div class="pic1 pic">
+				</div>
+				<div class="pic2 pic">
+				</div>
+				<div class="pic3 pic">
+				</div>
+				<div class="pic4 pic">
+				</div>
+				<div class="pic5 pic">
+				</div>
+				<div class="pic6 pic">
+				</div>
+			</div>
+		</div>
+		
+		<!-- 这是第二列 -->
+		<div id='pingph_3'>
+			<div><p class='pimg'><img alt="" src="images/tj_2_01.jpg"></p></div>
+			<div><p class='pimg'><img alt="" src="images/tj_2_02.jpg"></p></div>
+			<div><p class='pimg'><img alt="" src="images/tj_2_03.JPG"></p></div>
+			<div><p class='pimg'><img alt="" src="images/tj_2_04.jpg"></p></div>
+			<div><p class='pimg'><img alt="" src="images/tj_2_05.jpg"></p></div>
+		</div>
+	</div>
+	
 	<!-- 底部 -->
+	
+	<div id='boot_zu' class='DivSize'>
+		
+		<div id="boot_zu_1">
+			<ul>
+				<li style="margin-left: 30px;">
+					本酒坊承诺
+				</li>
+				<li>
+					<img alt="" src="images/boot_01.png"> 慢就返
+				</li>
+				<li><img alt="" src="images/boot_02.png"> 免运费</li>
+				<li><img alt="" src="images/boot_03.png"> 恒温恒湿仓</li>
+				<li><img alt="" src="images/boot_04.png"> 正品保障</li>
+				<li><img alt="" src="images/boot_05.png"> 30天退换货</li>
+				
+			</ul>
+		</div>
+		<div id="boot_zu_2">
+			
+			<div id="boot_zu_2_1">
+				<ul>
+					<li>
+						<b><img src="images/newxx.png"/> 新手入门</b>
+						
+						<p><a href="#">购物保障</a> </p>
+						<p><a href="#">服务协议</a></p>
+						<p><a href="#">发票说明</a></p>
+					</li>
+					<li>
+						<b><img src="images/cjxx.png"/> 常见问题</b>
+						<p><a href="#">红包使用</a> </p>
+						<p><a href="#">服务协议</a></p>
+						<p><a href="#">兑换码</a></p>
+						
+					</li>
+					<li>
+						<b><img src="images/psxx.png"/> 配送说明</b>
+						<p><a href="#">配送时间</a> </p>
+						<p><a href="#">配送费用</a></p>
+						<p><a href="#">配送范围</a></p>
+					</li>
+					<li>
+
+						<b><img src="images/zfxx.png"/> 支付方式</b>
+						<p><a href="#">货到付款</a> </p>
+						<p><a href="#">在线支付</a></p>
+						<p><a href="#">线下支付</a></p>
+					</li>
+					<li>
+
+						<b><img src="images/ffxx.png"/> 售后服务</b>
+						<p><a href="#">品质保证</a> </p>
+						<p><a href="#">退换货政策</a></p>
+						<p><a href="#">退换货流程</a></p>
+						
+					</li>
+					<li>
+
+						<b><img src="images/tsxx.png"/> 特色服务</b>
+						<p><a href="#">会员俱乐部</a> </p>
+						<p><a href="#">企业客户</a></p>
+						<p><a href="#">酒坊社区</a></p>
+						
+					</li>
+				</ul>
+				
+			</div>
+			<div id="boot_zu_2_2">
+				<ul>
+					<li style="font-size: 18px ;font-weight: 600;">格兰蒂官方微信</li>
+					<li style="margin-top: 5px ;">关注微信，更多优惠触手可及。</li>
+					<li style="margin-top: 10px ;">
+						<img alt="" src="images/erw.png" style="width: 120px;height: 120px; ">
+					</li>
+				</ul>
+			</div>
+			
+		</div>
+		
+	</div>
+	
+	<div>
+		<div style="text-align: center;">
+			<c:import url="bottom.jsp"/>
+		</div>
+	</div>
 	
 <script src="js/dist/pageSwitch.min.js"></script>	
 </body>
@@ -305,7 +622,14 @@ $(window).load(function() {
 		autoPlay:true,
 		loop:'false'
 	});
-</script>
-  	
+  	/* 这是商品类型介绍的图片轮播 */
+	$("#container2,#container3,#container4,#container5").PageSwitch({
+		direction:'horizontal',
+		easing:'ease-in',
+		duration:1000,
+		autoPlay:true,
+		loop:'false'
+	});
+	
   </script>
 </html>
