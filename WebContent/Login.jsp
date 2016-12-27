@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="images/title.png" rel="shortout icon"/>
+<link href="<%=basePath %>images/title.png" rel="shortout icon"/>
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link rel="stylesheet"
 	href="<%=basePath%>/bootstrapcss/bootstrap.min.css">
@@ -127,8 +127,9 @@
 		</div>
 	</div>
 	<!-- 导入底部页面 -->
-	<c:import url="bottom.jsp"></c:import>
-
+	<div style="width: 1300px;text-align: center;">
+		<c:import url="bottom.jsp"></c:import>
+	</div>
 	<!-- <img alt="" src="tovcode/vocde">
 	 -->
 	<!-- 加载另一 个页面 -->

@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="images/title.png" rel="shortout icon"/>
+<link href="<%=basePath %>images/title.png" rel="shortout icon"/>
 <script src="<%=basePath%>/jquery/jquery-2.2.3.min.js"></script>
 <link rel="stylesheet"
 	href="<%=basePath%>/bootstrapcss/bootstrap.min.css">
@@ -27,7 +27,7 @@
 
 	<div id="zhongjian">
 		<div id="zhong_one">
-			<img alt="" src="images/zc_bg.png">
+			<img alt="" src="<%=basePath %>images/zc_bg.png">
 		</div>
 		
 		<div id="zc">
@@ -36,7 +36,7 @@
 					<span id="tou_left">快速注册</span>
 				</div>
 				<div>
-					<span id="tou_right">已经有账号？请点击<a href="Login.jsp">这里</a></span>
+					<span id="tou_right">已经有账号？请点击<a href="<%=basePath %>Login.jsp">这里</a></span>
 				</div>
 				<hr />
 				<div id="zhuti">
@@ -91,16 +91,18 @@
 
 						<div id="tiaoKunag" class="reg" style="display: none;"></div>
 
-						<input type="button" value="立即注册" id="tijiao" />
+						<input type="button" value="立即注册" id="tijiao" style="cursor:pointer;"/>
 
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 导入底部页面 -->
-	<c:import url="bottom.jsp"></c:import>
-
+	
+	<div style="width: 1300px ;text-align: center;">
+		<!-- 导入底部页面 -->
+		<c:import url="bottom.jsp"></c:import>
+	</div>
 	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 	<script src="<%=basePath%>/jquery/jquery-2.2.3.min.js"></script>
 	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->

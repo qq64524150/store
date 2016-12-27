@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 
 <style>
 	#head_one{
@@ -30,10 +34,10 @@
 
 <div id="head_one">
 	<div id="head_left">
-		<img alt="" src="images/logo.png">
+		<img alt="" src="<%=basePath%>/images/logo.png">
 	</div>
 	<div id="head_reght">
-		<img alt="" src="images/head_right.jpg">
+		<img alt="" src="<%=basePath%>/images/head_right.jpg">
 	</div>
 </div>
 

@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <style>
 	#bottom_one div {
 		margin-top: 5px;
@@ -64,10 +69,10 @@
 	
 	
 	<div id="bottom_five">
-		<a href="#"><img alt="" src="images/cnnic.png"></a>
-		<a href="#"><img alt="" src="images/copyBot03.jpg"></a>
-		<a href="#"><img alt="" src="images/copyBot04.jpg"></a>
-		<a href="#"><img alt="" src="images/copyBot05.jpg"></a>
+		<a href="#"><img alt="" src="<%=basePath %>images/cnnic.png"></a>
+		<a href="#"><img alt="" src="<%=basePath %>images/copyBot03.jpg"></a>
+		<a href="#"><img alt="" src="<%=basePath %>images/copyBot04.jpg"></a>
+		<a href="#"><img alt="" src="<%=basePath %>images/copyBot05.jpg"></a>
 	</div>
 	<div id="bottom_six">
 		<span>购买前请确认达到法定饮酒年龄！酒仙网不销售任何含酒精产品给18岁以下人士！</span>

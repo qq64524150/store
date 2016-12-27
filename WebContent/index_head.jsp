@@ -104,27 +104,87 @@ body{
 
 /* 头开始 */
 #head_w{
-	background: #FFFAFA ;
+	background: #F5F5DC ;
 	width:100%;
 	height: 28px;
 	color: #D6D6D6;
 	overflow:hidden;
+	position: relative;
+	z-index: 1000 ;
 	
+}
+#head_w_left a{
+	color: #D6D6D6;
+}
+#head_w_left a:HOVER{
+	color: #CC0000;
 }
 #head_w_left{
 	float: left;	
 	line-height: 28px ;
 	margin-left: 25px ;
 }
+
 #head_w_left span{
 	margin-left: 10px ;
 }
+
 #head_w_riget{
-	width: 650px ;
+	width: 720px ;
 	height:25px ;
 	float: right;
-	margin-right: -80px ;
+	margin-right: -40px ;
+	cursor: pointer ;
 }
+
+#head_w_riget ul li a:HOVER{
+	color: #CC0000;
+}
+
+#head_w_riget ul li{
+	text-align:center;
+	width: 86px ;
+}
+
+#head_w_riget a{
+	color: #D6D6D6;
+}
+
+#head_gg_daoh a:HOVER{
+	color: #CC0000;
+}
+
+/* 经过背景颜色 */
+.head_gg_jinguo{
+	background: #fff ;
+}
+
+/* 显示 */
+.head_gg_xians{
+	display: block;
+}
+
+/* 隐藏 */
+.head_gg_yinc{
+	display: none;
+}
+
+.head_gg_daoh{
+	width:100%;
+	height:90px ;
+	border-bottom: 1px #EEEED1 solid;
+}
+.head_gg_daoh a{
+	margin-top: 10px ;
+	margin-left: 20px ;
+}
+
+#erwm_1 img{
+	width: 86px ;
+	height: 86px ;
+}
+
+
 /* li 取消点 */
 li{
 	list-style-type:none;
@@ -153,7 +213,7 @@ li{
 /* 导航开始 */
 #daoHao_1{
 	width: 100% ;
-	height: 33px ;
+	height: 38px ;
 	background: #990000;
 	overflow: hidden;
 }
@@ -178,7 +238,7 @@ li{
 	float: left;
 	width: 140px ;
 	height: 100% ;
-	line-height: 33px ;
+	line-height: 38px ;
 	text-align:center;
 	font-size:15px ;
 	color:#fff ;
@@ -246,8 +306,6 @@ li{
 	margin-left: 6px ;
 }
 
-
-
 .type_comm_head_1{
 	cursor: pointer  ;
 	width: 210px ;
@@ -259,11 +317,7 @@ li{
 	margin-left: 15px ;
 	font-weight: 200 ;
 	font-size: 13px ;
-	
-	
 }
-
-
 
 /* 这是 */
 .z-index_right1{
@@ -386,10 +440,6 @@ li{
 	
 }
 
-
-
-
-
 /* 设置最小宽度 */
 #head_one,#head_w,.DivSize,#daoHao_1,body{
 	width: 100%;
@@ -421,31 +471,117 @@ li{
 		
 		<div id='head_w_left'>
 		    <span>欢迎来到格兰蒂！</span>
-			<span>请<a>登录</a></span>
-			<span><a>免费注册</a></span>
+			<span>请<a href="<%=basePath%>/Login.jsp">登录</a></span>
+			<span><a href="<%=basePath%>/register.jsp">免费注册</a></span>
 		</div>
 
 	   <div id='head_w_riget'>
+	   
 	   		<ul >
-		    <li>我的酒坊</li>
-		  
-		    <li><span class='glyphicon glyphicon-shopping-cart' style="color: #FF4040;font-size: 11px;"></span> 购物车0件</li>
-		    <li><span class='glyphicon glyphicon-phone' style="color: #FF4040;font-size: 11px;"></span> 手机逛酒坊</li>
-		    <li><span class='glyphicon glyphicon-list' style="color: #FF4040;font-size: 11px;"></span> 网站导航</li>
-		    <li><span class='glyphicon glyphicon-user' style="color: #FF4040;font-size: 11px;"></span> 客户服务 <a class='glyphicon glyphicon-chevron-up' style="color: #EEE0E5;font-size: 10px;"></a></li>
-		    <li> 客服热线 <label style="color: #FF0000">400-666-8888</label></span>
+			    <li style="text-align: right;"><a href="#">我的酒坊</a></li>
+			    <li><span class='glyphicon glyphicon-shopping-cart' style="color: #FF4040;font-size: 11px;"></span> <a href="#">购物车0件</a></li>
+			    <li class='hwad_gg_0'><span class='glyphicon glyphicon-phone' style="color: #FF4040;font-size: 11px;"></span> <a href='#'>手机逛酒坊</a></li>
+			    <li class='hwad_gg_1'><span class='glyphicon glyphicon-list' style="color: #FF4040;font-size: 11px;"></span> 网站导航 </li>
+			    <li class='hwad_gg_2'><span class="glyphicon glyphicon-user" style="color: #FF4040;font-size: 11px;"></span> 客户服务 <span id='fw_jiant'><a class="glyphicon glyphicon-chevron-up" style="color: #EEE0E5;font-size: 10px;"></a></span></li>
+			    <li style="width: 200px; text-align: left;"> 客服热线 :<label style="color: #FF0000">400-666-8888</label></li><!-- 400-666-8888 -->
 			</ul>
+			
 		</div>
-
-
 		
 	</div>
-	<div id="head_img" class='DivSize'>
-		<img alt="" src="images/head_img.jpg">
+	
+	<!-- 这是手机二维码 -->
+	<div class='head_gg_yinc' id='erwm' style="
+			width: 86px ;
+			height: 86px;
+			background: #fff ;
+			position: absolute;
+			right: 392px;">
+			
+		<div id='erwm_1'>
+			<img alt="" src="<%=basePath%>images/erw.png">
+		</div>
+		
 	</div>
+					    	
+		
+	<!-- 这是网站导航 -->
+	<div class='head_gg_yinc' id='headdh' style="
+			width: 210px ;
+			height: 340px;
+			background: #fff ;
+			position: absolute;
+			right: 167px;
+			z-index: 20000">
+		
+		
+		<div class='head_gg_daoh'>
+		
+			<h4 style="margin-left: 20px;">购物</h4>
+			<a href='#'>葡萄酒</a>
+			<a href='#'>洋酒</a>
+			<a href='#'>啤酒</a><br/>
+			<a href='#'>保健酒</a>
+			<a href='#'>马爹利</a>
+			<a href='#'>拉菲</a>
+			
+		</div>
+		
+		<div class='head_gg_daoh'>
+		
+			<h4 style="margin-left: 20px;">活动</h4>
+			<a href='#'>进口馆</a>
+			<a href='#'>整箱套装</a>
+			<a href='#'>清仓</a><br/>
+			<a href='#'>团购</a>
+			<a href='#'>新品发现</a>
+			
+		</div >
+		
+		<div class='head_gg_daoh'>
+			<h4 style="margin-left: 20px;">其他</h4>
+			<a href='#'>会员中心</a>
+			<a href='#'>社区</a>
+			<a href='#'>常见问题</a><br/>
+			<a href='#'>礼品卡</a>
+		</div>
+		
+		<div style="width: 100%;margin-left: 20px;margin-top: 10px;color: #666;">
+			
+			<span>咨询电话:400-666-8888</span>
+			
+		</div>
+		
+	</div>
+	
+	<!-- 这是客户服务 -->
+	
+	<div  class='head_gg_yinc' id='headfw' style="
+			width: 86px ;
+			height: 100px;
+			background: #fff ;
+			position: absolute;
+			right: 190px;
+			">
+			
+		<ul style="margin-left: 20px;margin-top: 5px;">
+		
+			<li><a href='#'>常见问题</a></li>
+			<li><a href='#'>配送说明</a></li>
+			<li><a href='#'>售后服务</a></li>
+			
+		</ul>
+		
+	</div>
+	
+	
+	<div id="head_img" class='DivSize'>
+		<img alt="" src="<%=basePath%>images/head_img.jpg">
+	</div>
+	
 	<div id="head_one">
 		<div id="head_left">
-			<img alt="" src="images/logo.png">
+			<img alt="" src="<%=basePath%>images/logo.png">
 		</div>
 		<div id="head_center">
 			<div>
@@ -464,7 +600,7 @@ li{
 		
 		
 		<div id="head_reght">
-			<img alt="" src="images/headerProPic.png" id="imgRight">
+			<img alt="" src="<%=basePath%>images/headerProPic.png" id="imgRight">
 		</div>
 	</div>
 	<!-- 导航栏 -->
@@ -475,21 +611,21 @@ li{
 		<!-- 左边 -->
 		<div id="type_comm_1">
 			<div class='type_comm_head'>
-				<div><img src="images/ax.png"/> 猜你喜欢</div>
+				<div><img src="<%=basePath%>images/ax.png"/> 猜你喜欢</div>
 				<div class='type_comm_head_1' id="type_comm_head_4">
 					
 				</div>
 			</div>
 		
 			<div class='type_comm_head'>
-				<div><img src="images/yj.png"/> 洋酒</div>
+				<div><img src="<%=basePath%>images/yj.png"/> 洋酒</div>
 				<div class='type_comm_head_1' id="type_comm_head_1">
 					
 				</div>
 			</div>
 			
 			<div class='type_comm_head'>
-				<div><img src="images/ip.png"/>葡萄酒</div>
+				<div><img src="<%=basePath%>images/ip.png"/>葡萄酒</div>
 				<div class='type_comm_head_1' id='type_comm_head_2'>
 						<a href="#"> 拉菲 </a>
 						<a href="#" class='re'>奔富 </a>
@@ -504,7 +640,7 @@ li{
 			</div>
 			
 			<div class='type_comm_head'>
-				<div><img src="images/jb_2.png"/>酒具</div>
+				<div><img src="<%=basePath%>images/jb_2.png"/>酒具</div>
 				
 				<div class='type_comm_head_1' id='type_comm_head_3'>
 					<a href="#">酒杯</a>
@@ -582,7 +718,7 @@ li{
 					
 				</div>
 				<div id='type_comm_2_1_1_right'>
-					<img alt="" src="images/left_index.jpg">
+					<img alt="" src="<%=basePath%>images/left_index.jpg">
 					
 				</div>
 			</div>
@@ -630,10 +766,10 @@ li{
 				</div>
 				<div id="type_comm_2_2_3_right">
 					<div>
-						<img alt="" src="images/001.png" style="width: 130px ; height: 230px" />
+						<img alt="" src="<%=basePath%>images/001.png" style="width: 130px ; height: 230px" />
 					</div>
 					<div>
-						<img alt="" src="images/002.png" style="width: 130px ; height: 230px" />
+						<img alt="" src="<%=basePath%>images/002.png" style="width: 130px ; height: 230px" />
 					</div>
 				</div>
 				
@@ -780,7 +916,7 @@ li{
 					</ul>
 				</div>
 				<div id="type_comm_2_4_3_right">
-					<img alt="" src="images/003.jpg">
+					<img alt="" src="<%=basePath%>images/003.jpg">
 				</div>
 				
 			</div>
@@ -791,7 +927,7 @@ li{
 	
 	<!-- 这是右边 -->
 	<div id='type_comm_2_right'>
-		<img src="images/index_head_reght.png">
+		<img src="<%=basePath%>images/index_head_reght.png">
 	</div>
 	
 	
@@ -1000,6 +1136,9 @@ li{
 		
 		
 	});
+	
+	
+	
 	/*  设置鼠标离开 */
 	$("body").on("mouseleave",".type_comm_head,.type_comm_2",function(){
 		//alert("离开了")
@@ -1008,6 +1147,111 @@ li{
 		
 		
 	});
+	
+	
+	
+	
+	/* ================================================= */
+	/* ================================================= */
+	/* ================================================= */
+	/* ================================================= */
+	
+	
+	/* 鼠标经过导航栏 --手机二维码 */
+	$(".hwad_gg_0").mouseover(function(){
+		$(this).addClass("head_gg_jinguo");
+		//alert('-'); 
+		$("#erwm").removeClass("head_gg_yinc");   //移除隐藏
+		$("#erwm").addClass("head_gg_xians");   //添显示
+		
+	});
+	$("#erwm").mouseover(function(){
+		$(".hwad_gg_0").addClass("head_gg_jinguo");
+		//alert('-'); 
+		$("#erwm").removeClass("head_gg_yinc");   //移除隐藏
+		$("#erwm").addClass("head_gg_xians");   //添显示
+		
+	});
+	/* 鼠标离开 --手机二维码  */
+	$(".hwad_gg_0,#erwm").mouseleave(function(){
+		
+		$("#erwm").removeClass("head_gg_xians");   //移除显示
+		$("#erwm").addClass("head_gg_yinc");   //添加隐藏
+		$(".hwad_gg_0").removeClass("head_gg_jinguo");
+		  
+		//$(".hwad_gg_0").removeClass("head_gg_jinguo");
+	});
+	
+	
+	
+	
+	/* 鼠标经过导航栏 --网站导航 */
+	$(".hwad_gg_1").mouseover(function(){
+		$(this).addClass("head_gg_jinguo");
+		$("#headdh").removeClass("head_gg_yinc");   //移除隐藏
+		$("#headdh").addClass("head_gg_xians");   //添显示
+	});
+	
+	$("#headdh").mouseover(function(){
+		$(".hwad_gg_1").addClass("head_gg_jinguo");
+		$("#headdh").removeClass("head_gg_yinc");   //移除隐藏
+		$("#headdh").addClass("head_gg_xians");   //添显示
+	});
+	
+	
+	/* 鼠标离开 --网站导航  */
+
+	$(".hwad_gg_1,#headdh").mouseleave(function(){
+		
+		$(".hwad_gg_1").removeClass("head_gg_jinguo");
+		//headdh
+		$("#headdh").removeClass("head_gg_xians");   //移除显示
+		$("#headdh").addClass("head_gg_yinc");   //添加隐藏
+		
+	});
+	
+	
+	/* 鼠标经过导航栏 --客户服务 */
+	$(".hwad_gg_2,#headfw").mouseover(function(){
+		$(this).addClass("head_gg_jinguo");
+		//上箭头  var $shangjt = ' <a class="glyphicon glyphicon-chevron-up" style="color: #EEE0E5;font-size: 10px;"></a>';
+		//下箭头
+		var $xiajt = ' <a class="glyphicon glyphicon-chevron-down" style="color: #EEE0E5;font-size: 10px;"></a>';
+		$("#fw_jiant").empty();  //清空上箭头
+		$("#fw_jiant").append($xiajt);  //添加下箭头
+		
+		//headfw
+		
+		$("#headfw").removeClass("head_gg_yinc");   //移除隐藏
+		$("#headfw").addClass("head_gg_xians");   //添显示
+	});
+	
+	$("#headfw").mouseover(function(){
+		$(".hwad_gg_2").addClass("head_gg_jinguo");
+		//上箭头  var $shangjt = ' <a class="glyphicon glyphicon-chevron-up" style="color: #EEE0E5;font-size: 10px;"></a>';
+		//下箭头
+		var $xiajt = ' <a class="glyphicon glyphicon-chevron-down" style="color: #EEE0E5;font-size: 10px;"></a>';
+		$("#fw_jiant").empty();  //清空上箭头
+		$("#fw_jiant").append($xiajt);  //添加下箭头
+		
+		//headfw
+		
+		$("#headfw").removeClass("head_gg_yinc");   //移除隐藏
+		$("#headfw").addClass("head_gg_xians");   //添显示
+	});
+	
+	/* 鼠标离开 --客户服务  */
+	$(".hwad_gg_2,#headfw").mouseleave(function(){
+		$(".hwad_gg_2").removeClass("head_gg_jinguo");
+		var $shangjt = ' <a class="glyphicon glyphicon-chevron-up" style="color: #EEE0E5;font-size: 10px;"></a>';
+		$("#fw_jiant").empty();  //清空下箭头
+		$("#fw_jiant").append($shangjt);  //添加上箭头
+		
+		$("#headfw").removeClass("head_gg_xians");   //移除显示
+		$("#headfw").addClass("head_gg_yinc");   //添加隐藏
+		
+	});
+	
 	
 	
 </script>

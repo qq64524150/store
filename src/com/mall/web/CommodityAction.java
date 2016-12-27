@@ -137,7 +137,7 @@ public class CommodityAction {
 	 * @return true / false
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/addCommod")
+	@RequestMapping("addCommod")
 	@ResponseBody
 	public String addIctAndUct(Product product,Pdepict pdepict,HttpServletResponse response,HttpServletRequest request) throws Exception {
 		String msg = "false" ;
@@ -210,14 +210,14 @@ public class CommodityAction {
 		p.setPdate_to(date_to);
 		p.setPbrand(pbrand);
 		p.setPtype(ptype);
-		if("请选择".equals(pbrand)){
+		/*if("请选择".equals(pbrand)){
 			System.out.println("----请选择1");
 			p.setPbrand(null);
 		}
 		if("请选择".equals(ptype.trim())){
 			System.out.println("----请选择2");
 			p.setPtype(null);
-		}
+		}*/
 		
 		// 封装客户端传过来的数据
 		String[] infoMsg = {sort,order} ;
@@ -388,6 +388,18 @@ public class CommodityAction {
 		}
 		
 		return msg ;
+	}
+	
+	
+	/**
+	 * 进行查询出全部商品信息，并重定向
+	 * @return
+	 */
+	@RequestMapping("/allFindConn")
+	public String allFindConn(HttpServletRequest request){
+		List<Object[]> listComm =  commodService.findAllCommList();
+		request.getSession().setAttribute("comm", listComm);
+		return "welcome" ;
 	}
 	
 	
