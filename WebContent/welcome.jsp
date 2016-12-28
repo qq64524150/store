@@ -251,31 +251,73 @@ $(window).load(function() {
 				<!-- 代码 开始 -->      
 				<div style="HEIGHT: 330px; OVERFLOW: hidden;" id=idTransformView>
 					<ul id=idSlider class=slider>
-							<!-- 这是人气抢购 -->
+						 <!-- 这是人气抢购 -->
 						  <div style="POSITION: relative">
 						 	
 						 		<div class='commImg'>
 						 			<ul>
-						 			
-						 				<c:forEach items="${sessionScope.comm}" var="comm">
-							 				<li>
-							 					<div class='idSliders'>
-							 						<img alt="" src="<%=basePath %>upload/${comm[0].pimage}">
-							 					
-							 					</div>
-							 					
-							 					<div class='idSliders_text'>
-							 						${comm[0].pname}
-							 					</div>
-							 					<div class='idSliders_money'>
-							 						<div class='idSliders_money_1'></div>
-							 					</div>
-							 				</li>
+						 				<!-- 设置true/false 用于退出循环 -->
+						 				<c:set var="flag" value="true"/>
+						 				<!-- 开始循环取值 -->
+						 				<c:forEach items="${sessionScope.comm}" var="comm" varStatus="i">
+							 				<!-- 进行判断 -->
+							 				<c:if test="${flag }">
+							 						
+								 				<li>
+								 					<!-- 倒计时 -->
+								 					<div class='daojisDate${i.count} daojisDate'>
+								 						
+														 <span class="days">00</span>
+														 <span class="seperator">天</span>
+														 
+														 <span class="hours">00</span>
+														 <span class="seperator">时</span>
+														 
+														 <span class="minutes">00</span>
+														 <span class="seperator">分</span>
+														 
+														 <span class="seconds">00</span>
+														 <span class="seperator">秒</span>
+								 						
+								 					</div>
+								 					
+								 					<!-- 这里是设置商品图片 -->
+								 					<div class='idSliders'>
+								 						<a href="<%=basePath %>commodityAction/findPdepictByIdthree?id=${comm[0].pno}">
+								 							<img  src="<%=basePath %>upload/${comm[0].pimage}">
+								 						</a>
+								 					</div>
+								 					
+								 					
+								 					<div class='idSliders_text'>
+								 						<!-- 这里是设置商品名 -->
+								 						<p class='spname'>
+								 							<a href="<%=basePath %>commodityAction/findPdepictByIdthree?id=${comm[0].pno}">
+								 								${comm[0].pname}
+								 							</a>
+								 						</p>
+								 						<!-- 这里设置商品价格 -->
+								 						<p class='jiqgeyy'>
+								 							<span class='jiagetub'><img alt="" src="<%=basePath %>images/jiage.png"> </span>
+								 							<span class='moys'>${comm[0].pSelingPrice}</span>
+								 						</p>
+								 					</div>
+								 					<!-- 这里是设置价格 -->
+								 					<div class='idSliders_money'>
+								 						<div class='idSliders_money_1'><span>售出:</span>0</div>
+								 						<div class='idSliders_money_2'>好评度<span>100%</span></div>
+								 					</div>
+								 				</li>
+								 				
+							 				</c:if>
+							 				
+							 				<!-- 设置是否等于5 -->
+							 				 <c:if test="${i.count == 5 }">
+							 					<c:set var="flag" value="false"/>
+							 				</c:if>  
+							 				
+							 				
 						 				</c:forEach>
-						 				<li></li>
-						 				<li></li>
-						 				<li></li>
-						 				<li></li>
 						 			</ul>	
 						 			
 						 		</div>
@@ -288,11 +330,52 @@ $(window).load(function() {
 						  
 						  		<div class='commImg' >
 						 			<ul style="margin-top: 12px ;">
-						 				<li></li>
-						 				<li></li>
-						 				<li></li>
-						 				<li></li>
-						 				<li></li>
+						 				<!-- 设置true/false 用于退出循环 -->
+						 				<c:set var="flag" value="true"/>
+						 				<!-- 开始循环取值 -->
+						 				<c:forEach items="${sessionScope.comm}" var="comm" varStatus="i">
+							 				<!-- 进行判断 -->
+							 				<c:if test="${flag }">
+							 						
+								 				<li>
+								 					<!-- 这里是设置商品图片 -->
+								 					
+								 					<div class='idSliders'>
+								 						<a href="<%=basePath %>commodityAction/findPdepictByIdthree?id=${comm[0].pno}">
+								 							<img  src="<%=basePath %>upload/${comm[0].pimage}">
+								 						</a>
+								 					</div>
+								 					
+								 					
+								 					<div class='idSliders_text'>
+								 						<!-- 这里是设置商品名 -->
+								 						<p class='spname'>
+								 							<a href="<%=basePath %>commodityAction/findPdepictByIdthree?id=${comm[0].pno}">
+								 								${comm[0].pname}
+								 							</a>
+								 						</p>
+								 						<!-- 这里设置商品价格 -->
+								 						<p class='jiqgeyy'>
+								 							<span class='jiagetub'><img alt="" src="<%=basePath %>images/jiage.png"> </span>
+								 							<span class='moys'>${comm[0].pSelingPrice}</span>
+								 						</p>
+								 					</div>
+								 					<!-- 这里是设置价格 -->
+								 					<div class='idSliders_money'>
+								 						<div class='idSliders_money_1'><span>售出:</span>0</div>
+								 						<div class='idSliders_money_2'>好评度<span>100%</span></div>
+								 					</div>
+								 				</li>
+								 				
+							 				</c:if>
+							 				
+							 				<!-- 设置是否等于5 -->
+							 				 <c:if test="${i.count == 5 }">
+							 					<c:set var="flag" value="false"/>
+							 				</c:if>  
+							 				
+							 				
+						 				</c:forEach>
 						 			</ul>	
 						 			
 						 			
@@ -302,12 +385,53 @@ $(window).load(function() {
 						  <div style="POSITION: relative">
 						  		<div class='commImg'>
 						 			
-						 			<ul style="margin-top: 15px ;">
-						 				<li></li>
-						 				<li></li>
-						 				<li></li>
-						 				<li></li>
-						 				<li></li>
+						 			<ul style="margin-top: 12px ;">
+						 				<!-- 设置true/false 用于退出循环 -->
+						 				<c:set var="flag" value="true"/>
+						 				<!-- 开始循环取值 -->
+						 				<c:forEach items="${sessionScope.comm}" var="comm" varStatus="i">
+							 				<!-- 进行判断 -->
+							 				<c:if test="${flag }">
+							 						
+								 				<li>
+								 					<!-- 这里是设置商品图片 -->
+								 					
+								 					<div class='idSliders'>
+								 						<a href="<%=basePath %>commodityAction/findPdepictByIdthree?id=${comm[0].pno}">
+								 							<img  src="<%=basePath %>upload/${comm[0].pimage}">
+								 						</a>
+								 					</div>
+								 					
+								 					
+								 					<div class='idSliders_text'>
+								 						<!-- 这里是设置商品名 -->
+								 						<p class='spname'>
+								 							<a href="<%=basePath %>commodityAction/findPdepictByIdthree?id=${comm[0].pno}">
+								 								${comm[0].pname}
+								 							</a>
+								 						</p>
+								 						<!-- 这里设置商品价格 -->
+								 						<p class='jiqgeyy'>
+								 							<span class='jiagetub'><img alt="" src="<%=basePath %>images/jiage.png"> </span>
+								 							<span class='moys'>${comm[0].pSelingPrice}</span>
+								 						</p>
+								 					</div>
+								 					<!-- 这里是设置价格 -->
+								 					<div class='idSliders_money'>
+								 						<div class='idSliders_money_1'><span>售出:</span>0</div>
+								 						<div class='idSliders_money_2'>好评度<span>100%</span></div>
+								 					</div>
+								 				</li>
+								 				
+							 				</c:if>
+							 				
+							 				<!-- 设置是否等于5 -->
+							 				 <c:if test="${i.count == 5 }">
+							 					<c:set var="flag" value="false"/>
+							 				</c:if>  
+							 				
+							 				
+						 				</c:forEach>
 						 			</ul>	
 						 			
 						 		</div>
@@ -317,12 +441,53 @@ $(window).load(function() {
 						  <div style="POSITION: relative">
 						  		
 						  		<div class='commImg'>
-						 			<ul style="margin-top: 9px ;">
-						 				<li></li>
-						 				<li></li>
-						 				<li></li>
-						 				<li></li>
-						 				<li></li>
+						 			<ul style="margin-top: 6px ;">
+						 				<!-- 设置true/false 用于退出循环 -->
+						 				<c:set var="flag" value="true"/>
+						 				<!-- 开始循环取值 -->
+						 				<c:forEach items="${sessionScope.comm}" var="comm" varStatus="i">
+							 				<!-- 进行判断 -->
+							 				<c:if test="${flag }">
+							 						
+								 				<li>
+								 					<!-- 这里是设置商品图片 -->
+								 					
+								 					<div class='idSliders'>
+								 						<a href="<%=basePath %>commodityAction/findPdepictByIdthree?id=${comm[0].pno}">
+								 							<img  src="<%=basePath %>upload/${comm[0].pimage}">
+								 						</a>
+								 					</div>
+								 					
+								 					
+								 					<div class='idSliders_text'>
+								 						<!-- 这里是设置商品名 -->
+								 						<p class='spname'>
+								 							<a href="<%=basePath %>commodityAction/findPdepictByIdthree?id=${comm[0].pno}">
+								 								${comm[0].pname}
+								 							</a>
+								 						</p>
+								 						<!-- 这里设置商品价格 -->
+								 						<p class='jiqgeyy'>
+								 							<span class='jiagetub'><img alt="" src="<%=basePath %>images/jiage.png"> </span>
+								 							<span class='moys'>${comm[0].pSelingPrice}</span>
+								 						</p>
+								 					</div>
+								 					<!-- 这里是设置价格 -->
+								 					<div class='idSliders_money'>
+								 						<div class='idSliders_money_1'><span>售出:</span>0</div>
+								 						<div class='idSliders_money_2'>好评度<span>100%</span></div>
+								 					</div>
+								 				</li>
+								 				
+							 				</c:if>
+							 				
+							 				<!-- 设置是否等于5 -->
+							 				 <c:if test="${i.count == 5 }">
+							 					<c:set var="flag" value="false"/>
+							 				</c:if>  
+							 				
+							 				
+						 				</c:forEach>
 						 			</ul>		
 						 			
 						 		</div>
@@ -333,12 +498,53 @@ $(window).load(function() {
 						  		
 						  		<div class='commImg'>
 						  		
-						 			<ul style="margin-top: 2px ;">
-						 				<li></li>
-						 				<li></li>
-						 				<li></li>
-						 				<li></li>
-						 				<li></li>
+						 			<ul style="margin-top: 12px ;">
+						 				<!-- 设置true/false 用于退出循环 -->
+						 				<c:set var="flag" value="true"/>
+						 				<!-- 开始循环取值 -->
+						 				<c:forEach items="${sessionScope.comm}" var="comm" varStatus="i">
+							 				<!-- 进行判断 -->
+							 				<c:if test="${flag }">
+							 						
+								 				<li>
+								 					<!-- 这里是设置商品图片 -->
+								 					
+								 					<div class='idSliders'>
+								 						<a href="<%=basePath %>commodityAction/findPdepictByIdthree?id=${comm[0].pno}">
+								 							<img  src="<%=basePath %>upload/${comm[0].pimage}">
+								 						</a>
+								 					</div>
+								 					
+								 					
+								 					<div class='idSliders_text'>
+								 						<!-- 这里是设置商品名 -->
+								 						<p class='spname'>
+								 							<a href="<%=basePath %>commodityAction/findPdepictByIdthree?id=${comm[0].pno}">
+								 								${comm[0].pname}
+								 							</a>
+								 						</p>
+								 						<!-- 这里设置商品价格 -->
+								 						<p class='jiqgeyy'>
+								 							<span class='jiagetub'><img alt="" src="<%=basePath %>images/jiage.png"> </span>
+								 							<span class='moys'>${comm[0].pSelingPrice}</span>
+								 						</p>
+								 					</div>
+								 					<!-- 这里是设置价格 -->
+								 					<div class='idSliders_money'>
+								 						<div class='idSliders_money_1'><span>售出:</span>0</div>
+								 						<div class='idSliders_money_2'>好评度<span>100%</span></div>
+								 					</div>
+								 				</li>
+								 				
+							 				</c:if>
+							 				
+							 				<!-- 设置是否等于5 -->
+							 				 <c:if test="${i.count == 5 }">
+							 					<c:set var="flag" value="false"/>
+							 				</c:if>  
+							 				
+							 				
+						 				</c:forEach>
 						 			</ul>	
 						 		</div>
 						  </div>
@@ -372,16 +578,37 @@ $(window).load(function() {
 		<div class='rmtj_left'>
 			<div class='rmtj_left_1'>
 				 <ul>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
+				 	
+				 	<c:set var="xiaflage" value="true"/>
+				 	<c:forEach items="${sessionScope.comm }" var="comm" varStatus="i">
+				 		
+				 		<c:if test="${xiaflage }">
+				 		
+						 	<li>
+						 		<div class='xiaSpcs1'>
+						 			<a href="<%=basePath %>commodityAction/findPdepictByIdthree?id=${comm[0].pno}">
+			 							<img  src="<%=basePath %>upload/${comm[0].pimage}">
+			 						</a>
+						 		</div>
+						 		
+						 		<div class='xiaSpcs2'>
+						 			<a href="<%=basePath %>commodityAction/findPdepictByIdthree?id=${comm[0].pno}">
+		 								${comm[0].pname}
+		 							</a>
+						 		</div>
+						 		
+						 		<div class='xiaSpcs3'>
+						 			<span>￥</span><b>${comm[0].pSelingPrice}</b>
+						 		</div>
+						 		
+						 	</li>
+					 	</c:if>
+					 	
+					 	<c:if test="${i.count == 10}">
+					 		<c:set var="xiaflage" value="false"/>
+					 	</c:if>
+					 	
+				 	</c:forEach>
 				 </ul>
 			</div>
 			
@@ -473,21 +700,38 @@ $(window).load(function() {
 		<!-- 这是葡萄酒馆头右边 -->
 		<div class='rmtj_right_zu'>
 			 <ul>
-				 	<li>
-				 		<%-- <c:forEach items="${sessionScope.comm }" var='comm'>
-				 			${comm[0].pname }
-				 		</c:forEach> --%>
-				 	</li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 </ul>
+				 	
+			 	<c:set var="xiaflage" value="true"/>
+			 	<c:forEach items="${sessionScope.comm }" var="comm" varStatus="i">
+			 		
+			 		<c:if test="${xiaflage }">
+			 		
+					 	<li>
+					 		<div class='xiaSpcs1'>
+					 			<a href="<%=basePath %>commodityAction/findPdepictByIdthree?id=${comm[0].pno}">
+		 							<img  src="<%=basePath %>upload/${comm[0].pimage}">
+		 						</a>
+					 		</div>
+					 		
+					 		<div class='xiaSpcs2'>
+					 			<a href="<%=basePath %>commodityAction/findPdepictByIdthree?id=${comm[0].pno}">
+	 								${comm[0].pname}
+	 							</a>
+					 		</div>
+					 		
+					 		<div class='xiaSpcs3'>
+					 			<span>￥</span><b>${comm[0].pSelingPrice}</b>
+					 		</div>
+					 		
+					 	</li>
+				 	</c:if>
+				 	
+				 	<c:if test="${i.count == 10}">
+				 		<c:set var="xiaflage" value="false"/>
+				 	</c:if>
+				 	
+			 	</c:forEach>
+			</ul>
 		</div>
 	</div>
 	
@@ -504,16 +748,36 @@ $(window).load(function() {
 		<div class='rmtj_left'>
 			<div class='rmtj_left_1'>
 				 <ul>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
+				 	<c:set var="xiaflage" value="true"/>
+				 	<c:forEach items="${sessionScope.comm }" var="comm" varStatus="i">
+				 		
+				 		<c:if test="${xiaflage }">
+				 		
+						 	<li>
+						 		<div class='xiaSpcs1'>
+						 			<a href="<%=basePath %>commodityAction/findPdepictByIdthree?id=${comm[0].pno}">
+			 							<img  src="<%=basePath %>upload/${comm[0].pimage}">
+			 						</a>
+						 		</div>
+						 		
+						 		<div class='xiaSpcs2'>
+						 			<a href="<%=basePath %>commodityAction/findPdepictByIdthree?id=${comm[0].pno}">
+		 								${comm[0].pname}
+		 							</a>
+						 		</div>
+						 		
+						 		<div class='xiaSpcs3'>
+						 			<span>￥</span><b>${comm[0].pSelingPrice}</b>
+						 		</div>
+						 		
+						 	</li>
+					 	</c:if>
+					 	
+					 	<c:if test="${i.count == 10}">
+					 		<c:set var="xiaflage" value="false"/>
+					 	</c:if>
+					 	
+				 	</c:forEach>
 				 </ul>
 			</div>
 			
@@ -608,18 +872,38 @@ $(window).load(function() {
 		
 		<!-- 这是啤酒，养生酒右边 -->
 		<div class='rmtj_right_zu'>
-			 <ul>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 	<li></li>
-				 </ul>
+			<ul>
+				<c:set var="xiaflage" value="true"/>
+			 	<c:forEach items="${sessionScope.comm }" var="comm" varStatus="i">
+			 		
+			 		<c:if test="${xiaflage }">
+			 		
+					 	<li>
+					 		<div class='xiaSpcs1'>
+					 			<a href="<%=basePath %>commodityAction/findPdepictByIdthree?id=${comm[0].pno}">
+		 							<img  src="<%=basePath %>upload/${comm[0].pimage}">
+		 						</a>
+					 		</div>
+					 		
+					 		<div class='xiaSpcs2'>
+					 			<a href="<%=basePath %>commodityAction/findPdepictByIdthree?id=${comm[0].pno}">
+	 								${comm[0].pname}
+	 							</a>
+					 		</div>
+					 		
+					 		<div class='xiaSpcs3'>
+					 			<span>￥</span><b>${comm[0].pSelingPrice}</b>
+					 		</div>
+					 		
+					 	</li>
+				 	</c:if>
+				 	
+				 	<c:if test="${i.count == 10}">
+				 		<c:set var="xiaflage" value="false"/>
+				 	</c:if>
+				 	
+			 	</c:forEach>
+			</ul>
 		</div>
 	</div>
 	
@@ -751,7 +1035,8 @@ $(window).load(function() {
 		</div>
 	</div>
 	
-<script src="js/dist/pageSwitch.min.js"></script>	
+<script src="<%=basePath %>js/dist/pageSwitch.min.js"></script>	
+<script type="text/javascript" src="<%=basePath %>js/jquery.downCount.js"></script> 
 </body>
 
 <script language=javascript>
@@ -773,6 +1058,37 @@ $(window).load(function() {
 		autoPlay:true,
 		loop:'false'
 	});
-	
+  	
+  	/* 测试 */
+	$('.daojisDate1').downCount({
+		date: '12/28/2016 12:00:00',
+		offset: +10
+	}, function () {
+		alert('倒计时结束!');
+	});
+	$('.daojisDate2').downCount({
+		date: '12/29/2016 12:00:00',
+		offset: +10
+	}, function () {
+		alert('倒计时结束!');
+	});
+	$('.daojisDate3').downCount({
+		date: '1/1/2017 12:00:00',
+		offset: +10
+	}, function () {
+		alert('倒计时结束!');
+	});
+	$('.daojisDate4').downCount({
+		date: '1/11/2017 12:00:00',
+		offset: +10
+	}, function () {
+		alert('倒计时结束!');
+	});
+	$('.daojisDate5').downCount({
+		date: '1/28/2017 12:00:00',
+		offset: +10
+	}, function () {
+		alert('倒计时结束!');
+	});
   </script>
 </html>

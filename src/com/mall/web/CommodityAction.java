@@ -339,7 +339,11 @@ public class CommodityAction {
 		}
 		return msg ;
 	}
-	
+	/**
+	 * 查询出指定的商品信息和商品描述信息
+	 * @param pno 接收相关的id
+	 * @param out 输出
+	 */
 	@RequestMapping("/findPdepictById_two")
 	@ResponseBody
 	public void findPdepictById_two(String pno,PrintWriter out){
@@ -366,7 +370,7 @@ public class CommodityAction {
 	/**
 	 * 修改商品描述
 	 * @param pdepict
-	 * @return
+	 * @return 相关的路径
 	 */
 	@RequestMapping("/updataPdepictById")
 	@ResponseBody
@@ -402,7 +406,20 @@ public class CommodityAction {
 		return "welcome" ;
 	}
 	
-	
+	/**
+	 * 查询出指定商品信息及商品描述信息
+	 * @return 商品信息及商品描述信息
+	 */
+	@RequestMapping("/findPdepictByIdthree")
+	public String findPdepictByIdthree(String id,HttpServletRequest request){
+		
+		//进行查询指定的商品相关信息
+		List list = commodService.findPdepictByIdTwo(id);
+		//把查询出来的结果存放到会话中
+		request.getSession().setAttribute("commInfoById", list);
+		
+		return "pages/commInfo/commInfo" ;
+	}
 	
 	
 	public String getPdepictImg() {

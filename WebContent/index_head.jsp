@@ -11,12 +11,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="<%=basePath%>jquery/jquery-2.2.3.min.js"></script>
+
 <link rel="stylesheet"
 	href="<%=basePath%>bootstrapcss/bootstrap.min.css">
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <script src="<%=basePath%>jquery/jquery.js"></script>
 <script src="<%=basePath%>jquery/jquery.validate.js"></script>
+<%-- <script src="<%=basePath %>/jquery/jquery-2.2.3.min.js"></script> --%>
 <title>Insert title here</title>
 </head>
 
@@ -24,6 +25,7 @@
 a{
 	color: black;
 	text-decoration:none;
+	border: 0 ;
 }
 body{
 	
@@ -581,7 +583,7 @@ li{
 	
 	<div id="head_one">
 		<div id="head_left">
-			<img alt="" src="<%=basePath%>images/logo.png">
+			<a href="<%=basePath%>/welcome.jsp"><img alt="" src="<%=basePath%>images/logo.png"></a>
 		</div>
 		<div id="head_center">
 			<div>
@@ -656,7 +658,7 @@ li{
 		</div>
 		
 		<!-- 右边导航栏 -->
-		<div id="type_comm_2">
+		<div id="type_comm_2" class='index_right2'>
 		
 			<div id="type_comm_2_1" class='type_comm_2 index_right2'>
 				<div id='type_comm_2_1_1_left'>
@@ -1123,7 +1125,7 @@ li{
 	*/
 	
 	/* 设置鼠标经过  */
-	$("body").on("mouseover",".type_comm_head,.type_comm_2",function(){
+	$(".type_comm_head,.type_comm_2").live("mouseover",function(){
 		//alert("经过了")
 		/* 获取序号 */
 		var index = $(this).index();
@@ -1133,18 +1135,18 @@ li{
 		$(".type_comm_2").removeClass("z-index_right");
 		$(".type_comm_2").eq(index).removeClass("index_right2");
 		$(".type_comm_2").eq(index).addClass("z-index_right");
-		
+		$("#type_comm_2").removeClass("index_right2");
 		
 	});
 	
 	
 	
 	/*  设置鼠标离开 */
-	$("body").on("mouseleave",".type_comm_head,.type_comm_2",function(){
+	$(".type_comm_head,.type_comm_2").live("mouseleave",function(){
 		//alert("离开了")
 		$(".type_comm_head").removeClass("type_comm_head_left");
 		$(".type_comm_2").addClass("index_right2");
-		
+		$("#type_comm_2").addClass("index_right2");
 		
 	});
 	
