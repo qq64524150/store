@@ -29,18 +29,18 @@ public class PicUtils {
 	 *            String
 	 * @throws IOException
 	 */
-	public PicUtils(String fileName) throws IOException {
+	public PicUtils(String fileName,String honj) throws IOException {
 		File _file = new File(fileName); // 读入文件
 		this.srcFile = fileName;
 		// 查找最后一个.
 		int index = this.srcFile.lastIndexOf(".");
 		String ext = this.srcFile.substring(index);
-		this.destFile = this.srcFile.substring(0, index) + "_s" + ext;
+		this.destFile = this.srcFile.substring(0, index) + honj + ext;
 		img = javax.imageio.ImageIO.read(_file); // 构造Image对象
 		width = img.getWidth(null); // 得到源图宽
 		height = img.getHeight(null); // 得到源图长
 	}
-
+	
 	/**
 	 * 强制压缩/放大图片到固定的大小
 	 * 

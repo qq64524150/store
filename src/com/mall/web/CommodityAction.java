@@ -54,7 +54,7 @@ public class CommodityAction {
 		String fileName = null;
 		String[] findImg_pdepict = new String[file.size()];
 		// String[] hpuz = {".jpg",".png"};
-		String hquz = ".jpg,.png";
+		String hquz = ".jpg,.png,.JPG,.PNG";
 		int is = -1;
 		for (int i = 0; i < file.size(); i++) {
 			fileName = file.get(i).getOriginalFilename();
@@ -90,8 +90,10 @@ public class CommodityAction {
 					findImg_pdepict[i] = findImg;
 					// 生成压缩图
 					System.out.println(url);
-					PicUtils pic = new PicUtils(url);
-					pic.resizeByHeight(200);
+					PicUtils pic_zs = new PicUtils(url,"_zs");
+					pic_zs.resizeByHeight(180);
+					PicUtils pic_s1 = new PicUtils(url,"_s1");
+					pic_s1.resizeByHeight(360);
 
 					System.out.println("====" + name);
 					fos.flush();
@@ -414,9 +416,13 @@ public class CommodityAction {
 	public String findPdepictByIdthree(String id,HttpServletRequest request){
 		
 		//进行查询指定的商品相关信息
-		List list = commodService.findPdepictByIdTwo(id);
+		//List list = commodService.findPdepictByIdTwo(id);
+		Product pr = new Product();
+		pr.setPno(id);
+		Product p = commodService.findProductById(pr);
+		//System.out.println("p"+p.getPdepict().getColorur());
 		//把查询出来的结果存放到会话中
-		request.getSession().setAttribute("commInfoById", list);
+		request.getSession().setAttribute("commInfoById", p);
 		
 		return "pages/commInfo/commInfo" ;
 	}

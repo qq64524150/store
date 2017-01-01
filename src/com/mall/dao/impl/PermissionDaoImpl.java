@@ -8,6 +8,7 @@ import com.mall.dao.BaseDao;
 import com.mall.dao.PermissionDao;
 @Repository
 public class PermissionDaoImpl extends BaseDao implements PermissionDao {
+	
 	//查询相对应的权限
 	@Override
 	public List findper(String parenid, String authids) {
